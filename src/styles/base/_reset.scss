@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-base;
+    font-size: $font-size-base;
+    background-color: $color-white;
+    color: $color-black;
+    line-height: 1.6;
+}

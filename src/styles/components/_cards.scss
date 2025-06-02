@@ -1,0 +1,19 @@
+.card {
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: $color-gray-100;
+
+    &--presentation {
+        background-color: $color-gray-900;
+        color: $color-white;
+    }
+
+    &__title {
+        font-size: 2rem;
+    }
+
+    &__subtitle {
+        font-size: 1.2rem;
+        color: $color-gray-300;
+    }
+}
