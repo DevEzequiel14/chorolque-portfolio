@@ -1,22 +1,51 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
-import PresentationCard from "../components/PresentationCard.astro";
+import Layout from "../components/layout/Layout.astro";
+import ToggleCard from "../components/cards/ToggleCard.astro";
+import PresentationCard from "../components/cards/PresentationCard.astro";
+import SocialNetworksCard from "../components/cards/SocialNetworksCard.astro";
+import ProjectsCard from "../components/cards/ProjectsCard.astro";
+import AboutCard from "../components/cards/AboutCard.astro";
+import ProfileCard from "../components/cards/ProfileCard.astro";
+import ContactCard from "../components/cards/ContactCard.astro";
+import TechnologiesCard from "../components/cards/TechnologiesCard.astro";
+
+const socialLinks = [
+	{
+		label: "LinkedIn",
+		href: "https://www.linkedin.com/in/chorolque-ezequiel/",
+		icon: "linkedin",
+	},
+	{
+		label: "GitHub",
+		href: "https://github.com/DevEzequiel14",
+		icon: "github",
+	},
+	{
+		label: "Instagram",
+		href: "https://www.instagram.com/ezequielrc14/",
+		icon: "instagram",
+	},
+	{
+		label: "Correo",
+		href: "mailto:ezequielchorolque14@gmail.com",
+		icon: "mail",
+	},
+];
 ---
 
 <Layout title="Inicio | Ezequiel Chorolque">
-	<section class="bento-grid">
-		<div class="card card--presentation">
-			<PresentationCard />
-		</div>
-		<div class="card card--social">Tarjeta 2</div>
-		<div class="card card--projects">Tarjeta 3</div>
-		<div class="card card--photo">Tarjeta 4</div>
-		<div class="card card--about">Tarjeta 5</div>
-		<div class="card card--technologies">Tarjeta 6</div>
-		<div class="card card--contact">Tarjeta 7</div>
-		<div class="card card--toggles">
-			<ThemeToggle />
-		</div>
-	</section>
+	<div class="layout__container animate-slide-down">
+		<section class="bento-grid">
+			<div class="card grid-area--presentation"><PresentationCard /></div>
+			<div class="grid-area--social">
+				<SocialNetworksCard links={socialLinks} />
+			</div>
+			<div class="card grid-area--projects"><ProjectsCard /></div>
+			<div class="grid-area--photo"><ProfileCard /></div>
+			<a class="card grid-area--about" href="/about"><AboutCard /></a>
+			<div class="card grid-area--technologies"><TechnologiesCard /></div>
+			<div class="card grid-area--contact"><ContactCard /></div>
+			<div class="grid-area--toggles"><ToggleCard /></div>
+		</section>
+	</div>
 </Layout>
