@@ -1,0 +1,9 @@
+---
+import CopyEmailButton from "../../components/common/CopyEmailButton.astro";
+import { information } from "../../data/profileInfo";
+---
+
+<section class="contact-card">
+    <h1 class="contact-card__title">Contácteme</h1>
+    <CopyEmailButton email={information.email} />
+</section>

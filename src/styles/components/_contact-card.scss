@@ -1,0 +1,30 @@
+@use "../base/variables";
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+
+    &__title {
+        font-size: variables.$font-size-base;
+        color: var(--text-card-color);
+    }
+}
+
+@media (max-width: 1200px) {
+    .contact-card {
+        &__title {
+            font-size: variables.$font-size-large;
+        }
+    }
+}
+
+@media (max-width: 810px) {
+    .contact-card {
+        &__title {
+            font-size: variables.$font-size-base;
+        }
+    }
+}
