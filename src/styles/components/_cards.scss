@@ -1,15 +1,12 @@
+@use "../base/variables";
+
 .card {
+    display: flex;
+    border-radius: 2rem;
     padding: 2rem;
-    border-radius: 1rem;
-    background-color: $color-gray-100;
+    border: 2px solid var(--border-color);
+    background: var(--bg-card-color);
+    transition: background-color 0.3s ease;
+    font-weight: bold;
     overflow: hidden;
-
-    &__title {
-        font-size: 2rem;
-    }
-
-    &__subtitle {
-        font-size: 1.2rem;
-        color: $color-gray-300;
-    }
 }
