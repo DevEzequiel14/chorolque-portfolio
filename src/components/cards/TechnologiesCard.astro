@@ -1,0 +1,54 @@
+---
+import { stacks } from "../../data/stacks";
+---
+
+<div class="technologies-card">
+    <div class="technologies-card__header">
+        <h1 class="technologies-card__title">Tecnologías que uso</h1>
+
+        <div class="technologies-card__chips">
+            {
+                Object.keys(stacks).map((category, i) => (
+                    <button
+                        class={`technologies-card__chip${i === 0 ? " active" : ""}`}
+                        data-category={category}
+                    >
+                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                    </button>
+                ))
+            }
+        </div>
+    </div>
+
+    {
+        Object.entries(stacks).map(([category, items], i) => (
+            <div
+                class={`technologies-card__track${i !== 0 ? " hidden" : ""}`}
+                id={category}
+            >
+                {items.map(({ icon: Icon, name }) => (
+                    <div class="technologies-card__item">
+                        <Icon />
+                        <p class="technologies-card__item-title">{name}</p>
+                    </div>
+                ))}
+            </div>
+        ))
+    }
+</div>
+
+<script type="module">
+    const buttons = document.querySelectorAll(".technologies-card__chip");
+    const sections = document.querySelectorAll(".technologies-card__track");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            buttons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            sections.forEach((section) => section.classList.add("hidden"));
+            const selectedId = button.getAttribute("data-category");
+            document.getElementById(selectedId)?.classList.remove("hidden");
+        });
+    });
+</script>
