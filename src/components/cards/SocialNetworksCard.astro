@@ -1,0 +1,45 @@
+---
+import IconLinkedIn from "../icons/networks/IconLinkedIn.astro";
+import IconGitHub from "../icons/networks/IconGitHub.astro";
+import IconInstagram from "../icons/networks/IconInstagram.astro";
+import IconMail from "../icons/networks/IconMail.astro";
+
+export interface SocialLink {
+    label: string;
+    href: string;
+    icon: "linkedin" | "github" | "instagram" | "mail";
+}
+
+const { links = [] } = Astro.props as { links?: SocialLink[] };
+
+const icons: Record<SocialLink["icon"], any> = {
+    linkedin: IconLinkedIn,
+    github: IconGitHub,
+    instagram: IconInstagram,
+    mail: IconMail,
+};
+---
+
+<div class="social-networks-card">
+    <section class="social-networks-card__content">
+        {
+            links.map((link: SocialLink) => {
+                const IconComponent = icons[link.icon];
+                return (
+                    <a
+                        href={link.href}
+                        class={`social-networks-card__btn ${link.icon}`}
+                        target={
+                            link.href.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel="noopener noreferrer"
+                        aria-label={link.label}
+                        title={link.label}
+                    >
+                        <IconComponent />
+                    </a>
+                );
+            })
+        }
+    </section>
+</div>
