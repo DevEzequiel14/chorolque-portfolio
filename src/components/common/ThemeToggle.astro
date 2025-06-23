@@ -1,0 +1,125 @@
+<div class="theme-toggle">
+    <input
+        class="theme-toggle__input"
+        type="checkbox"
+        id="darkmode-toggle"
+        onclick="toggleTheme()"
+    />
+
+    <label class="theme-toggle__label" for="darkmode-toggle">
+        <svg
+            id="sunIcon"
+            class="theme-toggle__icon theme-toggle__icon--sun theme-toggle__icon--visible"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+            <path
+                d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+            ></path>
+        </svg>
+
+        <svg
+            id="moonIcon"
+            class="theme-toggle__icon theme-toggle__icon--moon theme-toggle__icon--hidden"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+                d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+            ></path>
+        </svg>
+    </label>
+</div>
+
+<script is:inline>
+    function setThemeIcons(theme) {
+        const sun = document.getElementById("sunIcon");
+        const moon = document.getElementById("moonIcon");
+
+        sun.classList.remove(
+            "theme-toggle__icon--hidden",
+            "theme-toggle__icon--visible",
+            "theme-toggle__icon--hide-left",
+            "theme-toggle__icon--show-left",
+            "theme-toggle__icon--show-right",
+            "theme-toggle__icon--hide-right",
+        );
+        moon.classList.remove(
+            "theme-toggle__icon--hidden",
+            "theme-toggle__icon--visible",
+            "theme-toggle__icon--hide-left",
+            "theme-toggle__icon--show-left",
+            "theme-toggle__icon--show-right",
+            "theme-toggle__icon--hide-right",
+        );
+
+        if (theme === "dark") {
+            sun.classList.add("theme-toggle__icon--hidden");
+            moon.classList.add("theme-toggle__icon--visible");
+        } else {
+            sun.classList.add("theme-toggle__icon--visible");
+            moon.classList.add("theme-toggle__icon--hidden");
+        }
+    }
+
+    function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+
+        const sun = document.getElementById("sunIcon");
+        const moon = document.getElementById("moonIcon");
+
+        sun.classList.remove(
+            "theme-toggle__icon--hidden",
+            "theme-toggle__icon--visible",
+        );
+        moon.classList.remove(
+            "theme-toggle__icon--hidden",
+            "theme-toggle__icon--visible",
+        );
+
+        if (next === "dark") {
+            sun.classList.add("theme-toggle__icon--hide-left");
+            moon.classList.add("theme-toggle__icon--show-right");
+            setTimeout(() => {
+                setThemeIcons("dark");
+            }, 300);
+        } else {
+            moon.classList.add("theme-toggle__icon--hide-right");
+            sun.classList.add("theme-toggle__icon--show-left");
+            setTimeout(() => {
+                setThemeIcons("light");
+            }, 300);
+        }
+
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        const html = document.documentElement;
+        const toggle = document.getElementById("darkmode-toggle");
+        html.setAttribute("data-theme", savedTheme);
+        toggle.checked = savedTheme === "dark";
+        setThemeIcons(savedTheme);
+    });
+</script>

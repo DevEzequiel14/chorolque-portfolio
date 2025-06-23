@@ -1,0 +1,65 @@
+---
+interface Props {
+    email: string;
+}
+const { email } = Astro.props;
+---
+
+<button class="button-icon" id="copy-btn" data-email={email}>
+    <span id="label-copy">Copiar correo electrónico</span>
+    <svg
+        id="icon-copy"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-copy"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z"
+        ></path><path
+            d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"
+        ></path></svg
+    >
+    <svg
+        id="icon-check"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-check"
+        style="display: none"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M5 12l5 5l10 -10"></path></svg
+    >
+</button>
+<script is:inline>
+    const copyBtn = document.getElementById("copy-btn");
+    const email = copyBtn.dataset.email;
+    const label = document.getElementById("label-copy");
+    const copyIcon = document.getElementById("icon-copy");
+    const checkIcon = document.getElementById("icon-check");
+
+    copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(email).then(() => {
+            label.textContent = "Copiado";
+            copyIcon.style.display = "none";
+            checkIcon.style.display = "inline";
+
+            setTimeout(() => {
+                label.textContent = "Copiar correo electrónico";
+                copyIcon.style.display = "inline";
+                checkIcon.style.display = "none";
+            }, 5000);
+        });
+    });
+</script>
