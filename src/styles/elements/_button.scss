@@ -1,0 +1,40 @@
+@use "../base/variables";
+
+.button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 2rem;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: var(--text-card-color);
+    background: var(--button-icon-bg-color);
+    padding: 1rem;
+    font-size: variables.$font-size-medium;
+    gap: 0.5rem;
+}
+
+.button-icon svg {
+    transition: opacity 0.3s ease;
+}
+
+.button-icon:hover {
+    background: var(--button-icon-hover-color);
+}
+
+.button-round {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: var(--text-color);
+
+    svg {
+        rotate: 45deg;
+    }
+}

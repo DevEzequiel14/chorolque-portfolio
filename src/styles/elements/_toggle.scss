@@ -1,0 +1,109 @@
+@use "../base/variables";
+
+.theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    &__input {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+
+        &:checked + .theme-toggle__label {
+            background: var(--bg-button-color);
+
+            &::after {
+                left: 84px;
+                transform: translateX(-100%);
+                background-color: variables.$color-black;
+            }
+
+            .theme-toggle__icon--sun {
+                display: none;
+            }
+
+            .theme-toggle__icon--moon {
+                display: block;
+            }
+        }
+
+        &:active::after {
+            width: 260px;
+        }
+    }
+
+    &__label {
+        width: 90px;
+        height: 54px;
+        position: relative;
+        display: block;
+        border-radius: 200px;
+        background-color: var(--bg-color);
+        cursor: pointer;
+        transition: 0.3s;
+        border: 1px solid var(--border-color);
+
+        &::after {
+            content: "";
+            width: 42px;
+            height: 42px;
+            position: absolute;
+            top: 5px;
+            left: 6px;
+            border-radius: 180px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            background-color: variables.$color-black;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        width: 24px;
+        top: 14px;
+        z-index: 100;
+        color: #f4dba1;
+        fill: #f4dba1;
+        transition:
+            transform 0.3s,
+            opacity 0.3s;
+
+        &--sun {
+            left: 14px;
+            display: block;
+        }
+
+        &--moon {
+            left: 52px;
+            display: none;
+        }
+
+        &--hide-left {
+            animation: toggle-icon-hide-left 0.3s forwards;
+        }
+
+        &--show-right {
+            animation: toggle-icon-show-right 0.3s forwards;
+        }
+
+        &--hide-right {
+            animation: toggle-icon-hide-right 0.3s forwards;
+        }
+
+        &--show-left {
+            animation: toggle-icon-show-left 0.3s forwards;
+        }
+
+        &--visible {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+
+        &--hidden {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+    }
+}
