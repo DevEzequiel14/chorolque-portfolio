@@ -1,49 +1,24 @@
-@import "base/variables";
-@import "base/reset";
-@import "base/base";
+@use "./base/variables";
+@use "./base/reset";
+@use "./base/base";
 
-@import "utils/mixins";
-@import "utils/helpers";
+@use "./utils/helpers";
+@use "./utils/mixins";
+@use "./utils/animations";
 
-@import "layout/grid";
-@import "components/cards";
+@use "./layout/bento-grid";
+@use "./layout/layout";
 
-.main-container {
-    min-height: 100vh;
-    padding: 2rem;
-    background-color: $color-white;
-    color: $color-black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@use "./components/cards";
+@use "./components/social-networks-card";
+@use "./components/presentation-card";
+@use "./components/about-card";
+@use "./components/contact-card";
+@use "./components/perfil-card";
+@use "./components/toogle-card";
+@use "./components/technologies-card";
+@use "./components/projects-card";
 
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-auto-rows: 200px;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.card {
-    background-color: var(--color-card);
-    transition: background-color 0.3s ease;
-    padding: 1rem;
-    border-radius: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-body {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
-}
+@use "./elements/button";
+@use "./elements/icon";
+@use "./elements/toggle";

@@ -1,0 +1,146 @@
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, minmax(240px, 1fr));
+    gap: 1rem;
+    flex: 1;
+}
+
+.grid-area {
+    &--presentation {
+        grid-column: 1 / 3;
+        grid-row: 1;
+    }
+    &--social {
+        grid-column: 3;
+        grid-row: 1;
+    }
+    &--projects {
+        grid-column: 4 / 6;
+        grid-row: 1 / 3;
+    }
+    &--photo {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    &--about {
+        grid-column: 2 / 4;
+        grid-row: 2;
+    }
+    &--technologies {
+        grid-column: 1 / 4;
+        grid-row: 3;
+    }
+    &--contact {
+        grid-column: 4;
+        grid-row: 3;
+    }
+    &--toggles {
+        grid-column: 5;
+        grid-row: 3;
+    }
+}
+
+@media (max-width: 1200px) {
+    .bento-grid {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(6, minmax(238px, auto));
+    }
+
+    .grid-area {
+        &--presentation {
+            grid-column: 1 / 6;
+            grid-row: 1;
+        }
+        &--photo {
+            grid-column: 1 / 3;
+            grid-row: 2;
+        }
+
+        &--about {
+            grid-column: 3 / 6;
+            grid-row: 2;
+        }
+        &--projects {
+            grid-column: 1 / 6;
+            grid-row: 3 / 5;
+        }
+
+        &--technologies {
+            grid-column: 1 / 6;
+            grid-row: 5;
+        }
+
+        &--contact {
+            grid-column: 1 / 3;
+            grid-row: 6;
+        }
+
+        &--toggles {
+            grid-column: 3 / 4;
+            grid-row: 6;
+        }
+
+        &--social {
+            grid-column: 4 / 6;
+            grid-row: 6;
+        }
+    }
+}
+
+@media (max-width: 810px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        //grid-template-rows: repeat(7, minmax(240px, auto));
+        grid-template-rows: minmax(240px, auto) // presentation
+            minmax(240px, auto) // about
+            minmax(240px, auto) // projects
+            minmax(240px, auto) // technologies
+            minmax(240px, auto) // toggles
+            minmax(240px, auto) // contact
+            minmax(140px, auto); // social
+    }
+
+    .grid-area {
+        &--presentation {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        &--about {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        &--projects {
+            grid-column: 1;
+            grid-row: 3;
+        }
+        &--technologies {
+            grid-column: 1;
+            grid-row: 4;
+        }
+
+        &--toggles {
+            grid-column: 1;
+            grid-row: 5;
+        }
+        &--contact {
+            grid-column: 1;
+            grid-row: 6;
+        }
+        &--social {
+            grid-column: 1;
+            grid-row: 7;
+        }
+        &--photo {
+            display: none;
+        }
+    }
+}
+
+.grid-area--about:hover {
+    background: var(--bg-card-hover-color);
+}
+
+.grid-area--about:hover button {
+    animation: wobble 0.8s;
+}
