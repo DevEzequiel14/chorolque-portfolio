@@ -1,21 +1,56 @@
-$color-white: #ffffff;
-$color-black: #000000;
-$color-gray-100: #f5f5f5;
-$color-gray-300: #cccccc;
-$color-gray-600: #666666;
-$color-gray-900: #1a1a1a;
+$font-base: "Merriweather", sans-serif;
 
-$font-base: "Inter", sans-serif;
-$font-size-base: 16px;
+$font-size-big: 32px;
+$font-size-large: 28px;
+$font-size-base: 24px;
+$font-size-normal: 22px;
+$font-size-medium: 18px;
+$font-size-small: 16px;
+$color-black: #101010;
+
+$bg-color-linkedin: #0D5DAE;
+$bg-color-github: #333;
+$bg-color-instagram: #7D3BA9;
+$bg-color-email: #DA4437;
 
 :root {
-    --color-bg: #ffffff;
-    --color-text: #000000;
-    --color-card: #f3f3f3;
+    --title-color: #1F1F1F; 
+    --text-color: #8A949E; 
+    --title-card-color: #8C96A0;  
+    --text-card-color: #1F1F1F; 
+    --bg-color: #F4F5F6; 
+    --border-color: #cccccc; 
+    --bg-card-hover-color: #F0F2F3; 
+    --bg-button-normal-color: #242424; 
+    --text-button-normal-color: #B8B8B8; 
+    --bg-button-normal-hover-color: #101010; 
+    --slider-button-color: #C2C3C4; 
+    --select-slider-button-color: #202020; 
+    --bg-chip-color: #1F1F1F;
+    --text-chip-color: #CCCCCC;
+    --bg-slide-color: #E4E6E7;
+    --bg-button-color: #E6E8E9;
+    --button-icon-bg-color: #E8EAEB;
+    --button-icon-hover-color: #CED1D4;
 }
 
 [data-theme="dark"] {
-    --color-bg: #121212;
-    --color-text: #ffffff;
-    --color-card: #1e1e1e;
+    --title-color: #CCCCCC; 
+    --text-color: #626262; 
+    --title-card-color: #666666; 
+    --text-card-color: #CCCCCC; 
+    --bg-color: #090909; 
+    --border-color: #666666; 
+    --bg-card-hover-color: #1F1F1F; 
+    --bg-button-normal-color: #242424; 
+    --text-button-normal-color: #C9C9C9; 
+    --bg-button-normal-hover-color: #1F1F1F; 
+    --slider-button-color: #424242;
+    --select-slider-button-color: #CCCCCC;
+    --bg-chip-color: #666666;
+    --text-chip-color: #CCCCCC;
+    --bg-slide-color: #242424;
+    --bg-button-color: #2B2B2B;
+    --button-icon-bg-color: #242424;
+    --button-icon-hover-color: #1C1C1C;
 }
