@@ -1,0 +1,42 @@
+@use "../base/variables";
+
+.presentation-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+
+    &__title {
+        font-size: variables.$font-size-big;
+        color: var(--title-color);
+    }
+
+    &__description {
+        font-size: variables.$font-size-base;
+        color: var(--text-color);
+    }
+}
+
+@media (max-width: 1200px) {
+    .presentation-card {
+        &__title {
+            font-size: variables.$font-size-large;
+        }
+
+        &__description {
+            font-size: variables.$font-size-normal;
+        }
+    }
+}
+
+@media (max-width: 810px) {
+    .presentation-card {
+        &__title {
+            font-size: variables.$font-size-base;
+        }
+
+        &__description {
+            font-size: variables.$font-size-medium;
+        }
+    }
+}
