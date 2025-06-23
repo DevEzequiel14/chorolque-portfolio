@@ -1,0 +1,242 @@
+---
+import { projects } from "../../data/projects";
+import Layout from "../../components/layout/Layout.astro";
+
+export async function getStaticPaths() {
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout>
+    <div class="container animate-slide-up">
+        <div class="exit">
+            <a href="/" class="button-exit">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+                    ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                    ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
+                    ></path></svg
+                >
+            </a>
+        </div>
+
+        <div class="grid">
+            <div class="head">
+                <h1 class="title">{project.title}</h1>
+                <h2 class="type">{project.type}</h2>
+            </div>
+            <div class="left">
+                <div class="company">
+                    <p class="company-title">Empresa:</p>
+                    <p class="company-text">{project.company}</p>
+                </div>
+                <div class="rol">
+                    <p class="rol-title">Mi rol:</p>
+                    <p class="rol-text">{project.rol}</p>
+                </div>
+                <div class="technologies">
+                    <p class="technologies-title">Tecnologías:</p>
+                    <p class="technologies-text">{project.technologies}</p>
+                </div>
+                <div class="timeline">
+                    <p class="timeline-title">Línea de tiempo:</p>
+                    <p class="timeline-text">{project.timeline}</p>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="description">
+                    <p class="description-title">Descripción:</p>
+                    <p class="description-text">{project.description}</p>
+                </div>
+                <div class="context">
+                    <p class="context-title">Contexto:</p>
+                    <p class="context-text">{project.context}</p>
+                </div>
+
+                <a class="button-icon" href={project.link} target="_blank">
+                    Visualizar
+                    <svg
+                        class="arrow-svg"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"
+                        ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path><path d="M5 12l14 0"></path><path
+                            d="M13 18l6 -6"></path><path d="M13 6l6 6"
+                        ></path></svg
+                    >
+                </a>
+                <a class="button-icon" href={project.github} target="_blank">
+                    Código
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github"
+                        ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path><path
+                            d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+                        ></path></svg
+                    >
+                </a>
+            </div>
+            <div class="image">
+                <img src={project.image} alt={project.title} />
+            </div>
+        </div>
+    </div>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 100%;
+        }
+
+        .exit {
+            min-height: 100px;
+        }
+
+        .button-exit {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-rows: repeat(3, auto);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            /* width: 100%;
+            margin: auto; */
+            margin-inline: 300px;
+        }
+
+        .title {
+            grid-row: 1;
+            grid-column: 1 / 4;
+            gap: 1rem;
+        }
+
+        .left {
+            grid-row: 2;
+            grid-column: 1 / 2;
+            border: 2px solid var(--border-color);
+            border-radius: 2rem;
+            padding: 2rem;
+        }
+
+        .right {
+            grid-row: 2;
+            grid-column: 2 / 4;
+            border: 2px solid var(--border-color);
+            border-radius: 2rem;
+            padding: 2rem;
+        }
+
+        .image {
+            grid-row: 3;
+            grid-column: 1 / 4;
+            border-radius: 2rem;
+
+            img {
+                border-radius: 2rem;
+                border: 2px solid var(--border-color);
+            }
+        }
+        .left,
+        .right {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .title {
+            font-size: variables.$font-size-big;
+            color: var(--title-color);
+        }
+
+        .type {
+            font-size: variables.$font-size-base;
+            color: var(--text-color);
+        }
+
+        .company,
+        .rol,
+        .technologies,
+        .timeline,
+        .description,
+        .context {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .company-title,
+        .rol-title,
+        .technologies-title,
+        .timeline-title,
+        .description-title,
+        .context-title {
+            font-size: variables.$font-size-small;
+            color: var(--text-color);
+        }
+
+        .company-text,
+        .rol-text,
+        .technologies-text,
+        .timeline-text,
+        .description-text,
+        .context-text {
+            font-size: variables.$font-size-medium;
+            color: var(--title-color);
+        }
+
+        .arrow-svg {
+            rotate: 315deg;
+        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 2rem;
+        }
+    </style>
+</Layout>
