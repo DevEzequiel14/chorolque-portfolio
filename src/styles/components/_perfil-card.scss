@@ -1,0 +1,23 @@
+@use "../base/variables";
+
+.perfil-card {
+    display: flex;
+    border-radius: 2rem;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    height: 100%;
+    align-items: center;
+
+    &__content {
+        padding: 0px;
+    }
+
+    &__image {
+        display: block;
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+    }
+}

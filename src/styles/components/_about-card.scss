@@ -1,0 +1,47 @@
+@use "../base/variables";
+
+.about-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+        margin-left: auto;
+    }
+
+    &__title {
+        font-size: variables.$font-size-small;
+        color: var(--title-card-color);
+    }
+
+    &__description {
+        font-size: variables.$font-size-base;
+        color: var(--text-card-color);
+    }
+}
+
+@media (max-width: 1200px) {
+    .about-card {
+        &__title {
+            font-size: variables.$font-size-medium;
+        }
+
+        &__description {
+            font-size: variables.$font-size-normal;
+        }
+    }
+}
+
+@media (max-width: 810px) {
+    .about-card {
+        &__title {
+            font-size: variables.$font-size-small;
+        }
+
+        &__description {
+            font-size: variables.$font-size-medium;
+        }
+    }
+}
