@@ -2,98 +2,98 @@
 import Layout from "../../components/layout/Layout.astro";
 import { information } from "../../data/profileInfo";
 import ContactCard from "../../components/cards/ContactCard.astro";
+import DetailsAboutCard from "../../components/about/DetailsAboutCard.astro";
 
 const about = information;
 ---
 
 <Layout title="About | Ezequiel Chorolque">
-    <div class="container animate-slide-up">
-        <div class="exit">
-            <a href="/" class="button-exit">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-                    ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                    ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
-                    ></path></svg
-                >
-            </a>
-        </div>
-        <div class="grid">
-            <div class="about">
-                <div class="history">
-                    <p class="history-title">Mi historia</p>
-                    <p class="history-text">{about.history}</p>
+        <div class="container animate-slide-up">
+            <div class="button-exit">
+                <a href="/">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+                        ><path stroke="none" d="M0 0h24v24H0z" fill="none"
+                        ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
+                        ></path></svg
+                    >
+                </a>
+            </div>
+            <div class="grid">
+                <div class="about">
+                    <DetailsAboutCard />
                 </div>
-                <div class="actuality">
-                    <p class="actuality-title">Actualidad</p>
-                    <p class="actuality-text">{about.actually}</p>
-                </div>
-            </div>
-
-            <div class="experience">
-                <p class="experience-title">Experiencia</p>
-                {
-                    about.experiences.map((experience) => (
-                        <p class="experience-title">{experience.title}</p>
-                        <p class="experience-company">{experience.company}</p>
-                        <p class="experience-description">
-                            {experience.description}
-                        </p>
-                        <p class="experience-date">{experience.date}</p>
-                    ))
-                }
-            </div>
-
-            <div class="education">
-                <p class="education-title">Educación</p>
-                <p class="education-career">{about.education.career}</p>
-                <p class="education-university">{about.education.university}</p>
-                <p class="education-description">{about.education.description}</p>
-                <p class="education-technologies">{about.education.technologies}</p>
-                <p class="education-year">{about.education.year}</p>
-            </div>
-
-            <div class="space1">
-                <div class="strengths">
-                    <p class="strengths-title">Mis fortalezas</p>
+    
+                <div class="experience">
+                    <p class="experience-title">Experiencia</p>
                     {
-                        about.strengths.map((strength) => (
-                            <p class="strengths-text">{strength.title}</p>
-                            <p class="strengths-description">{strength.description}</p>
+                        about.experiences.map((experience) => (
+                            <p class="experience-title">{experience.title}</p>
+                            <p class="experience-company">{experience.company}</p>
+                            <p class="experience-description">
+                                {experience.description}
+                            </p>
+                            <p class="experience-date">{experience.date}</p>
                         ))
                     }
-
+                </div>
+    
+                <div class="education">
+                    <p class="education-title">Educación</p>
+                    <p class="education-career">{about.education.career}</p>
+                    <p class="education-university">{about.education.university}</p>
+                    <p class="education-description">{about.education.description}</p>
+                    <p class="education-technologies">{about.education.technologies}</p>
+                    <p class="education-year">{about.education.year}</p>
+                </div>
+    
+                <div class="space1">
+                    <div class="strengths">
+                        <p class="strengths-title">Mis fortalezas</p>
+                        {
+                            about.strengths.map((strength) => (
+                                <p class="strengths-text">{strength.title}</p>
+                                <p class="strengths-description">{strength.description}</p>
+                            ))
+                        }
+    
+                    </div>
+                </div>
+                <div class="space2"></div>
+                <div class="space3"></div>
+                <div class="space4">
+                    <ContactCard />
                 </div>
             </div>
-            <div class="space2"></div>
-            <div class="space3"></div>
-            <div class="space4">
-                <ContactCard />
-            </div>
         </div>
-    </div>
+    
+
+    
 </Layout>
 
 <style>
     .container {
         display: flex;
-        flex-direction: column;
+        flex-flow: column;
         align-items: center;
         justify-content: space-evenly;
-        height: 100%;
-    }
-
-    .exit {
-        min-height: 100px;
+        min-height: 100vh;
+        padding: 64px 25px 64px 25px;
+        gap: 96px;
+        position: relative;
+        overflow: hidden;
+        outline: 2px solid var(--border-color);
+        outline-offset: -16px; 
+        border-radius: 3.5rem;
     }
 
     .button-exit {
@@ -111,10 +111,10 @@ const about = information;
 
     .grid {
         display: grid;
-        grid-template-rows: repeat(4, auto);
+        grid-template-rows: repeat(4, 1fr);
         grid-template-columns: repeat(4, 1fr);
         gap: 1rem;
-        margin-inline: 300px;
+        max-width: 1100px;
     }
 
     .about {
@@ -139,7 +139,6 @@ const about = information;
         border: 2px solid var(--border-color);
         padding: 2rem;
         border-radius: 2rem;
-        
     }
 
     .space1 {
@@ -172,11 +171,6 @@ const about = information;
         border: 2px solid var(--border-color);
         padding: 2rem;
         border-radius: 2rem;
-    }
-
-    .title {
-        font-size: variables.$font-size-big;
-            color: var(--title-color);
-
+        display: flex;
     }
 </style>

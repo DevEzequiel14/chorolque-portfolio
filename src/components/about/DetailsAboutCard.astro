@@ -1,0 +1,15 @@
+---
+import { information } from "../../data/profileInfo";
+const about = information;
+---
+
+<div class="details-about-card">
+    <div class="details-about-card__history">
+        <p class="details-about-card__history-title">Mi historia</p>
+        <p class="details-about-card__history-text">{about.history}</p>
+    </div>
+    <div class="details-about-card__actuality">
+        <p class="details-about-card__actuality-title">Actualidad</p>
+        <p class="details-about-card__actuality-text">{about.actually}</p>
+    </div>
+</div>
