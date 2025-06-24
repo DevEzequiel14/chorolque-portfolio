@@ -1,0 +1,23 @@
+---
+import { information } from "../../data/profileInfo";
+const about = information;
+---
+
+<section class="experience-card">
+    <h2 class="experience-card__title">Experiencia</h2>
+    <div class="experience-card__content">
+        {
+            about.experiences.map((experience) => (
+                <article class="experience-card__item">
+                    <h3 class="experience-card__position">
+                        {experience.charge} en {experience.company}
+                    </h3>
+                    <time class="experience-card__date">{experience.date}</time>
+                    <p class="experience-card__description">
+                        {experience.description}
+                    </p>
+                </article>
+            ))
+        }
+    </div>
+</section>

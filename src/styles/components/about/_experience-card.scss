@@ -1,0 +1,41 @@
+@use "../../base/variables";
+
+.experience-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__title {
+        font-size: variables.$font-size-small;
+        color: var(--title-card-color);
+        text-transform: uppercase;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__position {
+        font-size: variables.$font-size-medium;
+        font-weight: bold;
+        color: var(--text-card-color);
+    }
+
+    &__date {
+        font-size: variables.$font-size-small;
+        color: var(--title-card-color);
+    }
+
+    &__description {
+        font-size: variables.$font-size-medium;
+        color: var(--text-card-color);
+    }
+}

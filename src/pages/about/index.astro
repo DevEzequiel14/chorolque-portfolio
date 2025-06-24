@@ -3,6 +3,7 @@ import Layout from "../../components/layout/Layout.astro";
 import { information } from "../../data/profileInfo";
 import ContactCard from "../../components/cards/ContactCard.astro";
 import DetailsAboutCard from "../../components/about/DetailsAboutCard.astro";
+import ExperienceCard from "../../components/about/ExperienceCard.astro";
 
 const about = information;
 ---
@@ -34,17 +35,7 @@ const about = information;
                 </div>
     
                 <div class="experience">
-                    <p class="experience-title">Experiencia</p>
-                    {
-                        about.experiences.map((experience) => (
-                            <p class="experience-title">{experience.title}</p>
-                            <p class="experience-company">{experience.company}</p>
-                            <p class="experience-description">
-                                {experience.description}
-                            </p>
-                            <p class="experience-date">{experience.date}</p>
-                        ))
-                    }
+                    <ExperienceCard />
                 </div>
     
                 <div class="education">
