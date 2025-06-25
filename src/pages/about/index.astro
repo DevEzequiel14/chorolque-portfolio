@@ -6,6 +6,7 @@ import DetailsAboutCard from "../../components/about/DetailsAboutCard.astro";
 import ExperienceCard from "../../components/about/ExperienceCard.astro";
 import EducationCard from "../../components/about/EducationCard.astro";
 import CarouselCard from "../../components/common/Carousel.astro";
+import TextSlider from "../../components/common/TextSlider.astro";
 
 const about = information;
 const images = [
@@ -60,7 +61,7 @@ const images = [
                     </div>
                 </div>
                 <div class="space2">
-                    
+                    <TextSlider items={about.strengths} />
                 </div>
                 <div class="hobbies">
                     <CarouselCard images={images} />
@@ -150,6 +151,9 @@ const images = [
         border: 2px solid var(--border-color);
         border-radius: 2rem;
         height: 100%;
+        padding: 2rem;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hobbies {
