@@ -30,21 +30,21 @@ export const information = {
         company: `Seenka`,
         description: `Desarrollo y soporte para la plataforma de marketing 
         basada en IA para análisis de contenido publicitario.`,
-        date: `08-2022 - 03-2023`
+        date: `08/2022 - 03/2023`
     },
     {
         charge: `Frontend Developer`,
         company: `Welo TV`,
         description: `Desarrollo y soporte para la aplicación web de videos con 
         edición en tiempo real.`,
-        date: `10-2021 - 07-2022`
+        date: `10/2021 - 07/2022`
     },
     {
         charge: `Fullstack Developer`,
         company: `Openix Srl.`,
         description: `Desarrollo de aplicaciones web con dashboard y APIs REST
         para proyectos de análisis de datos.`,
-        date: `01-2020 - 08-2021`
+        date: `01/2020 - 08/2021`
     },
     ],
     education: {
