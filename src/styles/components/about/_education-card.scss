@@ -1,0 +1,42 @@
+@use "../../base/variables";
+
+.education-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__title {
+        font-size: variables.$font-size-small;
+        color: var(--title-card-color);
+        text-transform: uppercase;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__career {
+        font-size: variables.$font-size-medium;
+        font-weight: bold;
+        color: var(--text-card-color);
+    }
+
+    &__university {
+        font-size: variables.$font-size-medium;
+        font-weight: 500;
+        color: var(--text-card-color);
+    }
+
+    &__description,
+    &__technologies {
+        font-size: variables.$font-size-medium;
+        color: var(--text-card-color);
+    }
+
+    &__year {
+        font-size: variables.$font-size-small;
+        color: var(--title-card-color);
+    }
+}

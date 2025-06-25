@@ -1,0 +1,18 @@
+---
+import { information } from "../../data/profileInfo";
+const about = information;
+---
+
+<div class="education-card">
+    <h2 class="education-card__title">Educación</h2>
+    <div class="education-card__content">
+        <p class="education-card__career">
+            {about.education.career} - {about.education.year}
+        </p>
+        <p class="education-card__university">{about.education.university}</p>
+        <p class="education-card__description">{about.education.description}</p>
+        <p class="education-card__technologies">
+            Tecnologías: {about.education.technologies}
+        </p>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { information } from "../../data/profileInfo";
 import ContactCard from "../../components/cards/ContactCard.astro";
 import DetailsAboutCard from "../../components/about/DetailsAboutCard.astro";
 import ExperienceCard from "../../components/about/ExperienceCard.astro";
+import EducationCard from "../../components/about/EducationCard.astro";
 
 const about = information;
 ---
@@ -33,18 +34,11 @@ const about = information;
                 <div class="about">
                     <DetailsAboutCard />
                 </div>
-    
                 <div class="experience">
                     <ExperienceCard />
                 </div>
-    
                 <div class="education">
-                    <p class="education-title">Educación</p>
-                    <p class="education-career">{about.education.career}</p>
-                    <p class="education-university">{about.education.university}</p>
-                    <p class="education-description">{about.education.description}</p>
-                    <p class="education-technologies">{about.education.technologies}</p>
-                    <p class="education-year">{about.education.year}</p>
+                    <EducationCard />
                 </div>
     
                 <div class="space1">
