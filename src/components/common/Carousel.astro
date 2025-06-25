@@ -1,0 +1,52 @@
+---
+export interface Props {
+    images: string[];
+}
+const { images } = Astro.props;
+---
+
+<div class="carousel">
+    <div class="carousel__track" id="carousel-track">
+        {
+            images.map((image, index) => (
+                <div
+                    class="carousel__item"
+                    style={`background-image: url('${image}')`}
+                />
+            ))
+        }
+    </div>
+
+    <button
+        class="carousel__button carousel__button--prev"
+        onclick="prevSlide()">‹</button
+    >
+    <button
+        class="carousel__button carousel__button--next"
+        onclick="nextSlide()">›</button
+    >
+</div>
+
+<script is:inline>
+    let currentIndex = 0;
+    const track = document.getElementById("carousel-track");
+    const total = track?.children.length;
+
+    function updateCarousel() {
+        if (track) {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + total) % total;
+        updateCarousel();
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % total;
+        updateCarousel();
+    }
+
+    updateCarousel();
+</script>
