@@ -1,0 +1,39 @@
+@use "../../base/variables";
+
+.work-frame-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__title {
+        font-size: variables.$font-size-tiny;
+        color: var(--text-color);
+    }
+
+    &__text {
+        font-size: variables.$font-size-extra-medium;
+        color: var(--title-color);
+    }
+}
+
+.arrow-svg {
+    rotate: 315deg;
+}
+
+@media (max-width: 1200px) {
+    .work-frame-card {
+        &__title {
+            font-size: variables.$font-size-tiniest;
+        }
+
+        &__text {
+            font-size: variables.$font-size-medium;
+        }
+    }
+}
