@@ -17,36 +17,38 @@ const { images } = Astro.props;
         }
     </div>
 
-    <button
-        class="carousel__button carousel__button--prev"
-        onclick="prevSlide()">‹</button
+    <button class="carousel__button carousel__button--prev" id="prev-btn"
+        >‹</button
     >
-    <button
-        class="carousel__button carousel__button--next"
-        onclick="nextSlide()">›</button
+    <button class="carousel__button carousel__button--next" id="next-btn"
+        >›</button
     >
 </div>
 
 <script is:inline>
-    let currentIndex = 0;
-    const track = document.getElementById("carousel-track");
-    const total = track?.children.length;
+    (() => {
+        let currentIndex = 0;
+        const track = document.getElementById("carousel-track");
+        const total = track?.children.length || 0;
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
 
-    function updateCarousel() {
-        if (track) {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        function updateCarousel() {
+            if (track) {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
         }
-    }
 
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + total) % total;
+        prevBtn?.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + total) % total;
+            updateCarousel();
+        });
+
+        nextBtn?.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % total;
+            updateCarousel();
+        });
+
         updateCarousel();
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % total;
-        updateCarousel();
-    }
-
-    updateCarousel();
+    })();
 </script>
