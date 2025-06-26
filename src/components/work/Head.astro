@@ -1,0 +1,17 @@
+---
+import { projects } from "../../data/projects";
+
+export async function getStaticPaths() {
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+---
+
+<div class="head-container">
+    <h1 class="head-container__title">{project.title}</h1>
+    <h2 class="head-container__type">{project.type}</h2>
+</div>
