@@ -17,25 +17,23 @@ const images = [
 
 <Layout title="About | Ezequiel Chorolque">
     <div class="container animate-slide-up">
-        <div class="button-exit">
-            <a href="/">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-                    ><path stroke="none" d="M0 0h24v24H0z" fill="none"
-                    ></path><path d="M18 6l-12 12"></path><path d="M6 6l12 12"
-                    ></path></svg
-                >
-            </a>
-        </div>
+        <a href="/" class="button-exit">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                    d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+            >
+        </a>
+
         <div class="grid">
             <div class="about">
                 <DetailsAboutCard />
@@ -86,6 +84,10 @@ const images = [
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .button-exit:hover {
+        background-color: var(--bg-button-normal-hover-color);
     }
 
     .grid {
