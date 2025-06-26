@@ -1,0 +1,49 @@
+@use "../../base/variables";
+
+.work-details-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__title {
+        font-size: variables.$font-size-tiny;
+        color: var(--title-color);
+    }
+
+    &__text {
+        font-size: variables.$font-size-extra-medium;
+        color: var(--text-color);
+    }
+
+    &__technologies {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__tech {
+        font-size: variables.$font-size-extra-medium;
+        color: var(--text-color);
+    }
+}
+
+@media (max-width: 1200px) {
+    .work-details-card {
+        &__title {
+            font-size: variables.$font-size-tiniest;
+        }
+
+        &__text {
+            font-size: variables.$font-size-medium;
+        }
+
+        &__tech {
+            font-size: variables.$font-size-medium;
+        }
+    }
+}

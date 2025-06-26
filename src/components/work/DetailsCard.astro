@@ -1,0 +1,37 @@
+---
+import { projects } from "../../data/projects";
+
+export async function getStaticPaths() {
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+---
+
+<section class="work-details-card">
+    <article class="work-details-card__section">
+        <h3 class="work-details-card__title">Empresa:</h3>
+        <p class="work-details-card__text">{project.company}</p>
+    </article>
+    <article class="work-details-card__section">
+        <h3 class="work-details-card__title">Mi rol:</h3>
+        <p class="work-details-card__text">{project.rol}</p>
+    </article>
+    <article class="work-details-card__section">
+        <h3 class="work-details-card__title">Tecnologías:</h3>
+        <div class="work-details-card__technologies">
+            {
+                project.technologies.map((tech) => (
+                    <span class="work-details-card__tech">{tech.trim()}</span>
+                ))
+            }
+        </div>
+    </article>
+    <article class="work-details-card__section">
+        <h3 class="work-details-card__title">Línea de tiempo:</h3>
+        <p class="work-details-card__text">{project.timeline}</p>
+    </article>
+</section>
