@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: var(--bg-color);
+}
+
 html,
 body {
     min-height: 100vh;

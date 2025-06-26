@@ -27,11 +27,17 @@ import "../../styles/main.scss";
 	</body>
 </html>
 
-<script>
-	(() => {
-		const savedTheme = localStorage.getItem("theme");
-		if (savedTheme) {
-			document.documentElement.setAttribute("data-theme", savedTheme);
+<script is:inline>
+	(function () {
+		const theme = localStorage.getItem("theme");
+		if (
+			theme === "dark" ||
+			(!theme &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches)
+		) {
+			document.documentElement.setAttribute("data-theme", "dark");
+		} else {
+			document.documentElement.setAttribute("data-theme", "light");
 		}
 	})();
 </script>
