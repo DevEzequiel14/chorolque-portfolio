@@ -30,10 +30,14 @@
     border: none;
     color: white;
     font-size: 2rem;
-    padding: 0rem 1rem;
     cursor: pointer;
     border-radius: 50%;
     transition: background-color 0.3s ease;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel__button:hover {
