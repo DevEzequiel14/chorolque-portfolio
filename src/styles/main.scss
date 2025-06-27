@@ -25,6 +25,7 @@
 @use "./components/work/head";
 @use "./components/work/details-card";
 @use "./components/work/frame-card";
+@use "./components/work/image-card";
 
 @use "./elements/button";
 @use "./elements/icon";
@@ -33,3 +34,4 @@
 @use "./elements/text-slider";
 
 @use "./pages/about";
+@use "./pages/work";
