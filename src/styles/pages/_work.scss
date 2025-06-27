@@ -1,0 +1,82 @@
+@use "../base/variables";
+
+.work-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 100vh;
+    padding: 64px 25px 64px 25px;
+    gap: 96px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid var(--border-color);
+    outline-offset: -16px;
+    border-radius: 3.5rem;
+}
+
+.work-exit-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.work-exit-button:hover {
+    background-color: var(--bg-button-normal-hover-color);
+}
+
+.work-grid {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: min(100%, 1200px);
+    min-width: 0;
+
+    &__details {
+        grid-row: 2;
+        grid-column: 1 / 2;
+        border: 2px solid var(--border-color);
+        border-radius: 2rem;
+        padding: 2rem;
+    }
+    &__frame {
+        grid-row: 2;
+        grid-column: 2 / 4;
+        border: 2px solid var(--border-color);
+        border-radius: 2rem;
+        padding: 2rem;
+    }
+    &__image {
+        grid-row: 3;
+        grid-column: 1 / 4;
+        border-radius: 2rem;
+    }
+}
+
+@media (max-width: 810px) {
+    .work-grid {
+        grid-template-rows: repeat(3, minmax(240px, auto));
+        grid-template-columns: 1fr;
+
+        &__frame {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        &__details {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        &__image {
+            grid-column: 1;
+            grid-row: 3;
+        }
+    }
+}
