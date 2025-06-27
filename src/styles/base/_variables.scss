@@ -16,7 +16,7 @@ $bg-color-github: #333;
 $bg-color-instagram: #7D3BA9;
 $bg-color-email: #DA4437;
 
-:root {
+:root[data-theme='light']{
     --title-color: #1F1F1F; 
     --text-color: #8A949E; 
     --title-card-color: #8C96A0;  
@@ -37,7 +37,7 @@ $bg-color-email: #DA4437;
     --button-icon-hover-color: #CED1D4;
 }
 
-[data-theme="dark"] {
+:root[data-theme="dark"] {
     --title-color: #CCCCCC; 
     --text-color: #626262; 
     --title-card-color: #666666; 

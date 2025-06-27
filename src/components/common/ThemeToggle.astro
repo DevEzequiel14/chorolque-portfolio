@@ -53,7 +53,7 @@
         const sun = document.getElementById("sunIcon");
         const moon = document.getElementById("moonIcon");
 
-        sun.classList.remove(
+        sun?.classList.remove(
             "theme-toggle__icon--hidden",
             "theme-toggle__icon--visible",
             "theme-toggle__icon--hide-left",
@@ -61,7 +61,7 @@
             "theme-toggle__icon--show-right",
             "theme-toggle__icon--hide-right",
         );
-        moon.classList.remove(
+        moon?.classList.remove(
             "theme-toggle__icon--hidden",
             "theme-toggle__icon--visible",
             "theme-toggle__icon--hide-left",
@@ -71,11 +71,11 @@
         );
 
         if (theme === "dark") {
-            sun.classList.add("theme-toggle__icon--hidden");
-            moon.classList.add("theme-toggle__icon--visible");
+            sun?.classList.add("theme-toggle__icon--hidden");
+            moon?.classList.add("theme-toggle__icon--visible");
         } else {
-            sun.classList.add("theme-toggle__icon--visible");
-            moon.classList.add("theme-toggle__icon--hidden");
+            sun?.classList.add("theme-toggle__icon--visible");
+            moon?.classList.add("theme-toggle__icon--hidden");
         }
     }
 
@@ -84,42 +84,43 @@
         const current = html.getAttribute("data-theme");
         const next = current === "dark" ? "light" : "dark";
 
+        localStorage.setItem("theme", next);
+        document.documentElement.setAttribute("data-theme", next);
+
         const sun = document.getElementById("sunIcon");
         const moon = document.getElementById("moonIcon");
 
-        sun.classList.remove(
+        sun?.classList.remove(
             "theme-toggle__icon--hidden",
             "theme-toggle__icon--visible",
         );
-        moon.classList.remove(
+        moon?.classList.remove(
             "theme-toggle__icon--hidden",
             "theme-toggle__icon--visible",
         );
 
         if (next === "dark") {
-            sun.classList.add("theme-toggle__icon--hide-left");
-            moon.classList.add("theme-toggle__icon--show-right");
+            sun?.classList.add("theme-toggle__icon--hide-left");
+            moon?.classList.add("theme-toggle__icon--show-right");
             setTimeout(() => {
                 setThemeIcons("dark");
             }, 300);
         } else {
-            moon.classList.add("theme-toggle__icon--hide-right");
-            sun.classList.add("theme-toggle__icon--show-left");
+            moon?.classList.add("theme-toggle__icon--hide-right");
+            sun?.classList.add("theme-toggle__icon--show-left");
             setTimeout(() => {
                 setThemeIcons("light");
             }, 300);
         }
-
-        html.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-        const savedTheme = localStorage.getItem("theme") || "light";
         const html = document.documentElement;
+        const theme = html.getAttribute("data-theme");
         const toggle = document.getElementById("darkmode-toggle");
-        html.setAttribute("data-theme", savedTheme);
-        toggle.checked = savedTheme === "dark";
-        setThemeIcons(savedTheme);
+        if (toggle) {
+            toggle.checked = theme === "dark";
+        }
+        setThemeIcons(theme);
     });
 </script>
