@@ -1,13 +1,13 @@
 ---
 import IconLinkedIn from "../icons/networks/IconLinkedIn.astro";
 import IconGitHub from "../icons/networks/IconGitHub.astro";
-import IconInstagram from "../icons/networks/IconInstagram.astro";
+import IconCv from "../icons/networks/IconCv.astro";
 import IconMail from "../icons/networks/IconMail.astro";
 
 export interface SocialLink {
     label: string;
     href: string;
-    icon: "linkedin" | "github" | "instagram" | "mail";
+    icon: "linkedin" | "github" | "cv" | "mail";
 }
 
 const { links = [] } = Astro.props as { links?: SocialLink[] };
@@ -15,7 +15,7 @@ const { links = [] } = Astro.props as { links?: SocialLink[] };
 const icons: Record<SocialLink["icon"], any> = {
     linkedin: IconLinkedIn,
     github: IconGitHub,
-    instagram: IconInstagram,
+    cv: IconCv,
     mail: IconMail,
 };
 ---
