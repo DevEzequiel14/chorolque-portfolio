@@ -1,5 +1,8 @@
+@use "../base/variables";
+
 .icon-redes {
-    height: 42px;
-    width: 42px;
-    object-fit: cover;
-  }
+  height: 42px;
+  width: 42px;
+  object-fit: cover;
+  color: var(--icon-color);
+}
