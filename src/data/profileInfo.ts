@@ -43,7 +43,7 @@ export const information = {
             title: `Seguir aprendiendo constantemente`,
             description: `Siempre busco crecer como desarrollador, aprendiendo 
         sobre nuevas prácticas, UX/UI, inteligencia artificial aplicada al 
-        }desarrollo y mejorando mi nivel de inglés.`
+        desarrollo y mejorando mi nivel de inglés.`
         },
     ],
     experiences: [{
