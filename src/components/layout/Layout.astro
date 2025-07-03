@@ -9,16 +9,40 @@ import "../../styles/main.scss";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+		<meta
+			name="description"
+			content="Portafolio profesional de Ezequiel Chorolque, desarrollador frontend especializado en Angular, Astro y tecnologías modernas. Conocé sus proyectos, experiencia y habilidades."
+		/>
+		<meta
+			name="keywords"
+			content="Ezequiel Chorolque, desarrollador web, Angular, Astro, frontend, programación, portfolio, tecnologías web"
+		/>
+		<meta name="author" content="Ezequiel Chorolque" />
+
+		<meta
+			property="og:title"
+			content="Ezequiel Chorolque | Desarrollador Web"
+		/>
+		<meta
+			property="og:description"
+			content="Descubrí el portfolio profesional de Ezequiel Chorolque. Experiencia en Angular, Astro y desarrollo frontend."
+		/>
+		<meta property="og:image" content="/og-image.webp" />
+		<meta
+			property="og:url"
+			content="https://ezequielchorolque.netlify.app/"
+		/>
+		<meta property="og:type" content="website" />
+
 		<meta name="generator" content={Astro.generator} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
 			rel="stylesheet"
 		/>
-		<title>{title}</title>
+
 		<script is:inline>
 			(function () {
 				const theme = localStorage.getItem("theme");
