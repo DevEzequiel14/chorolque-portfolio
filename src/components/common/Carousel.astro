@@ -17,7 +17,13 @@ const { images } = Astro.props;
         }
     </div>
 
-    <button class="carousel__button carousel__button--prev" id="prev-btn">
+    <button
+        class="carousel__button carousel__button--prev"
+        id="prev-btn"
+        aria-label="Anterior"
+        type="button"
+        title="Anterior"
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -33,7 +39,12 @@ const { images } = Astro.props;
                 d="M15 6l-6 6l6 6"></path></svg
         >
     </button>
-    <button class="carousel__button carousel__button--next" id="next-btn"
+    <button
+        class="carousel__button carousel__button--next"
+        id="next-btn"
+        aria-label="Siguiente"
+        type="button"
+        title="Siguiente"
         ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

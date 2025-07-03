@@ -5,30 +5,31 @@ export interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="text-slider" set:html={""}>
+<section class="text-slider" set:html={""}>
     <div class="text-slider__container" id="slider">
         {
             items.map((item) => (
-                <div class="text-slider__slide">
+                <article class="text-slider__slide">
                     <h3 class="text-slider__title">{item.title}</h3>
                     <p class="text-slider__description">{item.description}</p>
-                </div>
+                </article>
             ))
         }
     </div>
 
-    <div class="text-slider__dots">
+    <nav class="text-slider__dots" aria-label="Selector de diapositivas">
         {
             items.map((_, index) => (
                 <button
+                    type="button"
                     class={`text-slider__dot ${index === 0 ? "active" : ""}`}
                     data-index={index}
                     aria-label={`Ir a slide ${index + 1}`}
                 />
             ))
         }
-    </div>
-</div>
+    </nav>
+</section>
 
 <script is:inline>
     const slider = document.getElementById("slider");
