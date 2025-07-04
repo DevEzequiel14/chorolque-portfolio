@@ -44,7 +44,7 @@
 @media (max-width: 1200px) {
     .bento-grid {
         grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(6, minmax(238px, auto));
+        grid-template-rows: repeat(6, minmax(238px, 1fr));
     }
 
     .grid-area {
@@ -92,7 +92,7 @@
     .bento-grid {
         grid-template-columns: 1fr;
         //grid-template-rows: repeat(7, minmax(240px, auto));
-        grid-template-rows: minmax(240px, auto) // presentation
+        grid-template-rows: minmax(240px, 1fr) // presentation
             minmax(240px, auto) // about
             minmax(480px, auto) // projects
             minmax(240px, auto) // technologies

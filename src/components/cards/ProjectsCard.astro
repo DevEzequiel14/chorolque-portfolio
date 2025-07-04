@@ -17,37 +17,43 @@ const totalProjects = projects.length;
     }
 
     <div class="projects-card__content">
-        <div class="projects-card__title-container">
-            {
-                projects.map((project, index) => (
-                    <h2 class="projects-card__title" data-index={index + 1}>
-                        {project.title}
-                    </h2>
-                ))
-            }
-        </div>
+        <h1 class="projects-card__title">Proyectos</h1>
         <div class="projects-card__image-container">
-            {
-                projects.map((project, index) => (
-                    <img
-                        class="projects-card__image"
-                        src={project.image}
-                        alt={project.title}
-                        data-index={index + 1}
-                    />
-                ))
-            }
-        </div>
-
-        <div class="projects-card__button-container">
             {
                 projects.map((project, index) => (
                     <a
                         href={`/work/${project.slug}`}
-                        class="projects-card__button"
+                        class="projects-card__link"
                         data-index={index + 1}
                     >
-                        Ver más
+                        <img
+                            class="projects-card__image"
+                            src={project.image}
+                            alt={project.title}
+                            data-index={index + 1}
+                        />
+                        <div class="projects-card__overlay">
+                            <div class="projects-card__overlay-content">
+                                <span class="projects-card__project-title">
+                                    {project.title}
+                                </span>
+                                <svg
+                                    class="projects-card__icon"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M5 12h14" />
+                                    <path d="M12 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                        </div>
                     </a>
                 ))
             }
@@ -67,113 +73,14 @@ const totalProjects = projects.length;
     </div>
 </div>
 
-<style>
-    .card {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        justify-content: space-between;
-    }
-
-    .card__input {
-        display: none;
-    }
-
-    .card__image-area,
-    .card__title-area,
-    .card__button-area,
-    .card__slider {
-        position: relative;
-        width: 100%;
-    }
-
-    .card__image-area {
-        min-height: 250px;
-        overflow: hidden;
-        height: 100%;
-    }
-
-    .card__image-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-
-    .card__image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        border-radius: 1rem;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        z-index: 0;
-    }
-
-    .card__title {
-        display: none;
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-align: center;
-        color: var(--text-card-color);
-    }
-
-    .card__button-area {
-        display: flex;
-        justify-content: end;
-        z-index: 2;
-    }
-
-    .card__button {
-        display: none;
-    }
-
-    .card__button {
-        padding: 0.5rem 1rem;
-        background-color: var(--bg-button-normal-color);
-        color: var(--text-button-normal-color);
-        border: none;
-        border-radius: 0.5rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .card__button:hover {
-        background-color: var(--bg-button-normal-hover-color);
-    }
-
-    .card__slider {
-        display: flex;
-        justify-content: center;
-        gap: 0.75rem;
-        margin-top: 0.5rem;
-    }
-
-    .card__slider-button {
-        width: 1rem;
-        height: 1rem;
-        border-radius: 50%;
-        background-color: var(--slider-button-color);
-        transition:
-            background-color 0.3s ease,
-            transform 0.3s ease;
-        cursor: pointer;
-    }
-
-    .card__slider-button:hover {
-        background-color: #888;
-        transform: scale(1.1);
-    }
-</style>
-
 <script is:inline>
     const card = document.querySelector(".projects-card");
     const total = parseInt(card.dataset.total, 10);
-    let current = 1;
+    let current =
+        Array.from(
+            document.querySelectorAll(".projects-card__input"),
+        ).findIndex((input) => input.checked) + 1;
+
     let intervalId;
 
     function goToNextSlide() {
@@ -187,37 +94,25 @@ const totalProjects = projects.length;
     }
 
     function updateContentVisibility() {
-        const index = current;
-        document
-            .querySelectorAll(".projects-card__image")
-            .forEach(
-                (img) =>
-                    (img.style.opacity =
-                        img.dataset.index == index ? "1" : "0"),
+        document.querySelectorAll(".projects-card__link").forEach((link) => {
+            const index = Number(link.dataset.index);
+            if (index === current) {
+                link.style.opacity = "1";
+                link.style.pointerEvents = "auto";
+                link.style.zIndex = "2";
+            } else {
+                link.style.opacity = "0";
+                link.style.pointerEvents = "none";
+                link.style.zIndex = "1";
+            }
+        });
+
+        document.querySelectorAll(".projects-card__dot").forEach((dot) => {
+            dot.classList.toggle(
+                "is-active",
+                Number(dot.dataset.index) === current,
             );
-        document
-            .querySelectorAll(".projects-card__title")
-            .forEach(
-                (title) =>
-                    (title.style.display =
-                        title.dataset.index == index ? "block" : "none"),
-            );
-        document
-            .querySelectorAll(".projects-card__button")
-            .forEach(
-                (btn) =>
-                    (btn.style.display =
-                        btn.dataset.index == index ? "inline-block" : "none"),
-            );
-        document
-            .querySelectorAll(".projects-card__dot")
-            .forEach(
-                (dot) =>
-                    (dot.style.backgroundColor =
-                        dot.dataset.index == index
-                            ? "var(--select-slider-button-color)"
-                            : "var(--slider-button-color)"),
-            );
+        });
     }
 
     document.querySelectorAll(".projects-card__input").forEach((input, idx) => {
@@ -232,4 +127,5 @@ const totalProjects = projects.length;
 
     updateContentVisibility();
     startAutoSlide();
+    document.getElementById("project_1").checked = true;
 </script>
