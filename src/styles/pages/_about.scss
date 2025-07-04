@@ -1,47 +1,13 @@
 @use "../base/variables";
+@use "../base/utilities";
+
 
 .about-container {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: space-evenly;
-    min-height: 100vh;
-    padding: 64px 25px 64px 25px;
-    gap: 96px;
-    position: relative;
-    overflow: hidden;
-    outline: 2px solid var(--border-color);
-    outline-offset: -16px;
-    border-radius: 3.5rem;
+    @extend .section-container;
 }
 
 .about-exit-button {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.about-exit-button:hover {
-    background-color: var(--bg-button-normal-hover-color);
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    @extend .exit-button;
 }
 
 .about-grid {

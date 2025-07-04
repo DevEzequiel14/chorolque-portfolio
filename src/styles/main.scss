@@ -1,6 +1,8 @@
 @use "./base/variables";
 @use "./base/reset";
 @use "./base/base";
+@use "./base/utilities";
+@use "./base/accessibility";
 
 @use "./utils/helpers";
 @use "./utils/mixins";
