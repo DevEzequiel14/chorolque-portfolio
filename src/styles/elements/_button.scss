@@ -25,7 +25,11 @@
     background: var(--button-icon-hover-color);
 }
 
-.button-round {
+.animated-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
     width: 42px;
     height: 42px;
     border-radius: 50%;
