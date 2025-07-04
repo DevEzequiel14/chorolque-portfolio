@@ -18,7 +18,12 @@ const { project } = Astro.props;
 
 <Layout title="Work | Ezequiel Chorolque">
     <div class="work-container animate-slide-up">
-        <a href="/" class="work-exit-button">
+        <a
+            href="/"
+            class="work-exit-button"
+            aria-label="Cerrar sección y volver al inicio"
+        >
+            <span class="sr-only">Cerrar y volver al inicio</span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
