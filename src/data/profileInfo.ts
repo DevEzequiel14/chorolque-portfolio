@@ -6,20 +6,18 @@ export const information = {
     claras y el desarrollo de soluciones útiles.`,
     email: "ezequielchorolque14@gmail.com.ar",
     history: `Ingeniero en Informática con más de 4 años de experiencia en el 
-    mundo del desarrollo. Desde mis primeros años trabajando con Angular, 
-    encontré en el frontend un lugar donde podía combinar la lógica del 
-    código con la construcción de soluciones visuales, organizadas y fáciles 
-    de usar.
-    Trabajo tanto de forma individual como en equipo, participando activamente
-     en decisiones técnicas, revisiones de código y mejoras continuas. Disfruto
-      colaborar en proyectos donde la comunicación, la calidad del software y 
-      el aprendizaje mutuo son una prioridad.`,
-    actually: `Hoy en día me desempeño como desarrollador frontend en el 
-    Ministerio de Educación de Jujuy, donde colaboro en distintos microservicios
-    construidos con Angular, Tailwind, RxJS y otras herramientas. Participo 
-    activamente en la toma de decisiones técnicas, revisión de código y mejoras 
-    constantes, siempre con el objetivo de lograr aplicaciones sólidas, 
-    escalables y centradas en las personas que las usan.`,
+    desarrollo de software. Desde mis primeros pasos en el mundo frontend, 
+    encontré en Angular una forma de combinar lógica, diseño y estructura. Me 
+    gusta construir soluciones visuales bien organizadas, fáciles de usar y 
+    pensadas para durar. Disfruto trabajar tanto de forma individual como en 
+    equipo, siempre priorizando la comunicación, la calidad del código y el 
+    aprendizaje compartido.`,
+    actually: `Actualmente me desempeño como desarrollador frontend en el 
+    Ministerio de Educación de Jujuy. Participo activamente en la construcción 
+    de distintos microservicios usando Angular, Tailwind, RxJS y otras 
+    herramientas. Colaboro en la toma de decisiones técnicas, revisión
+     de código y mejoras continuas, con el objetivo de desarrollar aplicaciones 
+     sólidas, mantenibles y escalables.`,
     strengths: [
         {
             title: `Organizar y estructurar software de forma clara`,
