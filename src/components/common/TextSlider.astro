@@ -6,6 +6,7 @@ const { items } = Astro.props;
 ---
 
 <section class="text-slider" set:html={""}>
+    <h2 class="text-slider__heading">Lo que me gusta hacer</h2>
     <div class="text-slider__container" id="slider">
         {
             items.map((item) => (
