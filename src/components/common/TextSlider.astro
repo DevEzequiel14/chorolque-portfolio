@@ -36,6 +36,8 @@ const { items } = Astro.props;
     const slider = document.getElementById("slider");
     const dots = document.querySelectorAll(".text-slider__dot");
     let currentIndex = 0;
+    let startX = 0;
+    let moved = false;
 
     function goToSlide(index) {
         currentIndex = index;
@@ -49,12 +51,22 @@ const { items } = Astro.props;
         });
     });
 
-    let startX = 0;
-    slider.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
+    slider.addEventListener(
+        "touchstart",
+        (e) => {
+            startX = e.touches[0].clientX;
+            moved = false;
+        },
+        { passive: false },
+    );
+
+    slider.addEventListener("touchmove", () => {
+        moved = true;
     });
 
     slider.addEventListener("touchend", (e) => {
+        if (!moved) return;
+
         const endX = e.changedTouches[0].clientX;
         const diff = endX - startX;
 
@@ -63,5 +75,7 @@ const { items } = Astro.props;
         } else if (diff < -50 && currentIndex < dots.length - 1) {
             goToSlide(currentIndex + 1);
         }
+
+        moved = false;
     });
 </script>
