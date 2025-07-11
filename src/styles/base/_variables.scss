@@ -36,6 +36,8 @@ $bg-color-email: #da4437;
     --button-icon-bg-color: #e8eaeb;
     --button-icon-hover-color: #ced1d4;
     --icon-color: #000000;
+    --base: #ffffff;
+    --bg-card-color: #dadbdb; 
 }
 
 :root[data-theme="dark"] {
@@ -58,4 +60,7 @@ $bg-color-email: #da4437;
     --button-icon-bg-color: #242424;
     --button-icon-hover-color: #1c1c1c;
     --icon-color: #ffffff;
+
+    --bg-card-color: #252424; 
+    --base: #000000;
 }

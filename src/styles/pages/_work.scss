@@ -1,5 +1,6 @@
 @use "../base/variables";
 @use "../base/utilities";
+@use "../utils//mixins" as *;
 
 .work-container {
     @extend .section-container;
@@ -16,6 +17,12 @@
     gap: 1rem;
     max-width: min(100%, 1200px);
     min-width: 0;
+
+    &__details,
+    &__frame,
+    &__image {
+        @include card-pattern-bg;
+    }
 
     &__details {
         grid-row: 1;

@@ -1,6 +1,6 @@
 @use "../base/variables";
 @use "../base/utilities";
-
+@use "../utils/mixins" as *;
 
 .about-container {
     @extend .section-container;
@@ -17,6 +17,15 @@
     gap: 1rem;
     max-width: min(100%, 1200px);
     min-width: 0;
+
+    &__about,
+    &__experience,
+    &__education,
+    &__strengths,
+    &__hobbies,
+    &__contact {
+        @include card-pattern-bg;
+    }
 
     &__about {
         grid-row: 1/ 3;
