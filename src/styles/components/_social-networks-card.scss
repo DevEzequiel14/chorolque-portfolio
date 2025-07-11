@@ -2,7 +2,6 @@
 
 .social-networks-card {
     display: flex;
-    border-radius: 2rem;
     transition: background-color 0.3s ease;
     font-weight: bold;
     overflow: hidden;
@@ -67,11 +66,25 @@
         &__content {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto;
+            grid-template-rows: 110px;
             gap: 1rem;
             justify-items: center;
             align-items: center;
             width: 100%;
+        }
+    }
+}
+
+@media (max-width: 485px) {
+    .social-networks-card {
+        &__content {
+            grid-template-rows: 85px;
+        }
+        &__btn {
+            svg {
+                width: 2rem;
+                height: 2rem;
+            }
         }
     }
 }
