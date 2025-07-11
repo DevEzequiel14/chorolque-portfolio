@@ -65,11 +65,11 @@
 }
 
 .animate-slide-down {
-    animation: slideDownFade 1s ease-out;
+    animation: slideDownFade 0.5s ease-out;
 }
 
 .animate-slide-up {
-    animation: slideUpFade 1s ease-out;
+    animation: slideUpFade 0.5s ease-out;
 }
 
 @keyframes wobble {
