@@ -45,14 +45,12 @@ const { items } = Astro.props;
         dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
     }
 
-    // Dots navigation
     dots.forEach((dot) => {
         dot.addEventListener("click", () => {
             goToSlide(parseInt(dot.dataset.index));
         });
     });
 
-    // Touch events
     slider.addEventListener(
         "touchstart",
         (e) => {
@@ -75,14 +73,10 @@ const { items } = Astro.props;
 
         const endX = e.changedTouches[0].clientX;
         const diff = endX - startX;
-
-        // Swipe derecha (hacia atrás)
         if (diff > 50) {
             const newIndex = (currentIndex - 1 + dots.length) % dots.length;
             goToSlide(newIndex);
-        }
-        // Swipe izquierda (hacia adelante)
-        else if (diff < -50) {
+        } else if (diff < -50) {
             const newIndex = (currentIndex + 1) % dots.length;
             goToSlide(newIndex);
         }
