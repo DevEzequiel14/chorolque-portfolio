@@ -37,7 +37,7 @@ const { items } = Astro.props;
     const dots = document.querySelectorAll(".text-slider__dot");
     let currentIndex = 0;
     let startX = 0;
-    let moved = false;
+    let isMoving = false;
 
     function goToSlide(index) {
         currentIndex = index;
@@ -45,37 +45,46 @@ const { items } = Astro.props;
         dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
     }
 
+    // Dots navigation
     dots.forEach((dot) => {
         dot.addEventListener("click", () => {
             goToSlide(parseInt(dot.dataset.index));
         });
     });
 
+    // Touch events
     slider.addEventListener(
         "touchstart",
         (e) => {
             startX = e.touches[0].clientX;
-            moved = false;
+            isMoving = false;
         },
         { passive: false },
     );
 
-    slider.addEventListener("touchmove", () => {
-        moved = true;
-    });
+    slider.addEventListener(
+        "touchmove",
+        () => {
+            isMoving = true;
+        },
+        { passive: false },
+    );
 
     slider.addEventListener("touchend", (e) => {
-        if (!moved) return;
+        if (!isMoving) return;
 
         const endX = e.changedTouches[0].clientX;
         const diff = endX - startX;
 
-        if (diff > 50 && currentIndex > 0) {
-            goToSlide(currentIndex - 1);
-        } else if (diff < -50 && currentIndex < dots.length - 1) {
-            goToSlide(currentIndex + 1);
+        // Swipe derecha (hacia atrás)
+        if (diff > 50) {
+            const newIndex = (currentIndex - 1 + dots.length) % dots.length;
+            goToSlide(newIndex);
         }
-
-        moved = false;
+        // Swipe izquierda (hacia adelante)
+        else if (diff < -50) {
+            const newIndex = (currentIndex + 1) % dots.length;
+            goToSlide(newIndex);
+        }
     });
 </script>
