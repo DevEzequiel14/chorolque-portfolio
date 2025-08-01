@@ -75,18 +75,16 @@ const totalProjects = projects.length;
 </div>
 
 <script is:inline>
+    let current = 1;
     const card = document.querySelector(".projects-card");
     const total = parseInt(card.dataset.total, 10);
-    let current =
-        Array.from(
-            document.querySelectorAll(".projects-card__input"),
-        ).findIndex((input) => input.checked) + 1;
-
     let intervalId;
 
     function goToNextSlide() {
         current = (current % total) + 1;
-        document.getElementById(`project_${current}`).checked = true;
+        const nextInput = document.getElementById(`project_${current}`);
+        if (nextInput) nextInput.checked = true;
+        updateContentVisibility();
     }
 
     function startAutoSlide() {
@@ -97,15 +95,9 @@ const totalProjects = projects.length;
     function updateContentVisibility() {
         document.querySelectorAll(".projects-card__link").forEach((link) => {
             const index = Number(link.dataset.index);
-            if (index === current) {
-                link.style.opacity = "1";
-                link.style.pointerEvents = "auto";
-                link.style.zIndex = "2";
-            } else {
-                link.style.opacity = "0";
-                link.style.pointerEvents = "none";
-                link.style.zIndex = "1";
-            }
+            link.style.opacity = index === current ? "1" : "0";
+            link.style.pointerEvents = index === current ? "auto" : "none";
+            link.style.zIndex = index === current ? "2" : "1";
         });
 
         document.querySelectorAll(".projects-card__dot").forEach((dot) => {
@@ -126,7 +118,7 @@ const totalProjects = projects.length;
         });
     });
 
+    document.getElementById("project_1").checked = true;
     updateContentVisibility();
     startAutoSlide();
-    document.getElementById("project_1").checked = true;
 </script>
