@@ -51,3 +51,9 @@
 .carousel__button--next {
     right: 1rem;
 }
+
+@media (max-width: 800px) {
+    .carousel {
+        height: 400px;
+    }
+}
