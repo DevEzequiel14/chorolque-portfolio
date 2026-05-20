@@ -21,7 +21,7 @@ const { project } = Astro.props;
         <p class="work-frame-card__text">{project.context}</p>
     </article>
 
-    <a class="button-icon" href={project.link} target="_blank">
+    <a class="button-icon" href={project.link} target="_blank" rel="noopener noreferrer">
         Visualizar
         <svg
             class="arrow-svg"
@@ -40,7 +40,7 @@ const { project } = Astro.props;
                 d="M13 6l6 6"></path></svg
         >
     </a>
-    <a class="button-icon" href={project.github} target="_blank">
+    <a class="button-icon" href={project.github} target="_blank" rel="noopener noreferrer">
         Código
         <svg
             xmlns="http://www.w3.org/2000/svg"
