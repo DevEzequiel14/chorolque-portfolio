@@ -1,13 +1,4 @@
 ---
-import { projects } from "../../data/projects";
-
-export async function getStaticPaths() {
-    return projects.map((project) => ({
-        params: { slug: project.slug },
-        props: { project },
-    }));
-}
-
 const { project } = Astro.props;
 ---
 
@@ -24,7 +15,7 @@ const { project } = Astro.props;
         <h3 class="work-details-card__title">Tecnologías:</h3>
         <div class="work-details-card__technologies">
             {
-                project.technologies.map((tech) => (
+                project.technologies.map((tech: string) => (
                     <span class="work-details-card__tech">{tech.trim()}</span>
                 ))
             }
