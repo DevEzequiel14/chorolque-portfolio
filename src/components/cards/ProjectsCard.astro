@@ -75,50 +75,92 @@ const totalProjects = projects.length;
 </div>
 
 <script is:inline>
-    let current = 1;
     const card = document.querySelector(".projects-card");
-    const total = parseInt(card.dataset.total, 10);
-    let intervalId;
 
-    function goToNextSlide() {
-        current = (current % total) + 1;
-        const nextInput = document.getElementById(`project_${current}`);
-        if (nextInput) nextInput.checked = true;
-        updateContentVisibility();
-    }
+    if (card && card.dataset.initialized !== "true") {
+        card.dataset.initialized = "true";
 
-    function startAutoSlide() {
-        clearInterval(intervalId);
-        intervalId = setInterval(goToNextSlide, 5000);
-    }
+        let current = 1;
+        const inputs = card.querySelectorAll(".projects-card__input");
+        const links = card.querySelectorAll(".projects-card__link");
+        const dots = card.querySelectorAll(".projects-card__dot");
+        const total = Number.parseInt(card.dataset.total || "", 10) || inputs.length;
+        let intervalId;
+        const controller = new AbortController();
+        const { signal } = controller;
 
-    function updateContentVisibility() {
-        document.querySelectorAll(".projects-card__link").forEach((link) => {
-            const index = Number(link.dataset.index);
-            link.style.opacity = index === current ? "1" : "0";
-            link.style.pointerEvents = index === current ? "auto" : "none";
-            link.style.zIndex = index === current ? "2" : "1";
-        });
+        function updateContentVisibility() {
+            links.forEach((link) => {
+                const index = Number(link.dataset.index);
+                link.style.opacity = index === current ? "1" : "0";
+                link.style.pointerEvents = index === current ? "auto" : "none";
+                link.style.zIndex = index === current ? "2" : "1";
+            });
 
-        document.querySelectorAll(".projects-card__dot").forEach((dot) => {
-            dot.classList.toggle(
-                "is-active",
-                Number(dot.dataset.index) === current,
+            dots.forEach((dot) => {
+                dot.classList.toggle(
+                    "is-active",
+                    Number(dot.dataset.index) === current,
+                );
+            });
+        }
+
+        function goToNextSlide() {
+            if (total <= 0) return;
+            current = (current % total) + 1;
+            const nextInput = card.querySelector(`#project_${current}`);
+            if (nextInput) nextInput.checked = true;
+            updateContentVisibility();
+        }
+
+        function startAutoSlide() {
+            clearInterval(intervalId);
+            if (total > 0) {
+                intervalId = setInterval(goToNextSlide, 5000);
+            }
+        }
+
+        inputs.forEach((input, idx) => {
+            input.addEventListener(
+                "change",
+                () => {
+                    if (input.checked) {
+                        current = idx + 1;
+                        updateContentVisibility();
+                        startAutoSlide();
+                    }
+                },
+                { signal },
             );
         });
+
+        document.addEventListener(
+            "visibilitychange",
+            () => {
+                if (document.hidden) {
+                    clearInterval(intervalId);
+                } else {
+                    startAutoSlide();
+                }
+            },
+            { signal },
+        );
+
+        const firstInput = card.querySelector("#project_1");
+        if (firstInput) {
+            firstInput.checked = true;
+        }
+        updateContentVisibility();
+        startAutoSlide();
+
+        window.addEventListener(
+            "pagehide",
+            () => {
+                clearInterval(intervalId);
+                controller.abort();
+                delete card.dataset.initialized;
+            },
+            { once: true },
+        );
     }
-
-    document.querySelectorAll(".projects-card__input").forEach((input, idx) => {
-        input.addEventListener("change", () => {
-            if (input.checked) {
-                current = idx + 1;
-                updateContentVisibility();
-                startAutoSlide();
-            }
-        });
-    });
-
-    document.getElementById("project_1").checked = true;
-    updateContentVisibility();
-    startAutoSlide();
 </script>

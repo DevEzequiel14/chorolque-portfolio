@@ -33,60 +33,96 @@ const { items } = Astro.props;
 </section>
 
 <script is:inline>
-    const slider = document.getElementById("slider");
-    const dots = document.querySelectorAll(".text-slider__dot");
+    const scriptEl = document.currentScript;
+    const sliderSection = scriptEl?.previousElementSibling;
 
-    let currentIndex = 0;
+    if (
+        sliderSection &&
+        sliderSection.classList.contains("text-slider") &&
+        sliderSection.dataset.initialized !== "true"
+    ) {
+        sliderSection.dataset.initialized = "true";
 
-    function goToSlide(index) {
-        currentIndex = index;
-        slider.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
-    }
+        const slider = sliderSection.querySelector(".text-slider__container");
+        const dots = sliderSection.querySelectorAll(".text-slider__dot");
+        const controller = new AbortController();
+        const { signal } = controller;
 
-    dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-            goToSlide(parseInt(dot.dataset.index));
-        });
-    });
+        if (slider && dots.length > 0) {
+            let currentIndex = 0;
 
-    let startX = 0;
-    let isSwiping = false;
-
-    slider.addEventListener(
-        "touchstart",
-        (e) => {
-            startX = e.touches[0].clientX;
-            isSwiping = true;
-        },
-        { passive: true },
-    );
-
-    slider.addEventListener(
-        "touchmove",
-        (e) => {
-            if (!isSwiping) return;
-            const moveX = e.touches[0].clientX;
-            const diff = moveX - startX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0 && currentIndex > 0) {
-                    goToSlide(currentIndex - 1);
-                } else if (diff < 0 && currentIndex < dots.length - 1) {
-                    goToSlide(currentIndex + 1);
-                } else if (diff < 0 && currentIndex >= dots.length - 1) {
-                    goToSlide(0);
-                }
-                isSwiping = false;
+            function goToSlide(index) {
+                currentIndex = index;
+                slider.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((dot, i) =>
+                    dot.classList.toggle("active", i === index),
+                );
             }
-        },
-        { passive: true },
-    );
 
-    slider.addEventListener(
-        "touchend",
-        () => {
-            isSwiping = false;
-        },
-        { passive: true },
-    );
+            dots.forEach((dot) => {
+                dot.addEventListener(
+                    "click",
+                    () => {
+                        const nextIndex = Number.parseInt(
+                            dot.dataset.index || "",
+                            10,
+                        );
+                        if (!Number.isNaN(nextIndex)) {
+                            goToSlide(nextIndex);
+                        }
+                    },
+                    { signal },
+                );
+            });
+
+            let startX = 0;
+            let isSwiping = false;
+
+            slider.addEventListener(
+                "touchstart",
+                (e) => {
+                    startX = e.touches[0].clientX;
+                    isSwiping = true;
+                },
+                { passive: true, signal },
+            );
+
+            slider.addEventListener(
+                "touchmove",
+                (e) => {
+                    if (!isSwiping) return;
+                    const moveX = e.touches[0].clientX;
+                    const diff = moveX - startX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0 && currentIndex > 0) {
+                            goToSlide(currentIndex - 1);
+                        } else if (diff < 0 && currentIndex < dots.length - 1) {
+                            goToSlide(currentIndex + 1);
+                        } else if (diff < 0 && currentIndex >= dots.length - 1) {
+                            goToSlide(0);
+                        }
+                        isSwiping = false;
+                    }
+                },
+                { passive: true, signal },
+            );
+
+            slider.addEventListener(
+                "touchend",
+                () => {
+                    isSwiping = false;
+                },
+                { passive: true, signal },
+            );
+        }
+
+        window.addEventListener(
+            "pagehide",
+            () => {
+                controller.abort();
+                delete sliderSection.dataset.initialized;
+            },
+            { once: true },
+        );
+    }
 </script>

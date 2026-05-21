@@ -63,12 +63,23 @@ const { images } = Astro.props;
 </div>
 
 <script is:inline>
-    (() => {
+    const carouselScriptEl = document.currentScript;
+    const carouselRoot = carouselScriptEl?.previousElementSibling;
+
+    if (
+        carouselRoot &&
+        carouselRoot.classList.contains("carousel") &&
+        carouselRoot.dataset.initialized !== "true"
+    ) {
+        carouselRoot.dataset.initialized = "true";
+
         let currentIndex = 0;
-        const track = document.getElementById("carousel-track");
+        const track = carouselRoot.querySelector(".carousel__track");
         const total = track?.children.length || 0;
-        const prevBtn = document.getElementById("prev-btn");
-        const nextBtn = document.getElementById("next-btn");
+        const prevBtn = carouselRoot.querySelector(".carousel__button--prev");
+        const nextBtn = carouselRoot.querySelector(".carousel__button--next");
+        const controller = new AbortController();
+        const { signal } = controller;
 
         function updateCarousel() {
             if (track) {
@@ -76,16 +87,35 @@ const { images } = Astro.props;
             }
         }
 
-        prevBtn?.addEventListener("click", () => {
-            currentIndex = (currentIndex - 1 + total) % total;
-            updateCarousel();
-        });
+        prevBtn?.addEventListener(
+            "click",
+            () => {
+                if (total <= 0) return;
+                currentIndex = (currentIndex - 1 + total) % total;
+                updateCarousel();
+            },
+            { signal },
+        );
 
-        nextBtn?.addEventListener("click", () => {
-            currentIndex = (currentIndex + 1) % total;
-            updateCarousel();
-        });
+        nextBtn?.addEventListener(
+            "click",
+            () => {
+                if (total <= 0) return;
+                currentIndex = (currentIndex + 1) % total;
+                updateCarousel();
+            },
+            { signal },
+        );
 
         updateCarousel();
-    })();
+
+        window.addEventListener(
+            "pagehide",
+            () => {
+                controller.abort();
+                delete carouselRoot.dataset.initialized;
+            },
+            { once: true },
+        );
+    }
 </script>

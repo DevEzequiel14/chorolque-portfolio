@@ -44,22 +44,46 @@ const { email } = Astro.props;
 </button>
 <script is:inline>
     const copyBtn = document.getElementById("copy-btn");
-    const email = copyBtn.dataset.email;
-    const label = document.getElementById("label-copy");
-    const copyIcon = document.getElementById("icon-copy");
-    const checkIcon = document.getElementById("icon-check");
+    if (copyBtn && copyBtn.dataset.initialized !== "true") {
+        copyBtn.dataset.initialized = "true";
 
-    copyBtn.addEventListener("click", () => {
-        navigator.clipboard.writeText(email).then(() => {
-            label.textContent = "Copiado";
-            copyIcon.style.display = "none";
-            checkIcon.style.display = "inline";
+        const email = copyBtn.dataset.email || "";
+        const label = document.getElementById("label-copy");
+        const copyIcon = document.getElementById("icon-copy");
+        const checkIcon = document.getElementById("icon-check");
+        const controller = new AbortController();
+        const { signal } = controller;
+        let resetTimeoutId;
 
-            setTimeout(() => {
-                label.textContent = "Copiar correo electrónico";
-                copyIcon.style.display = "inline";
-                checkIcon.style.display = "none";
-            }, 5000);
-        });
-    });
+        if (label && copyIcon && checkIcon) {
+            copyBtn.addEventListener(
+                "click",
+                () => {
+                    navigator.clipboard.writeText(email).then(() => {
+                        label.textContent = "Copiado";
+                        copyIcon.style.display = "none";
+                        checkIcon.style.display = "inline";
+
+                        clearTimeout(resetTimeoutId);
+                        resetTimeoutId = setTimeout(() => {
+                            label.textContent = "Copiar correo electrónico";
+                            copyIcon.style.display = "inline";
+                            checkIcon.style.display = "none";
+                        }, 5000);
+                    });
+                },
+                { signal },
+            );
+        }
+
+        window.addEventListener(
+            "pagehide",
+            () => {
+                clearTimeout(resetTimeoutId);
+                controller.abort();
+                delete copyBtn.dataset.initialized;
+            },
+            { once: true },
+        );
+    }
 </script>
