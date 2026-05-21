@@ -36,7 +36,9 @@ const totalProjects = projects.length;
                             src={project.image}
                             data-index={index + 1}
                             alt={`Vista previa del proyecto ${project.title}`}
-                            fetchpriority="high"
+                            loading={index === 0 ? "eager" : "lazy"}
+                            decoding="async"
+                            fetchpriority={index === 0 ? "high" : "low"}
                         />
                         <div class="projects-card__overlay">
                             <div class="projects-card__overlay-content">

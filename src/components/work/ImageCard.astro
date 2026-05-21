@@ -2,4 +2,11 @@
 const { project } = Astro.props;
 ---
 
-<img class="image-card" src={project.image} alt={project.title} />
+<img
+	class="image-card"
+	src={project.image}
+	alt={project.title}
+	loading="lazy"
+	decoding="async"
+	fetchpriority="low"
+/>

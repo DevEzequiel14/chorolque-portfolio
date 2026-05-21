@@ -11,7 +11,9 @@ const { images } = Astro.props;
             images.map((image, index) => (
                 <div
                     class="carousel__item"
-                    style={`background-image: url('${image}')`}
+                    style={index === 0 ? `background-image: url('${image}')` : undefined}
+                    data-bg={image}
+                    data-loaded={index === 0 ? "true" : "false"}
                 />
             ))
         }
@@ -78,12 +80,29 @@ const { images } = Astro.props;
         const total = track?.children.length || 0;
         const prevBtn = carouselRoot.querySelector(".carousel__button--prev");
         const nextBtn = carouselRoot.querySelector(".carousel__button--next");
+        const items = track ? Array.from(track.children) : [];
         const controller = new AbortController();
         const { signal } = controller;
+
+        function loadSlide(index) {
+            const item = items[index];
+            if (!item || item.dataset.loaded === "true") return;
+
+            const image = item.dataset.bg;
+            if (!image) return;
+
+            item.style.backgroundImage = `url('${image}')`;
+            item.dataset.loaded = "true";
+        }
 
         function updateCarousel() {
             if (track) {
                 track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            if (total > 0) {
+                loadSlide(currentIndex);
+                loadSlide((currentIndex + 1) % total);
             }
         }
 
