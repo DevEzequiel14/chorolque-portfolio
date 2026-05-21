@@ -16,7 +16,13 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Layout title="Work | Ezequiel Chorolque">
+<Layout
+    title={`${project.title} | Ezequiel Chorolque`}
+    description={project.description}
+    path={`/work/${project.slug}`}
+    ogType="article"
+    ogImage={project.image}
+>
     <div class="work-container animate-slide-up">
         <a
             href="/"
