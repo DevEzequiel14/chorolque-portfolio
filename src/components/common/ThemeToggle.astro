@@ -3,7 +3,6 @@
         class="theme-toggle__input"
         type="checkbox"
         id="darkmode-toggle"
-        onclick="toggleTheme()"
     />
 
     <label class="theme-toggle__label" for="darkmode-toggle">
@@ -84,7 +83,10 @@
         const current = html.getAttribute("data-theme");
         const next = current === "dark" ? "light" : "dark";
 
-        localStorage.setItem("theme", next);
+        try {
+            localStorage.setItem("theme", next);
+        } catch {
+        }
         document.documentElement.setAttribute("data-theme", next);
 
         const sun = document.getElementById("sunIcon");
@@ -120,6 +122,7 @@
         const toggle = document.getElementById("darkmode-toggle");
         if (toggle) {
             toggle.checked = theme === "dark";
+            toggle.addEventListener("click", toggleTheme);
         }
         setThemeIcons(theme);
     });

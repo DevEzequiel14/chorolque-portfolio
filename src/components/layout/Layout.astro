@@ -47,7 +47,11 @@ import GoogleAnalytics from "../analytics/GoogleAnalytics.astro";
 
 		<script is:inline>
 			(function () {
-				const theme = localStorage.getItem("theme");
+				let theme = null;
+				try {
+					theme = localStorage.getItem("theme");
+				} catch {
+				}
 				const prefersDark = window.matchMedia(
 					"(prefers-color-scheme: dark)",
 				).matches;
