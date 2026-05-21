@@ -26,6 +26,7 @@ const { items } = Astro.props;
                     class={`text-slider__dot ${index === 0 ? "active" : ""}`}
                     data-index={index}
                     aria-label={`Ir a slide ${index + 1}`}
+                    aria-current={index === 0 ? "true" : "false"}
                 />
             ))
         }
@@ -33,8 +34,8 @@ const { items } = Astro.props;
 </section>
 
 <script is:inline>
-    const scriptEl = document.currentScript;
-    const sliderSection = scriptEl?.previousElementSibling;
+    const textSliderScriptEl = document.currentScript;
+    const sliderSection = textSliderScriptEl?.previousElementSibling;
 
     if (
         sliderSection &&
@@ -54,9 +55,11 @@ const { items } = Astro.props;
             function goToSlide(index) {
                 currentIndex = index;
                 slider.style.transform = `translateX(-${index * 100}%)`;
-                dots.forEach((dot, i) =>
-                    dot.classList.toggle("active", i === index),
-                );
+                dots.forEach((dot, i) => {
+                    const isActive = i === index;
+                    dot.classList.toggle("active", isActive);
+                    dot.setAttribute("aria-current", isActive ? "true" : "false");
+                });
             }
 
             dots.forEach((dot) => {
@@ -70,6 +73,33 @@ const { items } = Astro.props;
                         if (!Number.isNaN(nextIndex)) {
                             goToSlide(nextIndex);
                         }
+                    },
+                    { signal },
+                );
+
+                dot.addEventListener(
+                    "keydown",
+                    (event) => {
+                        const { key } = event;
+                        if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(key)) {
+                            return;
+                        }
+
+                        event.preventDefault();
+
+                        let nextIndex = currentIndex;
+                        if (key === "ArrowRight") {
+                            nextIndex = (currentIndex + 1) % dots.length;
+                        } else if (key === "ArrowLeft") {
+                            nextIndex = (currentIndex - 1 + dots.length) % dots.length;
+                        } else if (key === "Home") {
+                            nextIndex = 0;
+                        } else if (key === "End") {
+                            nextIndex = dots.length - 1;
+                        }
+
+                        goToSlide(nextIndex);
+                        dots[nextIndex].focus();
                     },
                     { signal },
                 );

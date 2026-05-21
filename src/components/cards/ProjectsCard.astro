@@ -18,19 +18,24 @@ const totalProjects = projects.length;
 
     <div class="projects-card__content">
         <h1 class="projects-card__title">Proyectos</h1>
-        <div class="projects-card__image-container">
+        <div
+            class="projects-card__image-container"
+            role="region"
+            aria-label="Proyectos destacados"
+        >
             {
                 projects.map((project, index) => (
                     <a
                         href={`/work/${project.slug}`}
                         class="projects-card__link"
                         data-index={index + 1}
+                        aria-label={`Ver detalle del proyecto ${project.title}`}
                     >
                         <img
                             class="projects-card__image"
                             src={project.image}
                             data-index={index + 1}
-                            alt=""
+                            alt={`Vista previa del proyecto ${project.title}`}
                             fetchpriority="high"
                         />
                         <div class="projects-card__overlay">
@@ -49,6 +54,7 @@ const totalProjects = projects.length;
                                     stroke-width="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
+                                    aria-hidden="true"
                                 >
                                     <path d="M5 12h14" />
                                     <path d="M12 5l7 7-7 7" />
@@ -61,13 +67,17 @@ const totalProjects = projects.length;
         </div>
     </div>
 
-    <div class="projects-card__slider">
+    <div class="projects-card__slider" role="tablist" aria-label="Selector de proyectos">
         {
-            projects.map((_, index) => (
+            projects.map((project, index) => (
                 <label
                     class="projects-card__dot"
                     for={`project_${index + 1}`}
                     data-index={index + 1}
+                    role="tab"
+                    tabindex="0"
+                    aria-selected={index === 0 ? "true" : "false"}
+                    aria-label={`Mostrar proyecto ${project.title}`}
                 />
             ))
         }
@@ -95,12 +105,17 @@ const totalProjects = projects.length;
                 link.style.opacity = index === current ? "1" : "0";
                 link.style.pointerEvents = index === current ? "auto" : "none";
                 link.style.zIndex = index === current ? "2" : "1";
+                link.setAttribute("aria-hidden", index === current ? "false" : "true");
             });
 
             dots.forEach((dot) => {
                 dot.classList.toggle(
                     "is-active",
                     Number(dot.dataset.index) === current,
+                );
+                dot.setAttribute(
+                    "aria-selected",
+                    Number(dot.dataset.index) === current ? "true" : "false",
                 );
             });
         }
@@ -128,6 +143,23 @@ const totalProjects = projects.length;
                         current = idx + 1;
                         updateContentVisibility();
                         startAutoSlide();
+                    }
+                },
+                { signal },
+            );
+        });
+
+        dots.forEach((dot) => {
+            dot.addEventListener(
+                "keydown",
+                (event) => {
+                    if (event.key !== "Enter" && event.key !== " ") return;
+                    event.preventDefault();
+                    const targetIndex = Number(dot.dataset.index);
+                    const targetInput = card.querySelector(`#project_${targetIndex}`);
+                    if (targetInput) {
+                        targetInput.checked = true;
+                        targetInput.dispatchEvent(new Event("change", { bubbles: true }));
                     }
                 },
                 { signal },
