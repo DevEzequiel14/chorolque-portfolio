@@ -56,6 +56,25 @@ Use these commands to keep the codebase consistent and healthy:
 | `npm run format:check` | Validate formatting without writing changes |
 | `npm run quality`      | Run check + lint + format:check in sequence |
 
+## Tests
+
+Minimal E2E tests are configured with Playwright to cover critical interactions:
+
+- Theme toggle
+- Projects slider selection
+- Copy email action
+
+| Command                    | Action                                        |
+| :------------------------- | :-------------------------------------------- |
+| `npm run test:e2e`         | Run E2E tests in headless mode                |
+| `npm run test:e2e:headed`  | Run E2E tests with visible browser            |
+
+First-time setup:
+
+```sh
+npx playwright install chromium
+```
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
