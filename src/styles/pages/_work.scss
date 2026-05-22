@@ -3,74 +3,74 @@
 @use "../utils//mixins" as *;
 
 .work-container {
-    @extend .section-container;
+  @extend .section-container;
 }
 
 .work-exit-button {
-    @extend .exit-button;
+  @extend .exit-button;
 }
 
 .work-grid {
-    display: grid;
-    grid-template-rows: repeat(2, auto);
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    max-width: min(100%, 1200px);
-    min-width: 0;
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: min(100%, 1200px);
+  min-width: 0;
 
-    &__details,
-    &__frame,
-    &__image {
-        @include card-pattern-bg;
-    }
+  &__details,
+  &__frame,
+  &__image {
+    @include card-pattern-bg;
+  }
 
-    &__details {
-        grid-row: 1;
-        grid-column: 1 / 2;
-        border: 2px solid var(--border-color);
-        border-radius: 2rem;
-        padding: 2rem;
-    }
-    &__frame {
-        grid-row: 1;
-        grid-column: 2 / 4;
-        border: 2px solid var(--border-color);
-        border-radius: 2rem;
-        padding: 2rem;
-    }
-    &__image {
-        grid-row: 2;
-        grid-column: 1 / 4;
-        border-radius: 2rem;
-        height: 65vh;
-    }
+  &__details {
+    grid-row: 1;
+    grid-column: 1 / 2;
+    border: 2px solid var(--border-color);
+    border-radius: 2rem;
+    padding: 2rem;
+  }
+  &__frame {
+    grid-row: 1;
+    grid-column: 2 / 4;
+    border: 2px solid var(--border-color);
+    border-radius: 2rem;
+    padding: 2rem;
+  }
+  &__image {
+    grid-row: 2;
+    grid-column: 1 / 4;
+    border-radius: 2rem;
+    height: 65vh;
+  }
 }
 
 @media (max-width: 810px) {
-    .work-grid {
-        grid-template-rows: repeat(3, minmax(240px, auto));
-        grid-template-columns: 1fr;
+  .work-grid {
+    grid-template-rows: repeat(3, minmax(240px, auto));
+    grid-template-columns: 1fr;
 
-        &__frame {
-            grid-column: 1;
-            grid-row: 1;
-        }
-        &__details {
-            grid-column: 1;
-            grid-row: 2;
-        }
-        &__image {
-            grid-column: 1;
-            grid-row: 3;
-            height: 50vh;
-        }
+    &__frame {
+      grid-column: 1;
+      grid-row: 1;
     }
+    &__details {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    &__image {
+      grid-column: 1;
+      grid-row: 3;
+      height: 50vh;
+    }
+  }
 }
 
 @media (max-width: 485px) {
-    .work-grid {
-        &__image {
-            height: 35vh;
-        }
+  .work-grid {
+    &__image {
+      height: 35vh;
     }
+  }
 }

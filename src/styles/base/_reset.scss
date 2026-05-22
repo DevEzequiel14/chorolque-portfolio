@@ -1,28 +1,28 @@
 @use "./variables";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    background-color: var(--bg-color);
+  background-color: var(--bg-color);
 }
 
 html,
 body {
-    min-height: 100vh;
-    height: auto;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-family: variables.$font-base;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.6;
-    font-variation-settings: "wgth" 100;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: variables.$font-base;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.6;
+  font-variation-settings: "wgth" 100;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }

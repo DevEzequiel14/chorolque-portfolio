@@ -14,24 +14,24 @@ import IconJasmine from "../components/icons/stack/IconJasmine.astro";
 import IconAzuredevops from "../components/icons/stack/IconAzuredevops.astro";
 
 export const stacks = {
-    "Desarrollo web": [
-        { name: "Angular", icon: IconAngular },
-        { name: "Astro", icon: IconAstro },
-        { name: "TypeScript", icon: IconTypescript },
-        { name: "JavaScript", icon: IconJavascript },
-        { name: "RxJS", icon: IconRxjs },
-    ],
-    "Herramientas de desarrollo": [
-        { name: "Bootstrap", icon: IconBootstrap },
-        { name: "Tailwind", icon: IconTailwind },
-        { name: "Jasmine", icon: IconJasmine },
-        { name: "NPM", icon: IconNpm },
-    ],
-    "Tecnologías complementarias": [
-        { name: "Docker", icon: IconDocker },
-        { name: 'Azure DevOps', icon: IconAzuredevops },
-        { name: "Firebase", icon: IconFirebase },
-        { name: "Git", icon: IconGit },
-        { name: "Notion", icon: IconNotion },
-    ],
+  "Desarrollo web": [
+    { name: "Angular", icon: IconAngular },
+    { name: "Astro", icon: IconAstro },
+    { name: "TypeScript", icon: IconTypescript },
+    { name: "JavaScript", icon: IconJavascript },
+    { name: "RxJS", icon: IconRxjs },
+  ],
+  "Herramientas de desarrollo": [
+    { name: "Bootstrap", icon: IconBootstrap },
+    { name: "Tailwind", icon: IconTailwind },
+    { name: "Jasmine", icon: IconJasmine },
+    { name: "NPM", icon: IconNpm },
+  ],
+  "Tecnologías complementarias": [
+    { name: "Docker", icon: IconDocker },
+    { name: "Azure DevOps", icon: IconAzuredevops },
+    { name: "Firebase", icon: IconFirebase },
+    { name: "Git", icon: IconGit },
+    { name: "Notion", icon: IconNotion },
+  ],
 };

@@ -10,46 +10,46 @@ import ContactCard from "../components/cards/ContactCard.astro";
 import TechnologiesCard from "../components/cards/TechnologiesCard.astro";
 
 const socialLinks = [
-	{
-		label: "LinkedIn",
-		href: "https://www.linkedin.com/in/chorolque-ezequiel/",
-		icon: "linkedin",
-	},
-	{
-		label: "GitHub",
-		href: "https://github.com/DevEzequiel14",
-		icon: "github",
-	},
-	{
-		label: "Curriculum Vitae",
-		href: "https://drive.google.com/uc?export=download&id=1J1kff1C9AFaGsCmKkxRijcLZ2oHT8mc4",
-		icon: "cv",
-	},
-	{
-		label: "Correo",
-		href: "mailto:ezequielchorolque14@gmail.com",
-		icon: "mail",
-	},
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/chorolque-ezequiel/",
+    icon: "linkedin",
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/DevEzequiel14",
+    icon: "github",
+  },
+  {
+    label: "Curriculum Vitae",
+    href: "https://drive.google.com/uc?export=download&id=1J1kff1C9AFaGsCmKkxRijcLZ2oHT8mc4",
+    icon: "cv",
+  },
+  {
+    label: "Correo",
+    href: "mailto:ezequielchorolque14@gmail.com",
+    icon: "mail",
+  },
 ];
 ---
 
 <Layout
-	title="Inicio | Ezequiel Chorolque"
-	description="Portafolio de Ezequiel Chorolque: proyectos frontend, experiencia profesional y stack tecnológico en Angular y Astro."
-	path="/"
+  title="Inicio | Ezequiel Chorolque"
+  description="Portafolio de Ezequiel Chorolque: proyectos frontend, experiencia profesional y stack tecnológico en Angular y Astro."
+  path="/"
 >
-	<div class="layout__container animate-slide-down">
-		<section class="bento-grid">
-			<div class="card grid-area--presentation"><PresentationCard /></div>
-			<div class="grid-area--social">
-				<SocialNetworksCard links={socialLinks} />
-			</div>
-			<div class="card grid-area--projects"><ProjectsCard /></div>
-			<div class="grid-area--photo"><ProfileCard /></div>
-			<a class="card grid-area--about" href="/about"><AboutCard /></a>
-			<div class="card grid-area--technologies"><TechnologiesCard /></div>
-			<div class="card grid-area--contact"><ContactCard /></div>
-			<div class="grid-area--toggles"><ToggleCard /></div>
-		</section>
-	</div>
+  <div class="layout__container animate-slide-down">
+    <section class="bento-grid">
+      <div class="card grid-area--presentation"><PresentationCard /></div>
+      <div class="grid-area--social">
+        <SocialNetworksCard links={socialLinks} />
+      </div>
+      <div class="card grid-area--projects"><ProjectsCard /></div>
+      <div class="grid-area--photo"><ProfileCard /></div>
+      <a class="card grid-area--about" href="/about"><AboutCard /></a>
+      <div class="card grid-area--technologies"><TechnologiesCard /></div>
+      <div class="card grid-area--contact"><ContactCard /></div>
+      <div class="grid-area--toggles"><ToggleCard /></div>
+    </section>
+  </div>
 </Layout>

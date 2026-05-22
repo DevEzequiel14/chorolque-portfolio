@@ -10,58 +10,58 @@ import TextSlider from "../../components/common/TextSlider.astro";
 
 const about = information;
 const images = [
-    "/hobbies/hobby_1.webp",
-    "/hobbies/hobby_2.webp",
-    "/hobbies/hobby_3.webp",
+  "/hobbies/hobby_1.webp",
+  "/hobbies/hobby_2.webp",
+  "/hobbies/hobby_3.webp",
 ];
 ---
 
 <Layout
-    title="About | Ezequiel Chorolque"
-    description="Conocé el perfil profesional de Ezequiel Chorolque: experiencia, formación, fortalezas y enfoque en desarrollo frontend."
-    path="/about"
+  title="About | Ezequiel Chorolque"
+  description="Conocé el perfil profesional de Ezequiel Chorolque: experiencia, formación, fortalezas y enfoque en desarrollo frontend."
+  path="/about"
 >
-    <div class="about-container animate-slide-up">
-        <a
-            href="/"
-            class="about-exit-button"
-            aria-label="Cerrar sección y volver al inicio"
-        >
-            <span class="sr-only">Cerrar y volver al inicio</span>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                    d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
-            >
-        </a>
-        <div class="about-grid">
-            <div class="about-grid__about">
-                <DetailsAboutCard />
-            </div>
-            <div class="about-grid__strengths">
-                <TextSlider items={about.strengths} />
-            </div>
-            <div class="about-grid__experience">
-                <ExperienceCard />
-            </div>
-            <div class="about-grid__education">
-                <EducationCard />
-            </div>
-            <div class="about-grid__hobbies">
-                <CarouselCard images={images} />
-            </div>
-            <div class="about-grid__contact">
-                <ContactCard />
-            </div>
-        </div>
+  <div class="about-container animate-slide-up">
+    <a
+      href="/"
+      class="about-exit-button"
+      aria-label="Cerrar sección y volver al inicio"
+    >
+      <span class="sr-only">Cerrar y volver al inicio</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+      >
+    </a>
+    <div class="about-grid">
+      <div class="about-grid__about">
+        <DetailsAboutCard />
+      </div>
+      <div class="about-grid__strengths">
+        <TextSlider items={about.strengths} />
+      </div>
+      <div class="about-grid__experience">
+        <ExperienceCard />
+      </div>
+      <div class="about-grid__education">
+        <EducationCard />
+      </div>
+      <div class="about-grid__hobbies">
+        <CarouselCard images={images} />
+      </div>
+      <div class="about-grid__contact">
+        <ContactCard />
+      </div>
     </div>
+  </div>
 </Layout>

@@ -1,140 +1,140 @@
 ---
 export interface Props {
-    images: string[];
+  images: string[];
 }
 const { images } = Astro.props;
 ---
 
 <div class="carousel">
-    <div class="carousel__track" id="carousel-track">
-        {
-            images.map((image, index) => (
-                <div
-                    class="carousel__item"
-                    style={index === 0 ? `background-image: url('${image}')` : undefined}
-                    data-bg={image}
-                    data-loaded={index === 0 ? "true" : "false"}
-                />
-            ))
-        }
-    </div>
+  <div class="carousel__track" id="carousel-track">
+    {
+      images.map((image, index) => (
+        <div
+          class="carousel__item"
+          style={index === 0 ? `background-image: url('${image}')` : undefined}
+          data-bg={image}
+          data-loaded={index === 0 ? "true" : "false"}
+        />
+      ))
+    }
+  </div>
 
-    <button
-        class="carousel__button carousel__button--prev"
-        id="prev-btn"
-        aria-label="Anterior"
-        type="button"
-        title="Anterior"
+  <button
+    class="carousel__button carousel__button--prev"
+    id="prev-btn"
+    aria-label="Anterior"
+    type="button"
+    title="Anterior"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M15 6l-6 6l6 6"></path></svg
     >
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M15 6l-6 6l6 6"></path></svg
-        >
-    </button>
-    <button
-        class="carousel__button carousel__button--next"
-        id="next-btn"
-        aria-label="Siguiente"
-        type="button"
-        title="Siguiente"
-        ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                d="M9 6l6 6l-6 6"></path></svg
-        ></button
-    >
+  </button>
+  <button
+    class="carousel__button carousel__button--next"
+    id="next-btn"
+    aria-label="Siguiente"
+    type="button"
+    title="Siguiente"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M9 6l6 6l-6 6"></path></svg
+    ></button
+  >
 </div>
 
 <script is:inline>
-    const carouselScriptEl = document.currentScript;
-    const carouselRoot = carouselScriptEl?.previousElementSibling;
+  const carouselScriptEl = document.currentScript;
+  const carouselRoot = carouselScriptEl?.previousElementSibling;
 
-    if (
-        carouselRoot &&
-        carouselRoot.classList.contains("carousel") &&
-        carouselRoot.dataset.initialized !== "true"
-    ) {
-        carouselRoot.dataset.initialized = "true";
+  if (
+    carouselRoot &&
+    carouselRoot.classList.contains("carousel") &&
+    carouselRoot.dataset.initialized !== "true"
+  ) {
+    carouselRoot.dataset.initialized = "true";
 
-        let currentIndex = 0;
-        const track = carouselRoot.querySelector(".carousel__track");
-        const total = track?.children.length || 0;
-        const prevBtn = carouselRoot.querySelector(".carousel__button--prev");
-        const nextBtn = carouselRoot.querySelector(".carousel__button--next");
-        const items = track ? Array.from(track.children) : [];
-        const controller = new AbortController();
-        const { signal } = controller;
+    let currentIndex = 0;
+    const track = carouselRoot.querySelector(".carousel__track");
+    const total = track?.children.length || 0;
+    const prevBtn = carouselRoot.querySelector(".carousel__button--prev");
+    const nextBtn = carouselRoot.querySelector(".carousel__button--next");
+    const items = track ? Array.from(track.children) : [];
+    const controller = new AbortController();
+    const { signal } = controller;
 
-        function loadSlide(index) {
-            const item = items[index];
-            if (!item || item.dataset.loaded === "true") return;
+    function loadSlide(index) {
+      const item = items[index];
+      if (!item || item.dataset.loaded === "true") return;
 
-            const image = item.dataset.bg;
-            if (!image) return;
+      const image = item.dataset.bg;
+      if (!image) return;
 
-            item.style.backgroundImage = `url('${image}')`;
-            item.dataset.loaded = "true";
-        }
-
-        function updateCarousel() {
-            if (track) {
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-
-            if (total > 0) {
-                loadSlide(currentIndex);
-                loadSlide((currentIndex + 1) % total);
-            }
-        }
-
-        prevBtn?.addEventListener(
-            "click",
-            () => {
-                if (total <= 0) return;
-                currentIndex = (currentIndex - 1 + total) % total;
-                updateCarousel();
-            },
-            { signal },
-        );
-
-        nextBtn?.addEventListener(
-            "click",
-            () => {
-                if (total <= 0) return;
-                currentIndex = (currentIndex + 1) % total;
-                updateCarousel();
-            },
-            { signal },
-        );
-
-        updateCarousel();
-
-        window.addEventListener(
-            "pagehide",
-            () => {
-                controller.abort();
-                delete carouselRoot.dataset.initialized;
-            },
-            { once: true },
-        );
+      item.style.backgroundImage = `url('${image}')`;
+      item.dataset.loaded = "true";
     }
+
+    function updateCarousel() {
+      if (track) {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      if (total > 0) {
+        loadSlide(currentIndex);
+        loadSlide((currentIndex + 1) % total);
+      }
+    }
+
+    prevBtn?.addEventListener(
+      "click",
+      () => {
+        if (total <= 0) return;
+        currentIndex = (currentIndex - 1 + total) % total;
+        updateCarousel();
+      },
+      { signal },
+    );
+
+    nextBtn?.addEventListener(
+      "click",
+      () => {
+        if (total <= 0) return;
+        currentIndex = (currentIndex + 1) % total;
+        updateCarousel();
+      },
+      { signal },
+    );
+
+    updateCarousel();
+
+    window.addEventListener(
+      "pagehide",
+      () => {
+        controller.abort();
+        delete carouselRoot.dataset.initialized;
+      },
+      { once: true },
+    );
+  }
 </script>

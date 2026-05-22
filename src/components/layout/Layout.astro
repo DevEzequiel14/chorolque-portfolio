@@ -2,12 +2,12 @@
 const SITE_URL = "https://ezequielchorolque.netlify.app";
 
 const {
-	title = "Ezequiel Chorolque",
-	description = "Portafolio profesional de Ezequiel Chorolque, desarrollador frontend especializado en Angular, Astro y tecnologías modernas. Conocé sus proyectos, experiencia y habilidades.",
-	keywords = "Ezequiel Chorolque, desarrollador web, Angular, Astro, frontend, programación, portfolio, tecnologías web",
-	path = "/",
-	ogType = "website",
-	ogImage = "/og-image.webp",
+  title = "Ezequiel Chorolque",
+  description = "Portafolio profesional de Ezequiel Chorolque, desarrollador frontend especializado en Angular, Astro y tecnologías modernas. Conocé sus proyectos, experiencia y habilidades.",
+  keywords = "Ezequiel Chorolque, desarrollador web, Angular, Astro, frontend, programación, portfolio, tecnologías web",
+  path = "/",
+  ogType = "website",
+  ogImage = "/og-image.webp",
 } = Astro.props;
 
 const normalizedPath = path.startsWith("/") ? path : `/${path}`;
@@ -19,63 +19,61 @@ import GoogleAnalytics from "../analytics/GoogleAnalytics.astro";
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/laptop.svg" />
-		<title>{title}</title>
-		<GoogleAnalytics/>
-		<meta name="description" content={description} />
-		<meta name="keywords" content={keywords} />
-		<meta name="author" content="Ezequiel Chorolque" />
-		<link rel="canonical" href={canonicalUrl} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/laptop.svg" />
+    <title>{title}</title>
+    <GoogleAnalytics />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Ezequiel Chorolque" />
+    <link rel="canonical" href={canonicalUrl} />
 
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={ogImageUrl} />
-		<meta property="og:url" content={canonicalUrl} />
-		<meta property="og:type" content={ogType} />
-		<meta property="og:locale" content="es_AR" />
-		<meta property="og:site_name" content="Ezequiel Chorolque" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Ezequiel Chorolque" />
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
-		<meta name="generator" content={Astro.generator} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
-			rel="stylesheet"
-		/>
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+      rel="stylesheet"
+    />
 
-		<script is:inline>
-			(function () {
-				let theme = null;
-				try {
-					theme = localStorage.getItem("theme");
-				} catch {
-				}
-				const prefersDark = window.matchMedia(
-					"(prefers-color-scheme: dark)",
-				).matches;
-				const themeToApply = theme || (prefersDark ? "dark" : "light");
-				document.documentElement.setAttribute(
-					"data-theme",
-					themeToApply,
-				);
-			})();
-		</script>
-	</head>
-	<body>
-		<main>
-			<slot />
-		</main>
-	</body>
+    <script is:inline>
+      (function () {
+        let theme = null;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch {
+          // Ignore storage access failures.
+        }
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const themeToApply = theme || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", themeToApply);
+      })();
+    </script>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
 </html>
 <script type="module" is:inline>
-	import { applyTheme } from "/scripts/theme.js";
-	applyTheme();
+  import { applyTheme } from "/scripts/theme.js";
+  applyTheme();
 </script>

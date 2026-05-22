@@ -1,11 +1,11 @@
 @use "../base/variables";
 
 .card {
-    display: flex;
-    border-radius: 2rem;
-    padding: 2rem;
-    border: 2px solid var(--border-color);
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-    overflow: hidden;
+  display: flex;
+  border-radius: 2rem;
+  padding: 2rem;
+  border: 2px solid var(--border-color);
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  overflow: hidden;
 }

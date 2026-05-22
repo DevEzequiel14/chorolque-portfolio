@@ -7,55 +7,55 @@ import FrameCard from "../../components/work/FrameCard.astro";
 import ImageCard from "../../components/work/ImageCard.astro";
 
 export async function getStaticPaths() {
-    return projects.map((project) => ({
-        params: { slug: project.slug },
-        props: { project },
-    }));
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
 }
 
 const { project } = Astro.props;
 ---
 
 <Layout
-    title={`${project.title} | Ezequiel Chorolque`}
-    description={project.description}
-    path={`/work/${project.slug}`}
-    ogType="article"
-    ogImage={project.image}
+  title={`${project.title} | Ezequiel Chorolque`}
+  description={project.description}
+  path={`/work/${project.slug}`}
+  ogType="article"
+  ogImage={project.image}
 >
-    <div class="work-container animate-slide-up">
-        <a
-            href="/"
-            class="work-exit-button"
-            aria-label="Cerrar sección y volver al inicio"
-        >
-            <span class="sr-only">Cerrar y volver al inicio</span>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-x"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                    d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
-            >
-        </a>
-        <Head project={project} />
-        <div class="work-grid">
-            <div class="work-grid__details">
-                <DetailsCard project={project} />
-            </div>
-            <div class="work-grid__frame">
-                <FrameCard project={project} />
-            </div>
-            <div class="work-grid__image">
-                <ImageCard project={project} />
-            </div>
-        </div>
+  <div class="work-container animate-slide-up">
+    <a
+      href="/"
+      class="work-exit-button"
+      aria-label="Cerrar sección y volver al inicio"
+    >
+      <span class="sr-only">Cerrar y volver al inicio</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg
+      >
+    </a>
+    <Head project={project} />
+    <div class="work-grid">
+      <div class="work-grid__details">
+        <DetailsCard project={project} />
+      </div>
+      <div class="work-grid__frame">
+        <FrameCard project={project} />
+      </div>
+      <div class="work-grid__image">
+        <ImageCard project={project} />
+      </div>
     </div>
+  </div>
 </Layout>
