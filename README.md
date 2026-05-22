@@ -43,6 +43,19 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Code Quality
+
+Use these commands to keep the codebase consistent and healthy:
+
+| Command                | Action                                      |
+| :--------------------- | :------------------------------------------ |
+| `npm run check`        | Run Astro static checks                     |
+| `npm run lint`         | Run ESLint over the project                 |
+| `npm run lint:fix`     | Auto-fix lint issues when possible          |
+| `npm run format`       | Format files with Prettier                  |
+| `npm run format:check` | Validate formatting without writing changes |
+| `npm run quality`      | Run check + lint + format:check in sequence |
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
