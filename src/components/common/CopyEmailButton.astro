@@ -5,8 +5,8 @@ interface Props {
 const { email } = Astro.props;
 ---
 
-<button class="button-icon" id="copy-btn" data-email={email}>
-  <span id="label-copy">Copiar correo electrónico</span>
+<button type="button" class="button-icon" id="copy-btn" data-email={email}>
+  <span id="label-copy" aria-live="polite">Copiar correo electrónico</span>
   <svg
     id="icon-copy"
     xmlns="http://www.w3.org/2000/svg"
@@ -54,23 +54,47 @@ const { email } = Astro.props;
     const controller = new AbortController();
     const { signal } = controller;
     let resetTimeoutId;
+    const defaultLabel = "Copiar correo electrónico";
+
+    function resetFeedback() {
+      if (!label || !copyIcon || !checkIcon) return;
+      label.textContent = defaultLabel;
+      copyIcon.style.display = "inline";
+      checkIcon.style.display = "none";
+    }
+
+    function scheduleReset() {
+      clearTimeout(resetTimeoutId);
+      resetTimeoutId = setTimeout(resetFeedback, 5000);
+    }
 
     if (label && copyIcon && checkIcon) {
       copyBtn.addEventListener(
         "click",
         () => {
-          navigator.clipboard.writeText(email).then(() => {
-            label.textContent = "Copiado";
-            copyIcon.style.display = "none";
-            checkIcon.style.display = "inline";
+          const clipboard = navigator.clipboard;
+          if (!clipboard || typeof clipboard.writeText !== "function") {
+            label.textContent = "No se pudo copiar";
+            copyIcon.style.display = "inline";
+            checkIcon.style.display = "none";
+            scheduleReset();
+            return;
+          }
 
-            clearTimeout(resetTimeoutId);
-            resetTimeoutId = setTimeout(() => {
-              label.textContent = "Copiar correo electrónico";
+          clipboard
+            .writeText(email)
+            .then(() => {
+              label.textContent = "Copiado";
+              copyIcon.style.display = "none";
+              checkIcon.style.display = "inline";
+              scheduleReset();
+            })
+            .catch(() => {
+              label.textContent = "No se pudo copiar";
               copyIcon.style.display = "inline";
               checkIcon.style.display = "none";
-            }, 5000);
-          });
+              scheduleReset();
+            });
         },
         { signal },
       );
