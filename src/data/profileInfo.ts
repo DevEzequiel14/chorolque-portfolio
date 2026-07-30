@@ -4,7 +4,7 @@ export const information = {
     trabajo en el Ministerio de Educación de Jujuy.`,
   about: `Apasionado por el desarrollo web, la construcción de interfaces 
     claras y el desarrollo de soluciones útiles.`,
-  email: "ezequielchorolque14@gmail.com.ar",
+  email: "ezequielchorolque14@gmail.com",
   history: `Ingeniero en Informática con más de 4 años de experiencia en el 
     desarrollo de software. Desde mis primeros pasos en el mundo frontend, 
     encontré en Angular una forma de combinar lógica, diseño y estructura. Me 
