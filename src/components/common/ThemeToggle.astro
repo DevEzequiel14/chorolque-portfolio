@@ -74,6 +74,10 @@
     }
   }
 
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
   function toggleTheme() {
     const html = document.documentElement;
     const current = html.getAttribute("data-theme");
@@ -85,6 +89,11 @@
       // Ignore storage access failures.
     }
     document.documentElement.setAttribute("data-theme", next);
+
+    if (prefersReducedMotion()) {
+      setThemeIcons(next);
+      return;
+    }
 
     const sun = document.getElementById("sunIcon");
     const moon = document.getElementById("moonIcon");

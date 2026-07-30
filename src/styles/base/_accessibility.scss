@@ -14,3 +14,44 @@
   outline: 2px solid var(--text-card-color);
   outline-offset: 3px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-down,
+  .animate-slide-up {
+    animation: none;
+  }
+
+  .grid-area--about:hover div {
+    animation: none;
+  }
+
+  .projects-card__link,
+  .projects-card__image,
+  .projects-card__overlay,
+  .projects-card__dot {
+    transition: none;
+  }
+
+  .carousel__track,
+  .text-slider__container {
+    transition: none;
+  }
+
+  html,
+  body {
+    transition: none;
+  }
+
+  .theme-toggle__label,
+  .theme-toggle__label::after,
+  .theme-toggle__icon {
+    transition: none;
+  }
+
+  .theme-toggle__icon--hide-left,
+  .theme-toggle__icon--show-right,
+  .theme-toggle__icon--hide-right,
+  .theme-toggle__icon--show-left {
+    animation: none;
+  }
+}

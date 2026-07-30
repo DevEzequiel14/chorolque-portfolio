@@ -66,10 +66,18 @@
 
 .animate-slide-down {
   animation: slideDownFade 0.5s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 .animate-slide-up {
   animation: slideUpFade 0.5s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 @keyframes wobble {

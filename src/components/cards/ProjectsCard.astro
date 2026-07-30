@@ -108,6 +108,13 @@ const totalProjects = projects.length;
     let intervalId;
     const controller = new AbortController();
     const { signal } = controller;
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+
+    function prefersReducedMotion() {
+      return reducedMotionQuery.matches;
+    }
 
     function updateContentVisibility() {
       links.forEach((link) => {
@@ -138,11 +145,15 @@ const totalProjects = projects.length;
       updateContentVisibility();
     }
 
-    function startAutoSlide() {
+    function stopAutoSlide() {
       clearInterval(intervalId);
-      if (total > 0) {
-        intervalId = setInterval(goToNextSlide, 5000);
-      }
+      intervalId = undefined;
+    }
+
+    function startAutoSlide() {
+      stopAutoSlide();
+      if (prefersReducedMotion() || document.hidden || total <= 0) return;
+      intervalId = setInterval(goToNextSlide, 5000);
     }
 
     inputs.forEach((input, idx) => {
@@ -180,13 +191,27 @@ const totalProjects = projects.length;
       "visibilitychange",
       () => {
         if (document.hidden) {
-          clearInterval(intervalId);
+          stopAutoSlide();
         } else {
           startAutoSlide();
         }
       },
       { signal },
     );
+
+    if (typeof reducedMotionQuery.addEventListener === "function") {
+      reducedMotionQuery.addEventListener(
+        "change",
+        () => {
+          if (prefersReducedMotion()) {
+            stopAutoSlide();
+          } else {
+            startAutoSlide();
+          }
+        },
+        { signal },
+      );
+    }
 
     const firstInput = card.querySelector("#project_1");
     if (firstInput) {
@@ -198,7 +223,7 @@ const totalProjects = projects.length;
     window.addEventListener(
       "pagehide",
       () => {
-        clearInterval(intervalId);
+        stopAutoSlide();
         controller.abort();
         delete card.dataset.initialized;
       },
