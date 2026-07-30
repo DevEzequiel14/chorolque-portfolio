@@ -119,13 +119,15 @@
 
 @media (max-width: 810px) {
   .bento-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(clamp(200px, 25vh, 300px), auto) // presentation
-      minmax(clamp(200px, 25vh, auto), auto) // about
+    // Intro en 2 cols: copy + foto compacta; about debajo como CTA.
+    grid-template-columns: minmax(0, 1fr) clamp(100px, 26vw, 140px);
+    grid-template-rows:
+      minmax(128px, auto) // presentation + photo
+      minmax(140px, auto) // about
       minmax(clamp(200px, 40vh, auto), auto) // projects
-      minmax(clamp(200px, 25vh, auto), auto) // technologies
-      minmax(clamp(200px, 25vh, auto), auto) // toggles
-      minmax(clamp(200px, 25vh, auto), auto) // contact
+      minmax(clamp(180px, 25vh, auto), auto) // technologies
+      minmax(clamp(120px, 20vh, auto), auto) // toggles
+      minmax(clamp(120px, 20vh, auto), auto) // contact
       minmax(140px, auto); // social
   }
 
@@ -133,42 +135,79 @@
     &--presentation {
       grid-column: 1;
       grid-row: 1;
+      min-height: 128px;
     }
+
+    &--presentation.card {
+      padding: 1.25rem;
+    }
+
+    &--photo {
+      display: block;
+      grid-column: 2;
+      grid-row: 1;
+      min-height: 128px;
+      max-height: 180px;
+      align-self: stretch;
+      overflow: hidden;
+      border-radius: 2rem;
+    }
+
     &--about {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 2;
     }
+
     &--projects {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 3;
     }
+
     &--technologies {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 4;
     }
+
     &--toggles {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 5;
     }
+
     &--contact {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 6;
     }
+
     &--social {
-      grid-column: 1;
+      grid-column: 1 / -1;
       grid-row: 7;
-    }
-    &--photo {
-      display: none;
     }
   }
 }
 
 @media (max-width: 485px) {
   .bento-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(clamp(200px, 25vh, 300px), auto) // presentation
-      repeat(5, minmax(clamp(200px, 25vh, auto), auto)) // about → contact
-      minmax(200px, auto); // social
+    grid-template-columns: minmax(0, 1fr) clamp(88px, 28vw, 120px);
+    grid-template-rows:
+      minmax(112px, auto) // presentation + photo
+      minmax(120px, auto) // about
+      minmax(clamp(200px, 35vh, auto), auto) // projects
+      repeat(3, minmax(clamp(140px, 22vh, auto), auto)) // tech → contact
+      minmax(160px, auto); // social
+  }
+
+  .grid-area {
+    &--presentation {
+      min-height: 112px;
+    }
+
+    &--presentation.card {
+      padding: 1rem 1.1rem;
+    }
+
+    &--photo {
+      min-height: 112px;
+      max-height: 148px;
+    }
   }
 }
