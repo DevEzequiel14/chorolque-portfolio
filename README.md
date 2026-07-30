@@ -8,6 +8,7 @@ Sitio en producción: [ezequielchorolque.netlify.app](https://ezequielchorolque.
 
 - **Astro 5** (sitio estático, sin React ni UI frameworks)
 - **SCSS** (estilos por capas en `src/styles`)
+- **Merriweather** self-hosted (`@fontsource`, pesos 400/700)
 - **TypeScript** (datos y chequeos con `astro check`)
 - **Playwright** (tests E2E de interacciones críticas)
 - **@astrojs/sitemap** + `public/robots.txt` (indexación básica)
