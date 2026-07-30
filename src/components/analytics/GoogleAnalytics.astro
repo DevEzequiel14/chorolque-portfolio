@@ -3,14 +3,36 @@ const GA_ID = "G-83PMTLCSDS";
 const isProd = import.meta.env.PROD;
 ---
 
-{isProd && (
-  <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = (...args) => window.dataLayer.push(args);
-      window.gtag("js", new Date());
-      window.gtag("config", "G-83PMTLCSDS");
+{
+  isProd && (
+    <script is:inline define:vars={{ GA_ID }}>
+      (function () {
+        function bootGoogleAnalytics() {
+          if (window.__gaLoaded) return;
+          window.__gaLoaded = true;
+
+          window.dataLayer = window.dataLayer || [];
+          // GA espera el objeto Arguments, no un array (…args rompe el conteo).
+          window.gtag = function gtag() {
+            window.dataLayer.push(arguments);
+          };
+          window.gtag("js", new Date());
+          window.gtag("config", GA_ID);
+
+          var script = document.createElement("script");
+          script.async = true;
+          script.src =
+            "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+          document.head.appendChild(script);
+        }
+
+        // Diferido al idle, pero con timeout corto para no perder visitas rápidas.
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(bootGoogleAnalytics, { timeout: 1000 });
+        } else {
+          window.setTimeout(bootGoogleAnalytics, 0);
+        }
+      })();
     </script>
-  </>
-)}
+  )
+}
