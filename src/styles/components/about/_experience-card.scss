@@ -14,12 +14,13 @@
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   &__item {
     display: flex;
     flex-direction: column;
+    gap: 0.25rem;
   }
 
   &__position {
@@ -28,13 +29,14 @@
     color: var(--text-card-color);
   }
 
+  &__description {
+    font-size: variables.$font-size-small;
+    font-weight: 400;
+    color: var(--text-card-color);
+  }
+
   &__date {
     font-size: variables.$font-size-small;
     color: var(--title-card-color);
-  }
-
-  &__description {
-    font-size: variables.$font-size-medium;
-    color: var(--text-card-color);
   }
 }
