@@ -4,15 +4,15 @@ const { project } = Astro.props;
 
 <section class="work-details-card">
   <article class="work-details-card__section">
-    <h3 class="work-details-card__title">Proyecto:</h3>
+    <h2 class="work-details-card__title">Proyecto:</h2>
     <p class="work-details-card__text">{project.company}</p>
   </article>
   <article class="work-details-card__section">
-    <h3 class="work-details-card__title">Mi rol:</h3>
+    <h2 class="work-details-card__title">Mi rol:</h2>
     <p class="work-details-card__text">{project.rol}</p>
   </article>
   <article class="work-details-card__section">
-    <h3 class="work-details-card__title">Tecnologías:</h3>
+    <h2 class="work-details-card__title">Tecnologías:</h2>
     <div class="work-details-card__technologies">
       {
         project.technologies.map((tech: string) => (
@@ -22,7 +22,7 @@ const { project } = Astro.props;
     </div>
   </article>
   <article class="work-details-card__section">
-    <h3 class="work-details-card__title">Línea de tiempo:</h3>
+    <h2 class="work-details-card__title">Línea de tiempo:</h2>
     <p class="work-details-card__text">{project.timeline}</p>
   </article>
 </section>
