@@ -1,7 +1,16 @@
 ---
-export interface Props {
-  images: string[];
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+export interface CarouselImage {
+  src: ImageMetadata;
+  alt: string;
 }
+
+export interface Props {
+  images: CarouselImage[];
+}
+
 const { images } = Astro.props;
 ---
 
@@ -9,12 +18,18 @@ const { images } = Astro.props;
   <div class="carousel__track" id="carousel-track">
     {
       images.map((image, index) => (
-        <div
-          class="carousel__item"
-          style={index === 0 ? `background-image: url('${image}')` : undefined}
-          data-bg={image}
-          data-loaded={index === 0 ? "true" : "false"}
-        />
+        <div class="carousel__item">
+          <Image
+            class="carousel__image"
+            src={image.src}
+            alt={image.alt}
+            widths={[400, 600, 800, 1000]}
+            sizes="(max-width: 800px) 100vw, (max-width: 1200px) 40vw, 300px"
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            fetchpriority={index === 0 ? "high" : "low"}
+          />
+        </div>
       ))
     }
   </div>
@@ -80,29 +95,12 @@ const { images } = Astro.props;
     const total = track?.children.length || 0;
     const prevBtn = carouselRoot.querySelector(".carousel__button--prev");
     const nextBtn = carouselRoot.querySelector(".carousel__button--next");
-    const items = track ? Array.from(track.children) : [];
     const controller = new AbortController();
     const { signal } = controller;
-
-    function loadSlide(index) {
-      const item = items[index];
-      if (!item || item.dataset.loaded === "true") return;
-
-      const image = item.dataset.bg;
-      if (!image) return;
-
-      item.style.backgroundImage = `url('${image}')`;
-      item.dataset.loaded = "true";
-    }
 
     function updateCarousel() {
       if (track) {
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      }
-
-      if (total > 0) {
-        loadSlide(currentIndex);
-        loadSlide((currentIndex + 1) % total);
       }
     }
 

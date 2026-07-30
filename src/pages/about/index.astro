@@ -7,12 +7,24 @@ import ExperienceCard from "../../components/about/ExperienceCard.astro";
 import EducationCard from "../../components/about/EducationCard.astro";
 import CarouselCard from "../../components/common/Carousel.astro";
 import TextSlider from "../../components/common/TextSlider.astro";
+import hobby1 from "../../assets/hobbies/hobby_1.webp";
+import hobby2 from "../../assets/hobbies/hobby_2.webp";
+import hobby3 from "../../assets/hobbies/hobby_3.webp";
 
 const about = information;
 const images = [
-  "/hobbies/hobby_1.webp",
-  "/hobbies/hobby_2.webp",
-  "/hobbies/hobby_3.webp",
+  {
+    src: hobby1,
+    alt: "Foto de un pasatiempo personal al aire libre",
+  },
+  {
+    src: hobby2,
+    alt: "Foto de un pasatiempo personal en un entorno natural",
+  },
+  {
+    src: hobby3,
+    alt: "Foto de un pasatiempo personal en un momento cotidiano",
+  },
 ];
 ---
 

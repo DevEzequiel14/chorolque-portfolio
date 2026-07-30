@@ -17,11 +17,10 @@ Sitio en producción: [ezequielchorolque.netlify.app](https://ezequielchorolque.
 
 ```text
 /
-├── public/                 # Assets estáticos (imágenes, scripts, robots.txt)
-│   ├── projects/           # Portadas de proyectos (.webp)
-│   ├── profile/            # Foto de perfil
+├── public/                 # Estáticos sin pipeline (og-image, icons, robots, scripts)
 │   └── og-image.webp
 ├── src/
+│   ├── assets/             # Imágenes vía astro:assets (profile, projects, hobbies)
 │   ├── pages/
 │   │   ├── index.astro     # Home (bento grid)
 │   │   ├── about/          # Página About
@@ -44,15 +43,17 @@ Las rutas de work se generan desde `projects.ts` (`getStaticPaths` en `work/[slu
 
 ## Agregar un proyecto
 
-1. Colocá la imagen en `public/projects/` (recomendado: `.webp`).
-2. Agregá un objeto en `src/data/projects.ts` con al menos:
+1. Colocá la imagen en `src/assets/projects/` (recomendado: `.webp`).
+2. Importala y agregá un objeto en `src/data/projects.ts`:
 
 ```ts
+import miProyecto from "../assets/projects/miProyecto.webp";
+
 {
   title: "Nombre del proyecto",
   type: "Aplicación web",
-  slug: "mi-proyecto", 
-  image: "/projects/miProyecto.webp",
+  slug: "mi-proyecto",
+  image: miProyecto,
   company: "Cliente o nombre",
   rol: "Desarrollador Frontend",
   technologies: ["Astro", "TypeScript"],

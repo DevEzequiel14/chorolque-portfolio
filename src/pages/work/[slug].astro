@@ -21,7 +21,7 @@ const { project } = Astro.props;
   description={project.description}
   path={`/work/${project.slug}`}
   ogType="article"
-  ogImage={project.image}
+  ogImage={project.image.src}
 >
   <div class="work-container animate-slide-up">
     <a

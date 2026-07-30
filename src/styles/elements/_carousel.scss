@@ -16,9 +16,17 @@
 .carousel__item {
   flex: 0 0 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
   border-radius: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .carousel__button {

@@ -1,9 +1,28 @@
-export const projects = [
+import type { ImageMetadata } from "astro";
+import quinchoElTata from "../assets/projects/quinchoElTata.webp";
+import valorAr from "../assets/projects/valorAr.webp";
+
+export interface Project {
+  title: string;
+  type: string;
+  slug: string;
+  image: ImageMetadata;
+  company: string;
+  rol: string;
+  technologies: string[];
+  timeline: string;
+  description: string;
+  context: string;
+  link: string;
+  github: string;
+}
+
+export const projects: Project[] = [
   {
     title: "Valor Ar",
     type: "Aplicación web",
     slug: "valor-ar",
-    image: "/projects/valorAr.webp",
+    image: valorAr,
     company: "Valor Ar",
     rol: "Desarrollador",
     technologies: ["Angular v17", "TypeScript", "SCSS", "Chart.js", "Netlify"],
@@ -17,7 +36,7 @@ export const projects = [
     title: "Quincho el Tata",
     type: "Landing page",
     slug: "quincho-el-tata",
-    image: "/projects/quinchoElTata.webp",
+    image: quinchoElTata,
     company: "Quincho el Tata",
     rol: "Desarrollador Frontend",
     technologies: ["Angular v19", "Bootstrap", "TypeScript", "Netlify"],

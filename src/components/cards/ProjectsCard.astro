@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { projects } from "../../data/projects";
 const totalProjects = projects.length;
 ---
@@ -31,13 +32,13 @@ const totalProjects = projects.length;
             data-index={index + 1}
             aria-label={`Ver detalle del proyecto ${project.title}`}
           >
-            <img
+            <Image
               class="projects-card__image"
               src={project.image}
               data-index={index + 1}
               alt={`Vista previa del proyecto ${project.title}`}
-              width="960"
-              height="720"
+              widths={[480, 720, 960]}
+              sizes="(max-width: 768px) 95vw, (max-width: 1200px) 60vw, 40vw"
               loading={index === 0 ? "eager" : "lazy"}
               decoding="async"
               fetchpriority={index === 0 ? "high" : "low"}
