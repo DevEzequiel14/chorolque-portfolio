@@ -1,80 +1,99 @@
-# Astro Starter Kit: Basics
+# Portfolio — Ezequiel Chorolque
 
-```sh
-npm create astro@latest -- --template basics
-```
+Portafolio personal estático de [Ezequiel Chorolque](https://ezequielchorolque.netlify.app): presentación, proyectos, about y detalle de cada trabajo.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Sitio en producción: [ezequielchorolque.netlify.app](https://ezequielchorolque.netlify.app)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- **Astro 5** (sitio estático, sin React ni UI frameworks)
+- **SCSS** (estilos por capas en `src/styles`)
+- **TypeScript** (datos y chequeos con `astro check`)
+- **Playwright** (tests E2E de interacciones críticas)
+- **@astrojs/sitemap** + `public/robots.txt` (indexación básica)
+- Deploy en **Netlify** (build estático → `dist/`)
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura relevante
 
 ```text
 /
-├── public/
-│   └── laptop.svg
+├── public/                 # Assets estáticos (imágenes, scripts, robots.txt)
+│   ├── projects/           # Portadas de proyectos (.webp)
+│   ├── profile/            # Foto de perfil
+│   └── og-image.webp
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages/
+│   │   ├── index.astro     # Home (bento grid)
+│   │   ├── about/          # Página About
+│   │   └── work/[slug].astro
+│   ├── components/
+│   │   ├── cards/          # Cards del home
+│   │   ├── about/          # Bloques de About
+│   │   ├── work/           # Detalle de proyecto
+│   │   ├── common/         # Theme toggle, copy email, carousel, etc.
+│   │   └── layout/         # Layout (meta, canonical, OG)
+│   ├── data/
+│   │   ├── projects.ts     # Listado de proyectos (fuente de verdad)
+│   │   ├── profileInfo.ts  # Datos personales / about
+│   │   └── stacks.ts       # Tecnologías del home
+│   └── styles/             # SCSS (base, layout, components, pages)
+└── tests/e2e/              # Playwright
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Las rutas de work se generan desde `projects.ts` (`getStaticPaths` en `work/[slug].astro`).
 
-## 🧞 Commands
+## Agregar un proyecto
 
-All commands are run from the root of the project, from a terminal:
+1. Colocá la imagen en `public/projects/` (recomendado: `.webp`).
+2. Agregá un objeto en `src/data/projects.ts` con al menos:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```ts
+{
+  title: "Nombre del proyecto",
+  type: "Aplicación web",
+  slug: "mi-proyecto", 
+  image: "/projects/miProyecto.webp",
+  company: "Cliente o nombre",
+  rol: "Desarrollador Frontend",
+  technologies: ["Astro", "TypeScript"],
+  timeline: "2025",
+  description: "Resumen corto.",
+  context: "Contexto más largo del proyecto.",
+  link: "https://demo.example.com/",
+  github: "https://github.com/usuario/repo",
+}
+```
 
-## Code Quality
+3. Corré `npm run dev` y verificá home (`ProjectsCard`) y `/work/mi-proyecto`.
 
-Use these commands to keep the codebase consistent and healthy:
+No hace falta tocar el routing: el slug nuevo se publica solo en el build.
 
-| Command                | Action                                      |
-| :--------------------- | :------------------------------------------ |
-| `npm run check`        | Run Astro static checks                     |
-| `npm run lint`         | Run ESLint over the project                 |
-| `npm run lint:fix`     | Auto-fix lint issues when possible          |
-| `npm run format`       | Format files with Prettier                  |
-| `npm run format:check` | Validate formatting without writing changes |
-| `npm run quality`      | Run check + lint + format:check in sequence |
+## Scripts
 
-## Tests
+| Comando | Acción |
+| :------ | :----- |
+| `npm install` | Instala dependencias |
+| `npm run dev` | Servidor de desarrollo (`localhost:4321`) |
+| `npm run build` | Build de producción en `./dist/` |
+| `npm run preview` | Vista previa del build local |
+| `npm run quality` | `astro check` + ESLint + Prettier (check) |
+| `npm run test:e2e` | Tests E2E con Playwright (headless) |
+| `npm run test:e2e:headed` | Igual, con browser visible |
 
-Minimal E2E tests are configured with Playwright to cover critical interactions:
-
-- Theme toggle
-- Projects slider selection
-- Copy email action
-
-| Command                    | Action                                        |
-| :------------------------- | :-------------------------------------------- |
-| `npm run test:e2e`         | Run E2E tests in headless mode                |
-| `npm run test:e2e:headed`  | Run E2E tests with visible browser            |
-
-First-time setup:
+Primera vez con Playwright:
 
 ```sh
 npx playwright install chromium
 ```
 
-## 👀 Want to learn more?
+Los E2E cubren toggle de tema, selector del slider de proyectos y copiar email.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Deploy (Netlify)
+
+Sitio **estático**: Netlify ejecuta el build y sirve `dist/`.
+
+- Build command: `npm run build`
+- Publish directory: `dist`
+- URL canónica configurada en `astro.config.mjs` (`site`)
+
+Tras el deploy deberían quedar disponibles `/robots.txt` y `/sitemap-index.xml`.
