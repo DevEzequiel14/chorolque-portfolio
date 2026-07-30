@@ -36,6 +36,8 @@ const totalProjects = projects.length;
               src={project.image}
               data-index={index + 1}
               alt={`Vista previa del proyecto ${project.title}`}
+              width="960"
+              height="720"
               loading={index === 0 ? "eager" : "lazy"}
               decoding="async"
               fetchpriority={index === 0 ? "high" : "low"}
