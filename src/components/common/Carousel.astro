@@ -9,16 +9,26 @@ export interface CarouselImage {
 
 export interface Props {
   images: CarouselImage[];
+  label?: string;
 }
 
-const { images } = Astro.props;
+const { images, label = "Fotos de pasatiempos" } = Astro.props;
 ---
 
-<div class="carousel">
+<div
+  class="carousel"
+  role="region"
+  aria-roledescription="carrusel"
+  aria-label={label}
+>
   <div class="carousel__track" id="carousel-track">
     {
       images.map((image, index) => (
-        <div class="carousel__item">
+        <div
+          class="carousel__item"
+          aria-hidden={index === 0 ? "false" : "true"}
+          data-slide-index={index}
+        >
           <Image
             class="carousel__image"
             src={image.src}
@@ -52,6 +62,8 @@ const { images } = Astro.props;
       stroke-linecap="round"
       stroke-linejoin="round"
       class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
+      aria-hidden="true"
+      focusable="false"
       ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
         d="M15 6l-6 6l6 6"></path></svg
     >
@@ -62,7 +74,8 @@ const { images } = Astro.props;
     aria-label="Siguiente"
     type="button"
     title="Siguiente"
-    ><svg
+  >
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -73,10 +86,12 @@ const { images } = Astro.props;
       stroke-linecap="round"
       stroke-linejoin="round"
       class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
+      aria-hidden="true"
+      focusable="false"
       ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
         d="M9 6l6 6l-6 6"></path></svg
-    ></button
-  >
+    >
+  </button>
 </div>
 
 <script is:inline>
@@ -92,7 +107,8 @@ const { images } = Astro.props;
 
     let currentIndex = 0;
     const track = carouselRoot.querySelector(".carousel__track");
-    const total = track?.children.length || 0;
+    const items = track ? Array.from(track.children) : [];
+    const total = items.length;
     const prevBtn = carouselRoot.querySelector(".carousel__button--prev");
     const nextBtn = carouselRoot.querySelector(".carousel__button--next");
     const controller = new AbortController();
@@ -102,6 +118,13 @@ const { images } = Astro.props;
       if (track) {
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
       }
+
+      items.forEach((item, index) => {
+        item.setAttribute(
+          "aria-hidden",
+          index === currentIndex ? "false" : "true",
+        );
+      });
     }
 
     prevBtn?.addEventListener(

@@ -1,5 +1,10 @@
 <div class="theme-toggle">
-  <input class="theme-toggle__input" type="checkbox" id="darkmode-toggle" />
+  <input
+    class="theme-toggle__input"
+    type="checkbox"
+    id="darkmode-toggle"
+    aria-label="Activar modo oscuro"
+  />
 
   <label class="theme-toggle__label" for="darkmode-toggle">
     <svg
@@ -14,6 +19,8 @@
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+      aria-hidden="true"
+      focusable="false"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
@@ -34,6 +41,8 @@
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+      aria-hidden="true"
+      focusable="false"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <path
@@ -44,6 +53,17 @@
 </div>
 
 <script is:inline>
+  function themeToggleLabel(theme) {
+    return theme === "dark" ? "Activar modo claro" : "Activar modo oscuro";
+  }
+
+  function syncThemeToggleA11y(theme) {
+    const toggle = document.getElementById("darkmode-toggle");
+    if (!toggle) return;
+    toggle.setAttribute("aria-label", themeToggleLabel(theme));
+    toggle.checked = theme === "dark";
+  }
+
   function setThemeIcons(theme) {
     const sun = document.getElementById("sunIcon");
     const moon = document.getElementById("moonIcon");
@@ -72,6 +92,8 @@
       sun?.classList.add("theme-toggle__icon--visible");
       moon?.classList.add("theme-toggle__icon--hidden");
     }
+
+    syncThemeToggleA11y(theme);
   }
 
   function prefersReducedMotion() {
