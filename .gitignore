@@ -28,3 +28,6 @@ cmd_*.log
 
 # jetbrains setting folder
 .idea/
+
+# camera-resolution backups (not served; regenerate public/ assets locally)
+assets-originals/
