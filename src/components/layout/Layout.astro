@@ -1,5 +1,6 @@
 ---
-const SITE_URL = "https://ezequielchorolque.netlify.app";
+import "../../styles/main.scss";
+import GoogleAnalytics from "../analytics/GoogleAnalytics.astro";
 
 const {
   title = "Ezequiel Chorolque",
@@ -10,11 +11,10 @@ const {
   ogImage = "/og-image.webp",
 } = Astro.props;
 
+const site = Astro.site ?? new URL(import.meta.env.SITE);
 const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-const canonicalUrl = new URL(normalizedPath, SITE_URL).toString();
-const ogImageUrl = new URL(ogImage, SITE_URL).toString();
-import "../../styles/main.scss";
-import GoogleAnalytics from "../analytics/GoogleAnalytics.astro";
+const canonicalUrl = new URL(normalizedPath, site).toString();
+const ogImageUrl = new URL(ogImage, site).toString();
 ---
 
 <!doctype html>
