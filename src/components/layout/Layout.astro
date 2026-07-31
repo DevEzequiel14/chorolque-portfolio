@@ -5,6 +5,8 @@ import "@fontsource/merriweather/latin-700.css";
 import "@fontsource/merriweather/latin-ext-700.css";
 import "../../styles/main.scss";
 import GoogleAnalytics from "../analytics/GoogleAnalytics.astro";
+import { information } from "../../data/profileInfo";
+import { sameAsProfiles } from "../../data/socialProfiles";
 
 const {
   title = "Ezequiel Chorolque",
@@ -16,9 +18,39 @@ const {
 } = Astro.props;
 
 const site = Astro.site ?? new URL(import.meta.env.SITE);
+const siteUrl = site.toString().replace(/\/$/, "");
 const normalizedPath = path.startsWith("/") ? path : `/${path}`;
 const canonicalUrl = new URL(normalizedPath, site).toString();
 const ogImageUrl = new URL(ogImage, site).toString();
+const personName = "Ezequiel Chorolque";
+const personId = `${siteUrl}/#person`;
+const websiteId = `${siteUrl}/#website`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: personName,
+      url: `${siteUrl}/`,
+      email: information.email,
+      jobTitle: "Desarrollador Frontend",
+      sameAs: [...sameAsProfiles],
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      name: personName,
+      url: `${siteUrl}/`,
+      description,
+      inLanguage: "es-AR",
+      publisher: { "@id": personId },
+    },
+  ],
+};
+
+const jsonLd = JSON.stringify(structuredData).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
@@ -47,6 +79,8 @@ const ogImageUrl = new URL(ogImage, site).toString();
     <meta name="twitter:image" content={ogImageUrl} />
 
     <meta name="generator" content={Astro.generator} />
+
+    <script type="application/ld+json" is:inline set:html={jsonLd} />
 
     <script is:inline>
       (function () {

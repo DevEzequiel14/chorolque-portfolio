@@ -8,27 +8,29 @@ import AboutCard from "../components/cards/AboutCard.astro";
 import ProfileCard from "../components/cards/ProfileCard.astro";
 import ContactCard from "../components/cards/ContactCard.astro";
 import TechnologiesCard from "../components/cards/TechnologiesCard.astro";
+import { information } from "../data/profileInfo";
+import { socialProfiles } from "../data/socialProfiles";
 import type { SocialLink } from "../types";
 
 const socialLinks: SocialLink[] = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/chorolque-ezequiel/",
+    href: socialProfiles.linkedin,
     icon: "linkedin",
   },
   {
     label: "GitHub",
-    href: "https://github.com/DevEzequiel14",
+    href: socialProfiles.github,
     icon: "github",
   },
   {
     label: "Curriculum Vitae",
-    href: "https://drive.google.com/uc?export=download&id=1J1kff1C9AFaGsCmKkxRijcLZ2oHT8mc4",
+    href: socialProfiles.cv,
     icon: "cv",
   },
   {
     label: "Correo",
-    href: "mailto:ezequielchorolque14@gmail.com",
+    href: `mailto:${information.email}`,
     icon: "mail",
   },
 ];
