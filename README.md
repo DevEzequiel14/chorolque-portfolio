@@ -92,6 +92,10 @@ npx playwright install chromium
 
 Los E2E cubren toggle de tema, selector del slider de proyectos y copiar email.
 
+## CI
+
+En push/PR a `main`, GitHub Actions corre `npm ci`, `quality`, `build` y `test:e2e` (Chromium). El deploy sigue a cargo de Netlify.
+
 ## Deploy (Netlify)
 
 Sitio **estático**: Netlify ejecuta el build y sirve `dist/`.
