@@ -1,6 +1,8 @@
 ---
+import type { Strength } from "../../types";
+
 export interface Props {
-  items: { title: string; description: string }[];
+  items: Strength[];
 }
 const { items } = Astro.props;
 ---

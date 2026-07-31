@@ -1,4 +1,10 @@
 ---
+import type { Project } from "../../types";
+
+interface Props {
+  project: Project;
+}
+
 const { project } = Astro.props;
 ---
 
@@ -15,7 +21,7 @@ const { project } = Astro.props;
     <h2 class="work-details-card__title">Tecnologías:</h2>
     <div class="work-details-card__technologies">
       {
-        project.technologies.map((tech: string) => (
+        project.technologies.map((tech) => (
           <span class="work-details-card__tech">{tech.trim()}</span>
         ))
       }

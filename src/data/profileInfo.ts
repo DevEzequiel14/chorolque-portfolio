@@ -1,4 +1,8 @@
-export const information = {
+import type { ProfileInfo } from "../types";
+
+export type { ProfileInfo } from "../types";
+
+export const information: ProfileInfo = {
   name: "Ezequiel",
   description: `Desarrollador Frontend especializado en Angular. Actualmente 
     trabajo en el Ministerio de Educación de Jujuy.`,

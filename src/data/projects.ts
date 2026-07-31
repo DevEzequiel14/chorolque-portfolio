@@ -1,21 +1,8 @@
-import type { ImageMetadata } from "astro";
 import quinchoElTata from "../assets/projects/quinchoElTata.webp";
 import valorAr from "../assets/projects/valorAr.webp";
+import type { Project } from "../types";
 
-export interface Project {
-  title: string;
-  type: string;
-  slug: string;
-  image: ImageMetadata;
-  company: string;
-  rol: string;
-  technologies: string[];
-  timeline: string;
-  description: string;
-  context: string;
-  link: string;
-  github: string;
-}
+export type { Project } from "../types";
 
 export const projects: Project[] = [
   {

@@ -5,12 +5,17 @@ import Head from "../../components/work/Head.astro";
 import DetailsCard from "../../components/work/DetailsCard.astro";
 import FrameCard from "../../components/work/FrameCard.astro";
 import ImageCard from "../../components/work/ImageCard.astro";
+import type { Project } from "../../types";
 
 export async function getStaticPaths() {
   return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project },
   }));
+}
+
+interface Props {
+  project: Project;
 }
 
 const { project } = Astro.props;
