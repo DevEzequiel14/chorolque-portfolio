@@ -1,7 +1,14 @@
 import { expect, test } from "@playwright/test";
 
+type WindowWithCopyProbe = Window & {
+  __copiedText?: string;
+};
+
 test.describe("Critical portfolio interactions", () => {
-  test("theme toggle switches data-theme and checkbox state", async ({ context, page }) => {
+  test("theme toggle switches data-theme and checkbox state", async ({
+    context,
+    page,
+  }) => {
     await context.addInitScript(() => {
       localStorage.setItem("theme", "light");
     });
@@ -21,7 +28,9 @@ test.describe("Critical portfolio interactions", () => {
     await expect(toggle).toBeChecked();
   });
 
-  test("projects slider activates selected dot and project link", async ({ page }) => {
+  test("projects slider activates selected dot and project link", async ({
+    page,
+  }) => {
     await page.goto("/");
 
     const secondDot = page.locator('.projects-card__dot[data-index="2"]');
@@ -34,11 +43,13 @@ test.describe("Critical portfolio interactions", () => {
     await expect(secondLink).toBeVisible();
   });
 
-  test("copy email button writes to clipboard and updates feedback label", async ({ page }) => {
+  test("copy email button writes to clipboard and updates feedback label", async ({
+    page,
+  }) => {
     await page.addInitScript(() => {
       const clipboard = {
         writeText: async (value: string) => {
-          (window as any).__copiedText = value;
+          (window as WindowWithCopyProbe).__copiedText = value;
         },
       };
 
@@ -59,7 +70,9 @@ test.describe("Critical portfolio interactions", () => {
 
     await expect(label).toHaveText("Copiado");
 
-    const copiedText = await page.evaluate(() => (window as any).__copiedText);
+    const copiedText = await page.evaluate(
+      () => (window as WindowWithCopyProbe).__copiedText,
+    );
     expect(copiedText).toBe(expectedEmail);
   });
 });

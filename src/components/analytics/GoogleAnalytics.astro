@@ -14,12 +14,13 @@ const isProd = import.meta.env.PROD;
           window.dataLayer = window.dataLayer || [];
           // GA espera el objeto Arguments, no un array (…args rompe el conteo).
           window.gtag = function gtag() {
+            // eslint-disable-next-line prefer-rest-params -- protocolo oficial de dataLayer/gtag.js
             window.dataLayer.push(arguments);
           };
           window.gtag("js", new Date());
           window.gtag("config", GA_ID);
 
-          var script = document.createElement("script");
+          const script = document.createElement("script");
           script.async = true;
           script.src =
             "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;

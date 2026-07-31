@@ -121,8 +121,7 @@
   .bento-grid {
     // Intro en 2 cols: copy + foto compacta; about debajo como CTA.
     grid-template-columns: minmax(0, 1fr) clamp(100px, 26vw, 140px);
-    grid-template-rows:
-      minmax(128px, auto) // presentation + photo
+    grid-template-rows: minmax(128px, auto) // presentation + photo
       minmax(140px, auto) // about
       minmax(clamp(200px, 40vh, auto), auto) // projects
       minmax(clamp(180px, 25vh, auto), auto) // technologies
@@ -188,8 +187,7 @@
 @media (max-width: 485px) {
   .bento-grid {
     grid-template-columns: minmax(0, 1fr) clamp(88px, 28vw, 120px);
-    grid-template-rows:
-      minmax(112px, auto) // presentation + photo
+    grid-template-rows: minmax(112px, auto) // presentation + photo
       minmax(120px, auto) // about
       minmax(clamp(200px, 35vh, auto), auto) // projects
       repeat(3, minmax(clamp(140px, 22vh, auto), auto)) // tech → contact

@@ -72,15 +72,17 @@ No hace falta tocar el routing: el slug nuevo se publica solo en el build.
 
 ## Scripts
 
-| Comando | Acción |
-| :------ | :----- |
-| `npm install` | Instala dependencias |
-| `npm run dev` | Servidor de desarrollo (`localhost:4321`) |
-| `npm run build` | Build de producción en `./dist/` |
-| `npm run preview` | Vista previa del build local |
-| `npm run quality` | `astro check` + ESLint + Prettier (check) |
-| `npm run test:e2e` | Tests E2E con Playwright (headless) |
-| `npm run test:e2e:headed` | Igual, con browser visible |
+| Comando                   | Acción                                    |
+| :------------------------ | :---------------------------------------- |
+| `npm install`             | Instala dependencias                      |
+| `npm run dev`             | Servidor de desarrollo (`localhost:4321`) |
+| `npm run build`           | Build de producción en `./dist/`          |
+| `npm run preview`         | Vista previa del build local              |
+| `npm run lint`            | ESLint en `.astro`, `.ts` y JS            |
+| `npm run lint:fix`        | Igual, con autofix                        |
+| `npm run quality`         | `astro check` + ESLint + Prettier (check) |
+| `npm run test:e2e`        | Tests E2E con Playwright (headless)       |
+| `npm run test:e2e:headed` | Igual, con browser visible                |
 
 Primera vez con Playwright:
 
