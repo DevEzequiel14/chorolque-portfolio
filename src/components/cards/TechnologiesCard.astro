@@ -1,5 +1,6 @@
 ---
 import { stacks } from "../../data/stacks";
+import { techIconRegistry } from "../icons/stack/techIconRegistry";
 ---
 
 <div class="technologies-card">
@@ -39,14 +40,19 @@ import { stacks } from "../../data/stacks";
         aria-labelledby={`tech-tab-${i}`}
         aria-hidden={i === 0 ? "false" : "true"}
       >
-        {items.map(({ icon: Icon, name }) => (
-          <div class="technologies-card__item">
-            <span aria-hidden="true">
-              <Icon />
-            </span>
-            <p class="technologies-card__item-title">{name}</p>
-          </div>
-        ))}
+        {items.map(({ name, slug }) => {
+          const Icon = techIconRegistry[slug];
+          if (!Icon) return null;
+
+          return (
+            <div class="technologies-card__item">
+              <span aria-hidden="true">
+                <Icon />
+              </span>
+              <p class="technologies-card__item-title">{name}</p>
+            </div>
+          );
+        })}
       </div>
     ))
   }

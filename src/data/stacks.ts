@@ -1,37 +1,24 @@
-import IconAngular from "../components/icons/stack/IconAngular.astro";
-import IconJavascript from "../components/icons/stack/IconJavascript.astro";
-import IconTailwind from "../components/icons/stack/IconTailwind.astro";
-import IconBootstrap from "../components/icons/stack/IconBootstrap.astro";
-import IconTypescript from "../components/icons/stack/IconTypescript.astro";
-import IconAstro from "../components/icons/stack/IconAstro.astro";
-import IconNpm from "../components/icons/stack/IconNpm.astro";
-import IconRxjs from "../components/icons/stack/IconRxjs.astro";
-import IconDocker from "../components/icons/stack/IconDocker.astro";
-import IconGit from "../components/icons/stack/IconGit.astro";
-import IconNotion from "../components/icons/stack/IconNotion.astro";
-import IconFirebase from "../components/icons/stack/IconFirebase.astro";
-import IconJasmine from "../components/icons/stack/IconJasmine.astro";
-import IconAzuredevops from "../components/icons/stack/IconAzuredevops.astro";
+import type { Stacks } from "../types";
 
-export const stacks = {
+export const stacks: Stacks = {
   "Desarrollo web": [
-    { name: "Angular", icon: IconAngular },
-    { name: "Astro", icon: IconAstro },
-    { name: "TypeScript", icon: IconTypescript },
-    { name: "JavaScript", icon: IconJavascript },
-    { name: "RxJS", icon: IconRxjs },
+    { name: "Angular", slug: "angular" },
+    { name: "Astro", slug: "astro" },
+    { name: "TypeScript", slug: "typescript" },
+    { name: "JavaScript", slug: "javascript" },
+    { name: "RxJS", slug: "rxjs" },
   ],
   "Herramientas de desarrollo": [
-    { name: "Bootstrap", icon: IconBootstrap },
-    { name: "Tailwind", icon: IconTailwind },
-    { name: "Jasmine", icon: IconJasmine },
-    { name: "NPM", icon: IconNpm },
+    { name: "Bootstrap", slug: "bootstrap" },
+    { name: "Tailwind", slug: "tailwind" },
+    { name: "Jasmine", slug: "jasmine" },
+    { name: "NPM", slug: "npm" },
   ],
   "Tecnologías complementarias": [
-    { name: "Docker", icon: IconDocker },
-    { name: "Azure DevOps", icon: IconAzuredevops },
-    { name: "Firebase", icon: IconFirebase },
-    { name: "Git", icon: IconGit },
-    { name: "Notion", icon: IconNotion },
+    { name: "Docker", slug: "docker" },
+    { name: "Azure DevOps", slug: "azure-devops" },
+    { name: "Firebase", slug: "firebase" },
+    { name: "Git", slug: "git" },
+    { name: "Notion", slug: "notion" },
   ],
 };
