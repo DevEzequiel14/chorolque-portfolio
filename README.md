@@ -83,6 +83,7 @@ No hace falta tocar el routing: el slug nuevo se publica solo en el build.
 | `npm run quality`         | `astro check` + ESLint + Prettier (check) |
 | `npm run test:e2e`        | Tests E2E con Playwright (headless)       |
 | `npm run test:e2e:headed` | Igual, con browser visible                |
+| `npm run lighthouse:ci`   | Lighthouse budgets (`/` y `/about`)       |
 
 Primera vez con Playwright:
 
@@ -94,7 +95,13 @@ Los E2E cubren toggle de tema, selector del slider de proyectos y copiar email.
 
 ## CI
 
-En push/PR a `main`, GitHub Actions corre `npm ci`, `quality`, `build` y `test:e2e` (Chromium). El deploy sigue a cargo de Netlify.
+En push/PR a `main`, GitHub Actions corre `npm ci`, `quality`, `build`, Lighthouse (`home` + `/about`) y `test:e2e` (Chromium). El deploy sigue a cargo de Netlify.
+
+### Lighthouse (cómo leerlo)
+
+- Corre sobre `dist/` (servidor estático de LHCI, emulación mobile) en `/` y `/about`. Reportes en el artifact `lighthouse-reports` (o localmente en `.lighthouseci/`).
+- El PR **falla** solo ante regresiones graves: performance bajo 0.5, **LCP** sobre 4.5s o **CLS** sobre 0.25 (umbrales “pobres” de Core Web Vitals, algo holgados por CI en frío).
+- Warnings (FCP/TBT) no bloquean. En local: `npm run build && npm run lighthouse:ci`.
 
 ## Deploy (Netlify)
 
