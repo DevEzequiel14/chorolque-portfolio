@@ -1,9 +1,5 @@
 import { expect, test } from "@playwright/test";
 
-type WindowWithCopyProbe = Window & {
-  __copiedText?: string;
-};
-
 test.describe("Critical portfolio interactions", () => {
   test("theme toggle switches data-theme and checkbox state", async ({
     context,
@@ -43,36 +39,18 @@ test.describe("Critical portfolio interactions", () => {
     await expect(secondLink).toBeVisible();
   });
 
-  test("copy email button writes to clipboard and updates feedback label", async ({
+  test("contact card links to the discovery form in a new tab", async ({
     page,
   }) => {
-    await page.addInitScript(() => {
-      const clipboard = {
-        writeText: async (value: string) => {
-          (window as WindowWithCopyProbe).__copiedText = value;
-        },
-      };
-
-      Object.defineProperty(navigator, "clipboard", {
-        value: clipboard,
-        configurable: true,
-      });
-    });
-
     await page.goto("/");
 
-    const copyBtn = page.locator("#copy-btn");
-    const label = page.locator("#label-copy");
+    const contactLink = page.locator(".contact-card");
 
-    const expectedEmail = await copyBtn.getAttribute("data-email");
-
-    await copyBtn.click();
-
-    await expect(label).toHaveText("Copiado");
-
-    const copiedText = await page.evaluate(
-      () => (window as WindowWithCopyProbe).__copiedText,
+    await expect(contactLink).toHaveAttribute(
+      "href",
+      "https://client-discovery-form.vercel.app/",
     );
-    expect(copiedText).toBe(expectedEmail);
+    await expect(contactLink).toHaveAttribute("target", "_blank");
+    await expect(contactLink).toContainText("¿Tenés un proyecto?");
   });
 });
