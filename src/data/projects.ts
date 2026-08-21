@@ -26,7 +26,7 @@ export const projects: Project[] = [
     image: quinchoElTata,
     company: "Quincho el Tata",
     rol: "Desarrollador Frontend",
-    technologies: ["Angular 22", "Bootstrap", "TypeScript", "Netlify, SSR, Playwright, Github Actions"],
+    technologies: ["Angular 22", "Bootstrap", "TypeScript", "Netlify", "SSR", "Playwright", "Github Actions"],
     timeline: "2025 -2026",
     description: `Landing para alquiler de quincho en Jujuy, con WhatsApp, galería y precios de referencia.`,
     context: `Quincho El Tata es una landing page desarrollada para brindar presencia digital a un espacio físico de eventos. Está pensada para facilitar el contacto rápido y directo con el dueño a través de WhatsApp, e informar de forma clara sobre los servicios disponibles. Incluye secciones como "Nosotros", con detalles del lugar, horarios, capacidad y una imagen del quincho; "Servicios", donde se listan las comodidades principales y adicionales; y "Contacto", con acceso a redes sociales, mapa de ubicación, y datos clave. Fue construida con Angular 19 y Bootstrap, priorizando estructura clara, carga rápida y navegación simple desde cualquier dispositivo.`,
