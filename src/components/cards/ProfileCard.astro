@@ -1,16 +1,20 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import profileImage from "../../assets/profile/profile.webp";
 ---
 
 <section class="perfil-card">
   <div class="perfil-card__content">
-    <Image
+    <Picture
       src={profileImage}
       alt="Perfil"
       class="perfil-card__image"
-      widths={[240, 400, 640, 960]}
-      sizes="(max-width: 810px) 50vw, (max-width: 1200px) 30vw, 240px"
+      formats={["avif"]}
+      fallbackFormat="webp"
+      widths={[280, 400, 560, 720, 960]}
+      sizes="(max-width: 485px) 120px, (max-width: 810px) 140px, (max-width: 1200px) 40vw, 280px"
+      quality={82}
+      pictureAttributes={{ class: "perfil-card__picture" }}
       loading="eager"
       decoding="async"
       fetchpriority="high"
