@@ -1,8 +1,23 @@
 ---
 import { information } from "../../data/profileInfo";
+import { projects } from "../../data/projects";
 ---
 
 <section class="presentation-card">
-  <h1 class="presentation-card__title">Hola, soy {information.name}</h1>
+  <h1 class="presentation-card__title">
+    <span class="presentation-card__hello">Hola, soy {information.name}</span>
+    <span class="presentation-card__surname">Chorolque</span>
+  </h1>
   <p class="presentation-card__description">{information.description}</p>
+  <ul class="presentation-card__proof">
+    {
+      projects.map((project) => (
+        <li>
+          <a href={`/work/${project.slug}`}>
+            {project.title} — {project.description}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </section>

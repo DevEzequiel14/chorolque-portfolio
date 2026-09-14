@@ -41,18 +41,27 @@ const socialLinks: SocialLink[] = [
   description="Portafolio de Ezequiel Chorolque: proyectos frontend, experiencia profesional y stack tecnológico en Angular y Astro."
   path="/"
 >
-  <div class="layout__container animate-slide-down">
-    <section class="bento-grid">
-      <div class="card grid-area--presentation"><PresentationCard /></div>
-      <div class="grid-area--social">
-        <SocialNetworksCard links={socialLinks} />
+  <div class="edition">
+    <header class="edition__mast">
+      <p class="edition__paper">Avisos</p>
+      <div class="flyer__theme grid-area--toggles"><ToggleCard /></div>
+    </header>
+
+    <article class="classified">
+      <div class="classified__lead">
+        <div class="classified__portrait grid-area--photo"><ProfileCard /></div>
+        <div class="classified__act"><PresentationCard /></div>
       </div>
-      <div class="card grid-area--projects"><ProjectsCard /></div>
-      <div class="grid-area--photo"><ProfileCard /></div>
-      <a class="card grid-area--about" href="/about"><AboutCard /></a>
-      <div class="card grid-area--technologies"><TechnologiesCard /></div>
-      <div class="card grid-area--contact"><ContactCard /></div>
-      <div class="grid-area--toggles"><ToggleCard /></div>
-    </section>
+
+      <div class="classified__clippings"><ProjectsCard /></div>
+      <div class="classified__rider"><TechnologiesCard /></div>
+      <div class="classified__verso">
+        <a class="grid-area--about" href="/about"><AboutCard /></a>
+      </div>
+      <div class="classified__door">
+        <SocialNetworksCard links={socialLinks} />
+        <ContactCard />
+      </div>
+    </article>
   </div>
 </Layout>

@@ -1,49 +1,52 @@
 @use "../base/variables";
+@use "../utils/mixins" as *;
 
 .contact-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0 0 0.2rem;
+  background: transparent;
+  color: var(--ink);
   text-decoration: none;
-  color: inherit;
+  border-top: 0;
 
   &__title {
-    font-size: variables.$font-size-base;
-    color: var(--text-card-color);
+    font-family: variables.$font-display;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 0.95;
+    text-decoration: underline;
+    text-decoration-color: var(--stamp);
+    text-underline-offset: 0.14em;
   }
 
   &__hint {
-    margin: 0;
-    font-size: variables.$font-size-tiny;
-    font-weight: normal;
-    color: var(--text-color);
+    font-family: variables.$font-measure;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
   }
 
   &__cta {
+    align-self: flex-start;
     width: auto;
-    max-width: 100%;
-    font-size: variables.$font-size-tiny;
-    padding: 0.75rem 1rem;
+    border: 2px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    padding: 0.45rem 0.7rem;
+    font-family: variables.$font-display;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
   }
-}
 
-@media (max-width: 1200px) {
-  .contact-card {
-    &__title {
-      font-size: variables.$font-size-large;
-    }
-  }
-}
-
-@media (max-width: 810px) {
-  .contact-card {
-    &__title {
-      font-size: variables.$font-size-base;
-    }
+  &:hover &__cta,
+  &:focus-visible &__cta {
+    background: var(--stamp);
+    border-color: var(--stamp);
+    color: var(--stamp-ink);
   }
 }

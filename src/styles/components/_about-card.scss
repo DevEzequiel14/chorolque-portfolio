@@ -1,47 +1,42 @@
 @use "../base/variables";
+@use "../utils/mixins" as *;
 
 .about-card {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-
-  button {
-    margin-left: auto;
-  }
+  gap: 0.55rem;
+  max-width: 42rem;
+  padding: 0;
+  text-decoration: none;
+  color: var(--ink);
 
   &__title {
-    font-size: variables.$font-size-small;
-    color: var(--title-card-color);
+    font-family: variables.$font-display;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--ink);
   }
 
   &__description {
-    font-size: variables.$font-size-base;
-    color: var(--text-card-color);
+    font-family: variables.$font-body;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  &__animated-icon {
+    display: none;
   }
 }
 
-@media (max-width: 1200px) {
-  .about-card {
-    &__title {
-      font-size: variables.$font-size-medium;
-    }
-
-    &__description {
-      font-size: variables.$font-size-normal;
-    }
-  }
-}
-
-@media (max-width: 810px) {
-  .about-card {
-    &__title {
-      font-size: variables.$font-size-small;
-    }
-
-    &__description {
-      font-size: variables.$font-size-medium;
-    }
-  }
+.grid-area--about:hover .about-card__title,
+.grid-area--about:focus-visible .about-card__title {
+  color: var(--stamp);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }

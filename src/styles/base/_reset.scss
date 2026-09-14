@@ -7,7 +7,7 @@
 }
 
 html {
-  background-color: var(--bg-color);
+  background-color: var(--paper);
 }
 
 html,
@@ -16,11 +16,41 @@ body {
   height: auto;
   overflow-y: auto;
   overflow-x: hidden;
-  font-family: variables.$font-base;
-  font-weight: 400;
+  font-family: variables.$font-body;
+  font-weight: 500;
   font-style: normal;
-  line-height: 1.6;
+  line-height: 1.45;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--grain) 0.7px, transparent 0.8px);
+  background-size: 3px 3px;
   transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+    background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+:focus-visible {
+  outline: 3px solid var(--stamp);
+  outline-offset: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ink);
+}
+
+* {
+  scrollbar-color: var(--ink) var(--paper);
 }

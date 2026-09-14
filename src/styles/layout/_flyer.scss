@@ -1,0 +1,94 @@
+@use "../utils/mixins" as *;
+
+.edition {
+  @include paper-grain;
+  position: relative;
+  min-height: 100vh;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 2.25rem) 3.5rem;
+  color: var(--ink);
+}
+
+.edition__mast {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 3px solid var(--stamp);
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.edition__paper {
+  font-family: "Archivo Black", "Arial Narrow", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--stamp);
+}
+
+.classified {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 8vh, 4.5rem);
+}
+
+.classified__lead {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 11rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 1.75rem);
+  align-items: start;
+  min-height: 0;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.classified__portrait {
+  min-width: 0;
+}
+
+.classified__act {
+  min-width: 0;
+  border-left: 2px solid var(--ink);
+  padding-left: clamp(0.85rem, 2vw, 1.4rem);
+}
+
+.classified__clippings,
+.classified__rider,
+.classified__verso,
+.classified__door {
+  min-width: 0;
+}
+
+.classified__door {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+  border-top: 3px solid var(--ink);
+}
+
+@media (max-width: 700px) {
+  .classified__lead {
+    grid-template-columns: minmax(5.5rem, 7.5rem) minmax(0, 1fr);
+    min-height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .classified__lead {
+    grid-template-columns: 1fr;
+  }
+
+  .classified__act {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 2px solid var(--ink);
+    padding-top: 1rem;
+  }
+
+  .presentation-card__surname {
+    white-space: normal;
+  }
+}

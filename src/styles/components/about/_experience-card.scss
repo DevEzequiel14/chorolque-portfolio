@@ -6,9 +6,11 @@
   gap: 1rem;
 
   &__title {
-    font-size: variables.$font-size-small;
-    color: var(--title-card-color);
+    font-family: variables.$font-display;
+    font-size: 1.35rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+    color: var(--ink);
   }
 
   &__content {
@@ -18,25 +20,43 @@
   }
 
   &__item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  &__position {
-    font-size: variables.$font-size-medium;
-    font-weight: bold;
-    color: var(--text-card-color);
-  }
-
-  &__description {
-    font-size: variables.$font-size-small;
-    font-weight: 400;
-    color: var(--text-card-color);
+    display: grid;
+    grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
+    gap: 0.35rem 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--ink);
   }
 
   &__date {
-    font-size: variables.$font-size-small;
-    color: var(--title-card-color);
+    grid-column: 1;
+    grid-row: 1 / 3;
+    font-family: variables.$font-measure;
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--stamp);
+    padding-top: 0.2rem;
+  }
+
+  &__position {
+    grid-column: 2;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  &__description {
+    grid-column: 2;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .experience-card__item {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card__date {
+    grid-row: auto;
   }
 }

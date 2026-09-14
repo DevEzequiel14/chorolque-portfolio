@@ -3,47 +3,39 @@
 .work-details-card {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.1rem;
 
   &__section {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 
   &__title {
-    font-size: variables.$font-size-tiny;
-    color: var(--title-color);
+    font-family: variables.$font-measure;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--stamp);
   }
 
   &__text {
-    font-size: variables.$font-size-extra-medium;
-    color: var(--text-color);
+    font-size: 1.05rem;
+    color: var(--ink);
   }
 
   &__technologies {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.35rem;
   }
 
   &__tech {
-    font-size: variables.$font-size-extra-medium;
-    color: var(--text-color);
-  }
-}
-
-@media (max-width: 1200px) {
-  .work-details-card {
-    &__title {
-      font-size: variables.$font-size-tiniest;
-    }
-
-    &__text {
-      font-size: variables.$font-size-medium;
-    }
-
-    &__tech {
-      font-size: variables.$font-size-medium;
-    }
+    font-family: variables.$font-measure;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--ink);
+    padding: 0.15rem 0.4rem;
   }
 }

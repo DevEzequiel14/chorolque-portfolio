@@ -1,44 +1,30 @@
 @use "../base/variables";
 
 .button-icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  width: 100%;
-  border-radius: 1rem;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  color: var(--text-card-color);
-  background: var(--button-icon-bg-color);
-  padding: 1rem;
-  font-size: variables.$font-size-medium;
   gap: 0.5rem;
+  width: auto;
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  color: var(--ink);
+  background: transparent;
+  padding: 0.65rem 0.95rem;
+  font-family: variables.$font-display;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
-.button-icon svg {
-  transition: opacity 0.3s ease;
-}
-
-.button-icon:hover {
-  background: var(--button-icon-hover-color);
+.button-icon:hover,
+.button-icon:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .animated-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  color: var(--text-color);
-
-  svg {
-    rotate: 45deg;
-  }
+  display: none;
 }

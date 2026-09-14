@@ -46,6 +46,7 @@ const totalProjects = projects.length;
             <div class="projects-card__overlay">
               <div class="projects-card__overlay-content">
                 <span class="projects-card__project-title">
+                  <span class="projects-card__index">{String(index + 1).padStart(2, "0")}</span>
                   {project.title}
                 </span>
                 <svg
@@ -119,10 +120,12 @@ const totalProjects = projects.length;
     function updateContentVisibility() {
       links.forEach((link) => {
         const index = Number(link.dataset.index);
-        link.style.opacity = index === current ? "1" : "0";
-        link.style.pointerEvents = index === current ? "auto" : "none";
-        link.style.zIndex = index === current ? "2" : "1";
-        link.setAttribute("aria-hidden", index === current ? "false" : "true");
+        const isActive = index === current;
+        link.classList.toggle("is-active", isActive);
+        link.style.opacity = "1";
+        link.style.pointerEvents = "auto";
+        link.style.zIndex = isActive ? "2" : "1";
+        link.setAttribute("aria-hidden", "false");
       });
 
       dots.forEach((dot) => {
