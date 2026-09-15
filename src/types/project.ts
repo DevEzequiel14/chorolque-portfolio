@@ -13,4 +13,5 @@ export interface Project {
   context: string;
   link: string;
   github: string;
+  featured: boolean;
 }

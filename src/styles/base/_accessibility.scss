@@ -21,14 +21,8 @@
     animation: none;
   }
 
-  .grid-area--about:hover div {
-    animation: none;
-  }
-
-  .projects-card__link,
   .projects-card__image,
-  .projects-card__overlay,
-  .projects-card__dot {
+  .projects-card__overlay {
     transition: none;
   }
 

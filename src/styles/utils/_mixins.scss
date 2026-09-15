@@ -11,19 +11,12 @@
 }
 
 @mixin card-pattern-bg {
-  background-color: var(--base);
-  opacity: 1;
-  background-image:
-    linear-gradient(135deg, var(--bg-card-color) 25%, transparent 25%),
-    linear-gradient(225deg, var(--bg-card-color) 25%, transparent 25%),
-    linear-gradient(45deg, var(--bg-card-color) 25%, transparent 25%),
-    linear-gradient(315deg, var(--bg-card-color) 25%, var(--base) 25%);
-  background-position:
-    4px 0,
-    4px 0,
-    0 0,
-    0 0;
-  background-size: 4px 4px;
-  background-repeat: repeat;
-  border-radius: 2rem;
+  background-color: var(--bg-card-color);
+  border: 1px solid var(--tile-border);
+  border-radius: var(--tile-radius);
+  box-shadow: var(--tile-shadow);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }

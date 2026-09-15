@@ -3,10 +3,12 @@ import { information } from "../../data/profileInfo";
 ---
 
 <section class="about-card">
-  <h2 class="about-card__title">Acerca de mi</h2>
-  <p class="about-card__description">
-    {information.about}
-  </p>
+  <div class="about-card__copy">
+    <h2 class="about-card__title">Acerca de mi</h2>
+    <p class="about-card__description">
+      {information.about}
+    </p>
+  </div>
   <div class="about-card__animated-icon animated-icon" aria-hidden="true">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,10 +20,10 @@ import { information } from "../../data/profileInfo";
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-up"
-      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-        d="M12 5l0 14"></path><path d="M18 11l-6 -6"></path><path d="M6 11l6 -6"
-      ></path></svg
     >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M17 7l-10 10"></path>
+      <path d="M8 7l9 0l0 9"></path>
+    </svg>
   </div>
 </section>

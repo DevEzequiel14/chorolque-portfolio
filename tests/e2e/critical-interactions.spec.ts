@@ -24,19 +24,22 @@ test.describe("Critical portfolio interactions", () => {
     await expect(toggle).toBeChecked();
   });
 
-  test("projects slider activates selected dot and project link", async ({
-    page,
-  }) => {
+  test("featured project tiles link to their work pages", async ({ page }) => {
     await page.goto("/");
 
-    const secondDot = page.locator('.projects-card__dot[data-index="2"]');
-    const secondLink = page.locator('.projects-card__link[data-index="2"]');
+    const valor = page.locator('a[href="/work/valor-ar"]');
+    const quincho = page.locator('a[href="/work/quincho-el-tata"]');
 
-    await secondDot.click();
-
-    await expect(secondDot).toHaveAttribute("aria-selected", "true");
-    await expect(secondLink).toHaveAttribute("aria-hidden", "false");
-    await expect(secondLink).toBeVisible();
+    await expect(valor).toBeVisible();
+    await expect(quincho).toBeVisible();
+    await expect(valor).toHaveAttribute(
+      "aria-label",
+      "Ver detalle del proyecto Valor Ar",
+    );
+    await expect(quincho).toHaveAttribute(
+      "aria-label",
+      "Ver detalle del proyecto Quincho el Tata",
+    );
   });
 
   test("contact card links to the discovery form in a new tab", async ({

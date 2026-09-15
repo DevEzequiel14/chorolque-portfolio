@@ -1,6 +1,18 @@
 .layout__container {
+  --page-inset: 0.75rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width: 100%;
   min-height: 100vh;
-  padding: 2rem;
+  padding: var(--page-inset);
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+@media (min-width: 2400px) {
+  .layout__container {
+    --page-inset: 1.25rem;
+    max-width: 1920px;
+  }
 }

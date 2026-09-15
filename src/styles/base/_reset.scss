@@ -19,8 +19,28 @@ body {
   font-family: variables.$font-base;
   font-weight: 400;
   font-style: normal;
-  line-height: 1.6;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--text-color);
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background-image: url("/textures/noise.png");
+  background-size: 64px;
+  background-repeat: repeat;
+  opacity: var(--noise-opacity);
+  mix-blend-mode: var(--noise-blend);
+}
+
+::selection {
+  background: var(--title-color);
+  color: var(--bg-color);
 }

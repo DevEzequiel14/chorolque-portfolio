@@ -10,9 +10,9 @@
   gap: 96px;
   position: relative;
   overflow: hidden;
-  outline: 2px solid var(--border-color);
-  outline-offset: -16px;
-  border-radius: 3.5rem;
+  outline: 1px solid var(--tile-border);
+  outline-offset: -12px;
+  border-radius: var(--tile-radius);
 }
 
 .exit-button {

@@ -9,6 +9,7 @@ import ProfileCard from "../components/cards/ProfileCard.astro";
 import ContactCard from "../components/cards/ContactCard.astro";
 import TechnologiesCard from "../components/cards/TechnologiesCard.astro";
 import { information } from "../data/profileInfo";
+import { projects } from "../data/projects";
 import { socialProfiles } from "../data/socialProfiles";
 import type { SocialLink } from "../types";
 
@@ -34,6 +35,8 @@ const socialLinks: SocialLink[] = [
     icon: "mail",
   },
 ];
+
+const [projectA, projectB] = projects.filter((project) => project.featured);
 ---
 
 <Layout
@@ -47,9 +50,30 @@ const socialLinks: SocialLink[] = [
       <div class="grid-area--social">
         <SocialNetworksCard links={socialLinks} />
       </div>
-      <div class="card grid-area--projects"><ProjectsCard /></div>
+      {
+        projectA && (
+          <a
+            class="card grid-area--project-a"
+            href={`/work/${projectA.slug}`}
+            aria-label={`Ver detalle del proyecto ${projectA.title}`}
+          >
+            <ProjectsCard project={projectA} eager />
+          </a>
+        )
+      }
       <div class="grid-area--photo"><ProfileCard /></div>
       <a class="card grid-area--about" href="/about"><AboutCard /></a>
+      {
+        projectB && (
+          <a
+            class="card grid-area--project-b"
+            href={`/work/${projectB.slug}`}
+            aria-label={`Ver detalle del proyecto ${projectB.title}`}
+          >
+            <ProjectsCard project={projectB} />
+          </a>
+        )
+      }
       <div class="card grid-area--technologies"><TechnologiesCard /></div>
       <div class="card grid-area--contact"><ContactCard /></div>
       <div class="grid-area--toggles"><ToggleCard /></div>

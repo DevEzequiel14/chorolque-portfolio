@@ -1,12 +1,10 @@
-@use "../../base/variables";
-
 .education-card {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
   &__title {
-    font-size: variables.$font-size-small;
+    font-size: var(--type-kicker);
     color: var(--title-card-color);
     text-transform: uppercase;
   }
@@ -18,25 +16,25 @@
   }
 
   &__career {
-    font-size: variables.$font-size-medium;
+    font-size: var(--type-card);
     font-weight: bold;
     color: var(--text-card-color);
   }
 
   &__university {
-    font-size: variables.$font-size-medium;
+    font-size: var(--type-lede);
     font-weight: 400;
     color: var(--text-card-color);
   }
 
   &__description,
   &__technologies {
-    font-size: variables.$font-size-medium;
+    font-size: var(--type-lede);
     color: var(--text-card-color);
   }
 
   &__year {
-    font-size: variables.$font-size-small;
+    font-size: var(--type-ui);
     color: var(--title-card-color);
   }
 }

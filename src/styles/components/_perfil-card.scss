@@ -1,13 +1,9 @@
-@use "../base/variables";
-
 .perfil-card {
   display: flex;
   align-items: center;
   height: 100%;
-  border: 2px solid var(--border-color);
-  border-radius: 2rem;
   overflow: hidden;
-  transition: background-color 0.3s ease;
+  border-radius: var(--tile-radius);
 
   &__content {
     width: 100%;

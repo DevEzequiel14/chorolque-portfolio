@@ -1,5 +1,3 @@
-@use "../../base/variables";
-
 .details-about-card {
   display: flex;
   flex-direction: column;
@@ -14,18 +12,14 @@
 
   &__history-title,
   &__actuality-title {
-    font-size: variables.$font-size-small;
+    font-size: var(--type-kicker);
     color: var(--title-card-color);
     text-transform: uppercase;
-
-    @media (max-width: 1200px) {
-      font-size: variables.$font-size-tiniest;
-    }
   }
 
   &__history-text,
   &__actuality-text {
-    font-size: variables.$font-size-medium;
+    font-size: var(--type-lede);
     color: var(--text-card-color);
   }
 }
