@@ -13,7 +13,10 @@ import { techIconRegistry } from "../icons/stack/techIconRegistry";
           class="technologies-card__group"
           aria-labelledby={`tech-group-${category}`}
         >
-          <h3 class="technologies-card__group-label" id={`tech-group-${category}`}>
+          <h3
+            class="sr-only"
+            id={`tech-group-${category}`}
+          >
             {category}
           </h3>
           <ul class="technologies-card__track">
