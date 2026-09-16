@@ -9,15 +9,18 @@ const { items } = Astro.props;
 
 <section class="text-slider">
   <h2 class="text-slider__heading">Lo que me gusta hacer</h2>
-  <div class="text-slider__container" id="slider">
-    {
-      items.map((item) => (
-        <article class="text-slider__slide">
-          <h3 class="text-slider__title">{item.title}</h3>
-          <p class="text-slider__description">{item.description}</p>
-        </article>
-      ))
-    }
+  <div class="text-slider__viewport">
+    <div class="text-slider__container" id="slider">
+      {
+        items.map((item) => (
+          <article class="text-slider__slide">
+            <h3 class="text-slider__title">{item.title}</h3>
+            <p class="text-slider__description">{item.description}</p>
+          </article>
+        ))
+      }
+    </div>
+    <div class="text-slider__hit" aria-hidden="true"></div>
   </div>
 
   <nav class="text-slider__dots" aria-label="Selector de diapositivas">
@@ -47,6 +50,8 @@ const { items } = Astro.props;
     sliderSection.dataset.initialized = "true";
 
     const slider = sliderSection.querySelector(".text-slider__container");
+    const swipeSurface =
+      sliderSection.querySelector(".text-slider__viewport") || sliderSection;
     const dots = sliderSection.querySelectorAll(".text-slider__dot");
     const controller = new AbortController();
     const { signal } = controller;
@@ -105,41 +110,70 @@ const { items } = Astro.props;
       });
 
       let startX = 0;
-      let isSwiping = false;
+      let startY = 0;
+      let isTracking = false;
+      let axis = null;
 
-      slider.addEventListener(
+      function resetSwipe() {
+        isTracking = false;
+        axis = null;
+      }
+
+      function onSwipeEnd(clientX) {
+        if (!isTracking || axis !== "x") {
+          resetSwipe();
+          return;
+        }
+
+        const diff = clientX - startX;
+        resetSwipe();
+
+        if (Math.abs(diff) < 50) return;
+
+        if (diff < 0) {
+          goToSlide((currentIndex + 1) % dots.length);
+        } else {
+          goToSlide((currentIndex - 1 + dots.length) % dots.length);
+        }
+      }
+
+      swipeSurface.addEventListener(
         "touchstart",
-        (e) => {
-          startX = e.touches[0].clientX;
-          isSwiping = true;
+        (event) => {
+          startX = event.touches[0].clientX;
+          startY = event.touches[0].clientY;
+          isTracking = true;
+          axis = null;
         },
         { passive: true, signal },
       );
 
-      slider.addEventListener(
+      swipeSurface.addEventListener(
         "touchmove",
-        (e) => {
-          if (!isSwiping) return;
-          const moveX = e.touches[0].clientX;
-          const diff = moveX - startX;
-          if (Math.abs(diff) > 50) {
-            if (diff > 0 && currentIndex > 0) {
-              goToSlide(currentIndex - 1);
-            } else if (diff < 0 && currentIndex < dots.length - 1) {
-              goToSlide(currentIndex + 1);
-            } else if (diff < 0 && currentIndex >= dots.length - 1) {
-              goToSlide(0);
-            }
-            isSwiping = false;
-          }
+        (event) => {
+          if (!isTracking || axis) return;
+
+          const dx = event.touches[0].clientX - startX;
+          const dy = event.touches[0].clientY - startY;
+          if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+
+          axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
         },
         { passive: true, signal },
       );
 
-      slider.addEventListener(
+      swipeSurface.addEventListener(
         "touchend",
+        (event) => {
+          onSwipeEnd(event.changedTouches[0].clientX);
+        },
+        { passive: true, signal },
+      );
+
+      swipeSurface.addEventListener(
+        "touchcancel",
         () => {
-          isSwiping = false;
+          resetSwipe();
         },
         { passive: true, signal },
       );

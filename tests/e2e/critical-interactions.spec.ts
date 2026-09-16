@@ -42,6 +42,65 @@ test.describe("Critical portfolio interactions", () => {
     );
   });
 
+  test("about text slider advances on consecutive swipes", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/about");
+
+    const viewport = page.locator(".text-slider__viewport");
+    const dots = page.locator(".text-slider__dot");
+
+    await expect(viewport).toBeVisible();
+    await expect(dots.nth(0)).toHaveAttribute("aria-current", "true");
+
+    async function swipe(direction: "left" | "right") {
+      await viewport.evaluate((el, dir) => {
+        const rect = el.getBoundingClientRect();
+        const y = rect.top + rect.height / 2;
+        const fromX =
+          dir === "left"
+            ? rect.left + rect.width * 0.8
+            : rect.left + rect.width * 0.2;
+        const toX =
+          dir === "left"
+            ? rect.left + rect.width * 0.2
+            : rect.left + rect.width * 0.8;
+
+        const fire = (type: string, x: number) => {
+          const touch = new Touch({
+            identifier: 1,
+            target: el,
+            clientX: x,
+            clientY: y,
+          });
+          el.dispatchEvent(
+            new TouchEvent(type, {
+              bubbles: true,
+              cancelable: true,
+              composed: true,
+              touches: type === "touchend" ? [] : [touch],
+              targetTouches: type === "touchend" ? [] : [touch],
+              changedTouches: [touch],
+            }),
+          );
+        };
+
+        fire("touchstart", fromX);
+        fire("touchmove", (fromX + toX) / 2);
+        fire("touchmove", toX);
+        fire("touchend", toX);
+      }, direction);
+    }
+
+    await swipe("left");
+    await expect(dots.nth(1)).toHaveAttribute("aria-current", "true");
+
+    await swipe("left");
+    await expect(dots.nth(2)).toHaveAttribute("aria-current", "true");
+
+    await swipe("right");
+    await expect(dots.nth(1)).toHaveAttribute("aria-current", "true");
+  });
+
   test("contact card links to the discovery form in a new tab", async ({
     page,
   }) => {
