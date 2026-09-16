@@ -1,43 +1,43 @@
 @keyframes toggle-icon-hide-left {
   0% {
-    transform: translateX(0) scale(1);
+    transform: translate(0, -50%) scale(1);
     opacity: 1;
   }
   100% {
-    transform: translateX(-30px) scale(0.5);
+    transform: translate(-30px, -50%) scale(0.5);
     opacity: 0;
   }
 }
 
 @keyframes toggle-icon-show-right {
   0% {
-    transform: translateX(30px) scale(0.5);
+    transform: translate(30px, -50%) scale(0.5);
     opacity: 0;
   }
   100% {
-    transform: translateX(0) scale(1);
+    transform: translate(0, -50%) scale(1);
     opacity: 1;
   }
 }
 
 @keyframes toggle-icon-hide-right {
   0% {
-    transform: translateX(0) scale(1);
+    transform: translate(0, -50%) scale(1);
     opacity: 1;
   }
   100% {
-    transform: translateX(30px) scale(0.5);
+    transform: translate(30px, -50%) scale(0.5);
     opacity: 0;
   }
 }
 
 @keyframes toggle-icon-show-left {
   0% {
-    transform: translateX(-30px) scale(0.5);
+    transform: translate(-30px, -50%) scale(0.5);
     opacity: 0;
   }
   100% {
-    transform: translateX(0) scale(1);
+    transform: translate(0, -50%) scale(1);
     opacity: 1;
   }
 }

@@ -75,6 +75,8 @@
   &--toggles {
     grid-column: 11 / 13;
     grid-row: 3;
+    min-width: 0;
+    overflow: hidden;
   }
 }
 
