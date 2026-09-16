@@ -4,122 +4,35 @@ import { techIconRegistry } from "../icons/stack/techIconRegistry";
 ---
 
 <div class="technologies-card">
-  <div class="technologies-card__header">
-    <h2 class="technologies-card__title">Tecnologías que uso</h2>
+  <h2 class="technologies-card__title">Tecnologías que uso</h2>
 
-    <div
-      class="technologies-card__chips"
-      role="tablist"
-      aria-label="Categorías de tecnologías"
-    >
-      {
-        Object.keys(stacks).map((category, i) => (
-          <button
-            id={`tech-tab-${i}`}
-            type="button"
-            class={`technologies-card__chip${i === 0 ? " active" : ""}`}
-            data-category={category}
-            role="tab"
-            aria-selected={i === 0 ? "true" : "false"}
-            aria-controls={`tech-panel-${i}`}
-          >
-            {category.charAt(0).toUpperCase() + category.slice(1)}
-          </button>
-        ))
-      }
-    </div>
-  </div>
+  <div class="technologies-card__groups">
+    {
+      Object.entries(stacks).map(([category, items]) => (
+        <section
+          class="technologies-card__group"
+          aria-labelledby={`tech-group-${category}`}
+        >
+          <h3 class="technologies-card__group-label" id={`tech-group-${category}`}>
+            {category}
+          </h3>
+          <ul class="technologies-card__track">
+            {items.map(({ name, slug }) => {
+              const Icon = techIconRegistry[slug];
+              if (!Icon) return null;
 
-  {
-    Object.entries(stacks).map(([category, items], i) => (
-      <div
-        class={`technologies-card__track${i !== 0 ? " hidden" : ""}`}
-        data-category={category}
-        role="tabpanel"
-        id={`tech-panel-${i}`}
-        aria-labelledby={`tech-tab-${i}`}
-        aria-hidden={i === 0 ? "false" : "true"}
-      >
-        {items.map(({ name, slug }) => {
-          const Icon = techIconRegistry[slug];
-          if (!Icon) return null;
-
-          return (
-            <div class="technologies-card__item">
-              <span aria-hidden="true">
-                <Icon />
-              </span>
-              <p class="technologies-card__item-title">{name}</p>
-            </div>
-          );
-        })}
-      </div>
-    ))
-  }
-</div>
-
-<script is:inline type="module">
-  const cards = document.querySelectorAll(".technologies-card");
-
-  cards.forEach((card) => {
-    if (card.dataset.initialized === "true") return;
-    card.dataset.initialized = "true";
-
-    const buttons = Array.from(
-      card.querySelectorAll(".technologies-card__chip"),
-    );
-    const sections = Array.from(
-      card.querySelectorAll(".technologies-card__track"),
-    );
-
-    if (buttons.length === 0 || sections.length === 0) return;
-
-    function activateTab(nextButton) {
-      buttons.forEach((btn) => {
-        const isActive = btn === nextButton;
-        btn.classList.toggle("active", isActive);
-        btn.setAttribute("aria-selected", isActive ? "true" : "false");
-        btn.tabIndex = isActive ? 0 : -1;
-      });
-
-      const selectedId = nextButton.getAttribute("data-category");
-      sections.forEach((section) => {
-        const isActive = section.getAttribute("data-category") === selectedId;
-        section.classList.toggle("hidden", !isActive);
-        section.setAttribute("aria-hidden", isActive ? "false" : "true");
-      });
+              return (
+                <li class="technologies-card__item">
+                  <span class="technologies-card__icon" aria-hidden="true">
+                    <Icon />
+                  </span>
+                  <span class="technologies-card__item-title">{name}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))
     }
-
-    buttons.forEach((button, index) => {
-      button.addEventListener("click", () => activateTab(button));
-
-      button.addEventListener("keydown", (event) => {
-        const { key } = event;
-        if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(key)) {
-          return;
-        }
-
-        event.preventDefault();
-        let nextIndex = index;
-
-        if (key === "ArrowRight") {
-          nextIndex = (index + 1) % buttons.length;
-        } else if (key === "ArrowLeft") {
-          nextIndex = (index - 1 + buttons.length) % buttons.length;
-        } else if (key === "Home") {
-          nextIndex = 0;
-        } else if (key === "End") {
-          nextIndex = buttons.length - 1;
-        }
-
-        buttons[nextIndex].focus();
-        activateTab(buttons[nextIndex]);
-      });
-    });
-
-    activateTab(
-      buttons.find((button) => button.classList.contains("active")) ||
-        buttons[0],
-    );
-  });
-</script>
+  </div>
+</div>

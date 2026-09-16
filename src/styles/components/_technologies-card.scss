@@ -1,18 +1,10 @@
 .technologies-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1.25rem;
+  gap: 0.55rem;
   width: 100%;
   height: 100%;
   min-height: 0;
-
-  &__header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.7rem;
-  }
 
   &__title {
     font-size: var(--type-heading);
@@ -21,65 +13,86 @@
     color: var(--text-card-color);
   }
 
-  &__chips {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  &__groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 1.1rem;
+    align-items: start;
+    flex: 1;
+    min-height: 0;
   }
 
-  &__chip {
-    padding: 0.4rem 0.9rem;
-    border-radius: 9999px;
-    border: 1px solid var(--tile-border);
-    color: var(--text-card-color);
-    font-size: var(--type-ui);
-    cursor: pointer;
-    transition: all 0.2s ease;
+  &__group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    min-width: 0;
+  }
 
-    &.active {
-      color: var(--text-chip-color);
-      background-color: var(--bg-chip-color);
-    }
+  &__group-label {
+    margin: 0;
+    font-size: var(--type-micro);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text-card-color);
+    line-height: 1.1;
   }
 
   &__track {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 1.35rem 1.85rem;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem 0.35rem;
     width: 100%;
-    transition: opacity 0.3s ease;
-
-    &.hidden {
-      display: none;
-    }
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   &__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.18rem;
+    min-width: 0;
   }
 
-  &__item .icon-redes {
-    width: clamp(2.75rem, 4.4vw, 3.65rem);
-    height: clamp(2.75rem, 4.4vw, 3.65rem);
+  &__icon .icon-redes {
+    width: clamp(1.8rem, 2.4vw, 2.25rem);
+    height: clamp(1.8rem, 2.4vw, 2.25rem);
+    display: block;
   }
 
   &__item-title {
     text-align: center;
-    font-size: var(--type-micro);
+    font-size: 0.65rem;
+    line-height: 1.15;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: var(--text-card-color);
   }
 }
 
 @media (max-width: 810px) {
   .technologies-card {
-    &__item .icon-redes {
-      width: 2.75rem;
-      height: 2.75rem;
+    gap: 0.85rem;
+
+    &__groups {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.9rem;
+    }
+
+    &__icon .icon-redes {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &__item-title {
+      font-size: var(--type-micro);
     }
   }
 }

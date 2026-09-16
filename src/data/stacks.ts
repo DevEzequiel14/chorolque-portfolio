@@ -1,24 +1,23 @@
 import type { Stacks } from "../types";
 
 export const stacks: Stacks = {
-  "Desarrollo web": [
+  Base: [
     { name: "Angular", slug: "angular" },
-    { name: "Astro", slug: "astro" },
     { name: "TypeScript", slug: "typescript" },
-    { name: "JavaScript", slug: "javascript" },
     { name: "RxJS", slug: "rxjs" },
+    { name: "NgRx", slug: "ngrx" },
+    { name: "Astro", slug: "astro" },
   ],
-  "Herramientas de desarrollo": [
-    { name: "Bootstrap", slug: "bootstrap" },
+  Interfaz: [
     { name: "Tailwind", slug: "tailwind" },
-    { name: "Jasmine", slug: "jasmine" },
-    { name: "NPM", slug: "npm" },
+    { name: "Angular Material", slug: "angular-material" },
+    { name: "Bootstrap", slug: "bootstrap" },
   ],
-  "Tecnologías complementarias": [
+  Entorno: [
+    { name: "Git", slug: "git" },
     { name: "Docker", slug: "docker" },
     { name: "Azure DevOps", slug: "azure-devops" },
+    { name: "Playwright", slug: "playwright" },
     { name: "Firebase", slug: "firebase" },
-    { name: "Git", slug: "git" },
-    { name: "Notion", slug: "notion" },
   ],
 };
