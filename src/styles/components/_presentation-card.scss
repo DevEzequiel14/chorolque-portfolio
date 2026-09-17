@@ -14,10 +14,15 @@
   }
 
   &__description {
-    max-width: 36ch;
     font-size: var(--type-lede);
     font-weight: 400;
     line-height: 1.45;
     color: var(--text-color);
+  }
+
+  &__employer {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
   }
 }

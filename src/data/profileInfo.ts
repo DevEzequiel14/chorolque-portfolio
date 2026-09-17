@@ -4,10 +4,14 @@ export type { ProfileInfo } from "../types";
 
 export const information: ProfileInfo = {
   name: "Ezequiel",
-  description: `Desarrollador Frontend especializado en Angular. Actualmente 
-    trabajo en el Ministerio de Educación de Jujuy.`,
-  about: `Apasionado por el desarrollo web, la construcción de interfaces 
-    claras y el desarrollo de soluciones útiles.`,
+  description: `Ingeniero en Informática con especialización en Frontend. 
+  Actualmente trabajo en`,
+  employer: {
+    name: "OneInfoConsulting",
+    href: "https://oneinfoconsulting.com/",
+  },
+  about: `Enfocado en la construcción de interfaces intuitivas y en la creación
+  de soluciones funcionales que aportan valor real a los usuarios.`,
   email: "ezequielchorolque14@gmail.com",
   history: `Ingeniero en Informática con más de 4 años de experiencia en el 
     desarrollo de software. Desde mis primeros pasos en el mundo frontend, 

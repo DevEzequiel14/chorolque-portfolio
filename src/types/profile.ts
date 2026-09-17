@@ -18,9 +18,15 @@ export interface Education {
   year: string;
 }
 
+export interface Employer {
+  name: string;
+  href: string;
+}
+
 export interface ProfileInfo {
   name: string;
   description: string;
+  employer: Employer;
   about: string;
   email: string;
   history: string;

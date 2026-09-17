@@ -42,6 +42,22 @@ test.describe("Critical portfolio interactions", () => {
     );
   });
 
+  test("presentation employer name opens OneInfo Consulting in a new tab", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const employer = page.locator(".presentation-card__employer");
+
+    await expect(employer).toHaveText("OneInfoConsulting");
+    await expect(employer).toHaveAttribute(
+      "href",
+      "https://oneinfoconsulting.com/",
+    );
+    await expect(employer).toHaveAttribute("target", "_blank");
+    await expect(employer).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
   test("about text slider advances on consecutive swipes", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/about");

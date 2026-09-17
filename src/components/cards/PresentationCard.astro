@@ -4,5 +4,13 @@ import { information } from "../../data/profileInfo";
 
 <section class="presentation-card">
   <h1 class="presentation-card__title">Hola, soy {information.name} —</h1>
-  <p class="presentation-card__description">{information.description}</p>
+  <p class="presentation-card__description">
+    {information.description}
+    {" "}
+    <a
+      class="presentation-card__employer"
+      href={information.employer.href}
+      target="_blank"
+      rel="noopener noreferrer">{information.employer.name}</a>
+  </p>
 </section>
